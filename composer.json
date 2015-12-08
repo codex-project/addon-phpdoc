@@ -1,0 +1,16 @@
+{
+    "name": "docit/phpdoc-hook",
+    "description": "",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.5.9",
+        "docit/core": "1.0.*",
+        "docit/support": "1.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Docit\\Hooks\\Phpdoc\\": "src/"
+        }
+    }
+}

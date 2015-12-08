@@ -29,7 +29,6 @@ class HookServiceProvider extends ServiceProvider
     protected $assetDirs = [ 'assets' => 'docit-phpdoc' ];
 
     protected $providers = [
-        \Docit\Support\BeverageServiceProvider::class,
         Providers\RouteServiceProvider::class
     ];
 

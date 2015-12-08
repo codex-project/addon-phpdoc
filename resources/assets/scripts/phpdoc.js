@@ -1,17 +1,17 @@
-define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
+(function(){
 
-    docit = Docit.instance;
+    var app = packadic.Application.instance;
 
-    var util = docit.util;
+    var util = packadic.util;
 
     var trim         = util.trim,
-        def          = util.def,
-        defined      = util.defined,
-        cre          = util.cre,
+        def          = packadic.def,
+        defined      = packadic.defined,
+        cre          = packadic.cre,
         ucfirst      = util.ucfirst,
-        kindOf       = util.kindOf,
+        kindOf       = packadic.kindOf,
         makeString   = util.makeString,
-        ConfigObject = util.ConfigObject;
+        ConfigObject = packadic.ConfigObject;
 
     function PhpdocMenuTree(phpdoc, $el) {
         this.phpdoc = phpdoc;
@@ -135,7 +135,7 @@ define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
                 window.history.pushState(null, data.node.data.fullName, window.location.pathname + "#!/" + data.node.data.fullName);
             });
             // select random class to start with
-            var fullName = docit.config.get('docit.project.phpdoc_hook_settings.default_class') || that.data.data[0].full_name;
+            var fullName = app.config.get('docit.project.phpdoc_hook_settings.default_class') || that.data.data[0].full_name;
             // check if the current location contains a hash, which means we want to open a specific doc page
             if ( location.hash.indexOf('#!/') !== - 1 ) {
                 fullName = location.hash.replace(/\#\!\//, '');
@@ -150,7 +150,7 @@ define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
                     that.openDocPage(location.hash.replace(/\#\!\//, ''));
                 }
             }, false);
-            if(util.kindOf(callback) === 'function'){
+            if(kindOf(callback) === 'function'){
                 callback(this);
             }
         },
@@ -159,6 +159,8 @@ define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
             var that = this;
             var classData = this.getClass(fullName);
             console.log('openDocPage', classData);
+
+            this.$content.find('.type-link').tooltip('hide');
 
             // generate content from template
             this.$content.html(this.template(_.merge(classData, {
@@ -176,7 +178,7 @@ define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
             });
 
             // sroll to top
-            docit.scrollTop();
+            app.layout.scrollTop();
 
             // open menu item
             if(defined(openInMenu) && openInMenu === true){
@@ -248,7 +250,7 @@ define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
                         .attr('data-full-name', type)
                         .attr('title', type);
 
-                    if ( util.defined(typeClass) ) {
+                    if ( defined(typeClass) ) {
                         $a.addClass('local');
                     }
 
@@ -306,5 +308,5 @@ define(['Docit', 'jquery', 'jstree'], function (Docit, $) {
         }
     };
 
-    return Phpdoc;
-});
+    window.Phpdoc = Phpdoc;
+}.call());

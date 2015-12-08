@@ -23,7 +23,7 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class PhpdocDocument extends Document
 {
     /**
-     * @var \Docit\Hooks\Phpdoc\PhpdocParser
+     * @var \Docit\Hooks\Phpdoc\PhpdocParser2
      */
     protected $parser;
 
@@ -32,7 +32,7 @@ class PhpdocDocument extends Document
         ini_set('memory_limit', '2G');
         $path     = $project->path($project->config('phpdoc_hook_settings.path'));
         $pathName = 'phpdoc';
-        parent::__construct($factory, $files, $project, $container, base_path('.editorconfig'), $pathName);
+        parent::__construct($factory, $files, $project, $container, $path, $pathName);
         $this->parser = new PhpdocParser;
         $this->mergeAttributes($project->config('phpdoc_hook_settings'));
 

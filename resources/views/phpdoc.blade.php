@@ -1,7 +1,7 @@
 @extends($document->attr('layout'))
 
 @push('stylesheets')
-    <link href="{{ asset('vendor/docit-phpdoc/styles/phpdoc.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('vendor/docit-phpdoc/styles/phpdoc.css') }}" type="text/css" rel="stylesheet">
 @endpush
 
 @section('pageTitle', $document->attr('menu_name'))
@@ -24,39 +24,33 @@
 @stop
 
 @section('content')
-<div id="docit-phpdoc">
-    <div class="col-md-3 pr-n pl-n">
-        <div id="docit-phpdoc-menu"></div>
+    <div id="docit-phpdoc">
+        <div class="col-md-3 pr-n pl-n">
+            <div id="docit-phpdoc-menu"></div>
+        </div>
+        <div class="col-md-9 pr-n pl-n">
+            <div id="docit-phpdoc-content"></div>
+        </div>
     </div>
-    <div class="col-md-9 pr-n pl-n">
-        <div id="docit-phpdoc-content"></div>
-    </div>
-</div>
 @stop
-@push('config-scripts')
-<script>
-requirejs.config({
-    paths  : {
-        'phpdoc': '../../docit-phpdoc/scripts/phpdoc'
-    }
-});
-</script>
+
+@push('scripts')
 @endpush
+
+
 @push('init-scripts')
+<script src="{{ asset('vendor/docit/bower_components/jstree/dist/jstree.js') }}"></script>
+<script src="{{ asset('vendor/docit-phpdoc/scripts/phpdoc.js') }}"></script>
 @include('docit-phpdoc::partials/phpdoc-template')
 <script>
-
-    //DocitLoader.start('docit-phpdoc', 'block');
-    require(['phpdoc'], function(Phpdoc){
-        var phpdoc = new Phpdoc();
-        phpdoc.setTemplate('#phpdoc-content-template')
-            .setContentSelector('#docit-phpdoc-content')
-            .setTreeSelector('#docit-phpdoc-menu')
-            .setData({!! json_encode($content) !!})
-            .start(function(){
-                //DocitLoader.stop('docit-phpdoc');
-            });
-        window['phpdoc'] = phpdoc; // for console testing
-    });
+    var phpdoc = new Phpdoc();
+    phpdoc.setTemplate('#phpdoc-content-template')
+        .setContentSelector('#docit-phpdoc-content')
+        .setTreeSelector('#docit-phpdoc-menu')
+        .setData({!! json_encode($content) !!})
+        .start(function () {
+            //DocitLoader.stop('docit-phpdoc');
+        });
+    window['phpdoc'] = phpdoc; // for console testing
 </script>
 @endpush

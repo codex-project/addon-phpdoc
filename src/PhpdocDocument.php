@@ -27,12 +27,12 @@ class PhpdocDocument extends Document
      */
     protected $parser;
 
-    public function __construct(Factory $factory, Filesystem $files, Project $project, Container $container)
+    public function __construct(Factory $docit, Filesystem $files, Project $project, Container $container)
     {
         ini_set('memory_limit', '2G');
         $path     = $project->path($project->config('phpdoc_hook_settings.path'));
         $pathName = 'phpdoc';
-        parent::__construct($factory, $files, $project, $container, $path, $pathName);
+        parent::__construct($docit, $files, $project, $container, $path, $pathName);
         $this->parser = new PhpdocParser;
         $this->mergeAttributes($project->config('phpdoc_hook_settings'));
 

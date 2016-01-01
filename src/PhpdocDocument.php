@@ -4,18 +4,18 @@
  *
  * MIT License and copyright information bundled with this package in the LICENSE file
  */
-namespace Docit\Hooks\Phpdoc;
+namespace Codex\Hooks\Phpdoc;
 
-use Docit\Core\Contracts\Factory;
-use Docit\Core\Document;
-use Docit\Core\Project;
+use Codex\Core\Contracts\Factory;
+use Codex\Core\Document;
+use Codex\Core\Project;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 /**
  * This is the PhpdocDocument.
  *
- * @package        Docit\Hooks
+ * @package        Codex\Hooks
  * @author         Caffeinated Dev Team
  * @copyright      Copyright (c) 2015, Caffeinated
  * @license        https://tldrlegal.com/license/mit-license MIT License
@@ -23,16 +23,16 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class PhpdocDocument extends Document
 {
     /**
-     * @var \Docit\Hooks\Phpdoc\PhpdocParser2
+     * @var \Codex\Hooks\Phpdoc\PhpdocParser2
      */
     protected $parser;
 
-    public function __construct(Factory $docit, Filesystem $files, Project $project, Container $container)
+    public function __construct(Factory $codex, Filesystem $files, Project $project, Container $container)
     {
         ini_set('memory_limit', '2G');
         $path     = $project->path($project->config('phpdoc_hook_settings.path'));
         $pathName = 'phpdoc';
-        parent::__construct($docit, $files, $project, $container, $path, $pathName);
+        parent::__construct($codex, $files, $project, $container, $path, $pathName);
         $this->parser = new PhpdocParser;
         $this->mergeAttributes($project->config('phpdoc_hook_settings'));
 
@@ -76,7 +76,7 @@ class PhpdocDocument extends Document
      */
     public function url()
     {
-        return route('docit.phpdoc', [
+        return route('codex.phpdoc', [
             'projectName' => $this->project->getName(),
             'ref'         => $this->project->getRef()
         ]);

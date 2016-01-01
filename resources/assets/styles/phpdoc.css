@@ -1260,22 +1260,22 @@
   margin-right: -4px !important;
 }
 
-#docit-phpdoc {
+#codex-phpdoc {
   font-family: 'Source Code Pro', monospace, sans-serif;
   margin-top: -20px;
 }
 
-#docit-phpdoc #docit-phpdoc-menu {
+#codex-phpdoc #codex-phpdoc-menu {
   border-right: 1px solid #b0bec5;
 }
 
-#docit-phpdoc #docit-phpdoc-content {
+#codex-phpdoc #codex-phpdoc-content {
   font-size: 12px;
   padding-bottom: 20px;
   margin-left: 20px;
 }
 
-#docit-phpdoc #docit-phpdoc-content .phpdoc-file-header {
+#codex-phpdoc #codex-phpdoc-content .phpdoc-file-header {
   border-bottom: 1px solid #b0bec5;
   margin-bottom: 20px;
   margin-left: -20px;
@@ -1283,67 +1283,67 @@
   padding-top: 10px;
 }
 
-#docit-phpdoc #docit-phpdoc-content .phpdoc-file-header > i {
+#codex-phpdoc #codex-phpdoc-content .phpdoc-file-header > i {
   line-height: 24px;
   font-size: 24px;
   padding-right: 20px;
   float: left;
 }
 
-#docit-phpdoc #docit-phpdoc-content .phpdoc-file-header > h3 {
+#codex-phpdoc #codex-phpdoc-content .phpdoc-file-header > h3 {
   margin-top: 6px;
   margin-bottom: 17px;
   font-size: 16px;
 }
 
-#docit-phpdoc #docit-phpdoc-content h4.doc-heading {
+#codex-phpdoc #codex-phpdoc-content h4.doc-heading {
   border-bottom: 1px solid #b0bec5;
   padding-bottom: 10px;
 }
 
-#docit-phpdoc #docit-phpdoc-content h5.method-heading .method-visibility {
+#codex-phpdoc #codex-phpdoc-content h5.method-heading .method-visibility {
   display: inline-block;
 }
 
-#docit-phpdoc #docit-phpdoc-content h5.method-heading .param-name {
+#codex-phpdoc #codex-phpdoc-content h5.method-heading .param-name {
   color: #7b1fa2;
 }
 
-#docit-phpdoc #docit-phpdoc-content h5.method-heading .param-default {
+#codex-phpdoc #codex-phpdoc-content h5.method-heading .param-default {
   color: #ab47bc;
 }
 
-#docit-phpdoc #docit-phpdoc-content .method-row {
+#codex-phpdoc #codex-phpdoc-content .method-row {
   border-bottom: 1px dashed rgba(176, 190, 197, 0.7);
 }
 
-#docit-phpdoc .type-link {
+#codex-phpdoc .type-link {
   font-family: 'Source Code Pro', monospace, sans-serif;
   color: brown;
   border-bottom: 1px dotted rgba(165, 42, 42, 0.64);
   padding: 0 0 2px 0;
 }
 
-#docit-phpdoc .type-link:hover {
+#codex-phpdoc .type-link:hover {
   cursor: default;
   text-decoration: none;
   color: #d65f5f;
 }
 
-#docit-phpdoc .type-link.local {
+#codex-phpdoc .type-link.local {
   color: #3DBA73;
 }
 
-#docit-phpdoc .type-link.local:hover {
+#codex-phpdoc .type-link.local:hover {
   color: #246d44;
   cursor: pointer;
 }
 
-#docit-phpdoc .simple-type {
+#codex-phpdoc .simple-type {
   color: #ef6c00;
   font-family: 'Source Code Pro', sans-serif;
 }
 
-#docit-phpdoc .tooltip-inner {
+#codex-phpdoc .tooltip-inner {
   max-width: none;
 }

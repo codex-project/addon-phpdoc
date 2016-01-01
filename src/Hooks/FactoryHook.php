@@ -1,17 +1,17 @@
 <?php
-namespace Docit\Hooks\Phpdoc\Hooks;
+namespace Codex\Hooks\Phpdoc\Hooks;
 
-use Docit\Core\Factory;
-use Docit\Core\Contracts\Hook;
+use Codex\Core\Contracts\Hook;
+use Codex\Core\Factory;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 
 /**
  * Filesystem factory hook.
  *
- * @package   Docit\Filesystem-hook
- * @author    Docit Project Dev Team
- * @copyright Copyright (c) 2015, Docit Project
+ * @package   Codex\Filesystem-hook
+ * @author    Codex Project Dev Team
+ * @copyright Copyright (c) 2015, Codex Project
  * @license   https://tldrlegal.com/license/mit-license MIT License
  */
 class FactoryHook implements Hook
@@ -41,15 +41,16 @@ class FactoryHook implements Hook
     /**
      * Handle the factory hook.
      *
-     * @param  \Docit\Core\Factory  $factory
-     * @return void
+     * @param  \Codex\Core\Factory $factory
+     *
+*@return void
      */
     public function handle(Factory $factory)
     {
         $factory->setConfig(
             array_replace_recursive(
                 $factory->config(),
-                $this->config->get('docit.hooks.phpdoc')
+                $this->config->get('codex.hooks.phpdoc')
             )
         );
     }

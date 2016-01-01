@@ -8,6 +8,6 @@ author: Caffeinated
 Begin by installing the package through Composer.
 
 ```bash
-composer require docit/phpdoc-hook
+composer require codex/phpdoc-hook
 ```
 

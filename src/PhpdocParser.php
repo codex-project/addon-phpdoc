@@ -1,12 +1,12 @@
 <?php
-namespace Docit\Hooks\Phpdoc;
+namespace Codex\Hooks\Phpdoc;
 
-use Docit\Support\Arr;
+use Sebwite\Support\Arr;
 
 /**
  * This is the PhpdocParser.
  *
- * @package        Docit\Hooks
+ * @package        Codex\Hooks
  * @author         Caffeinated Dev Team
  * @copyright      Copyright (c) 2015, Caffeinated
  * @license        https://tldrlegal.com/license/mit-license MIT License

@@ -1,13 +1,13 @@
 <?php
-namespace Docit\Hooks\Phpdoc\Http\Controllers;
+namespace Codex\Hooks\Phpdoc\Http\Controllers;
 
-use Docit\Core\Http\Controllers\Controller;
-use Docit\Hooks\Phpdoc\PhpdocDocument;
+use Codex\Core\Http\Controllers\Controller;
+use Codex\Hooks\Phpdoc\PhpdocDocument;
 
 /**
  * Class GithubController
  *
- * @package     Laradic\Docit\Http\Controllers
+ * @package     Laradic\Codex\Http\Controllers
  * @author      Robin Radic
  * @license     MIT
  * @copyright   2011-2015, Robin Radic

@@ -1,12 +1,12 @@
 <?php
 
-namespace Docit\Hooks\Phpdoc;
+namespace Codex\Hooks\Phpdoc;
 
-use Docit\Support\ServiceProvider;
-use Docit\Core\Traits\DocitProviderTrait;
-use Docit\Hooks\Phpdoc\Hooks\FactoryHook;
-use Docit\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook;
-use Docit\Hooks\Phpdoc\Hooks\ProjectHook;
+use Codex\Core\Traits\ProvidesCodex;
+use Codex\Hooks\Phpdoc\Hooks\FactoryHook;
+use Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook;
+use Codex\Hooks\Phpdoc\Hooks\ProjectHook;
+use Sebwite\Support\ServiceProvider;
 
 /**
  * The main service provider
@@ -14,19 +14,19 @@ use Docit\Hooks\Phpdoc\Hooks\ProjectHook;
  * @author        Caffeinated
  * @copyright     Copyright (c) 2015, Caffeinated
  * @license       https://tldrlegal.com/license/mit-license MIT
- * @package       Docit\Hooks\Phpdoc
+ * @package       Codex\Hooks\Phpdoc
  */
 class HookServiceProvider extends ServiceProvider
 {
-    use DocitProviderTrait;
+    use ProvidesCodex;
 
     protected $dir = __DIR__;
 
-    protected $configFiles = [ 'docit.hooks.phpdoc' ];
+    protected $configFiles = [ 'codex.hooks.phpdoc' ];
 
-    protected $viewDirs = [ 'views' => 'docit-phpdoc' ];
+    protected $viewDirs = [ 'views' => 'codex-phpdoc' ];
 
-    protected $assetDirs = [ 'assets' => 'docit-phpdoc' ];
+    protected $assetDirs = [ 'assets' => 'codex-phpdoc' ];
 
     protected $providers = [
         Providers\RouteServiceProvider::class
@@ -38,9 +38,9 @@ class HookServiceProvider extends ServiceProvider
     public function register()
     {
         $app = parent::register();
-        $this->addRouteProjectNameExclusions(config('docit.hooks.phpdoc.route_prefix'));
-        $this->addDocitHook('factory:ready', FactoryHook::class);
-        $this->addDocitHook('project:documents-menu', ProjectDocumentsMenuHook::class);
-        $this->addDocitHook('project:ready', ProjectHook::class);
+        $this->addRouteProjectNameExclusions(config('codex.hooks.phpdoc.route_prefix'));
+        $this->addCodexHook('factory:ready', FactoryHook::class);
+        $this->addCodexHook('project:documents-menu', ProjectDocumentsMenuHook::class);
+        $this->addCodexHook('project:ready', ProjectHook::class);
     }
 }

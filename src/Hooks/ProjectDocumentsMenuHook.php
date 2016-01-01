@@ -4,16 +4,16 @@
  *
  * MIT License and copyright information bundled with this package in the LICENSE file
  */
-namespace Docit\Hooks\Phpdoc\Hooks;
+namespace Codex\Hooks\Phpdoc\Hooks;
 
-use Docit\Core\Contracts\Hook;
-use Docit\Core\Menus\Menu;
-use Docit\Core\Project;
+use Codex\Core\Contracts\Hook;
+use Codex\Core\Menus\Menu;
+use Codex\Core\Project;
 
 /**
  * This is the Hook.
  *
- * @package        Docit\Core
+ * @package        Codex\Core
  * @author         Caffeinated Dev Team
  * @copyright      Copyright (c) 2015, Caffeinated
  * @license        https://tldrlegal.com/license/mit-license MIT License
@@ -24,7 +24,7 @@ class ProjectDocumentsMenuHook implements Hook
     /**
      * handle
      *
-     * @param \Docit\Core\Project $project
+     * @param \Codex\Core\Project $project
      */
     public function handle(Project $project, Menu $menu)
     {
@@ -33,7 +33,7 @@ class ProjectDocumentsMenuHook implements Hook
         }
         $node = $menu->add('phpdoc', $project->config('phpdoc_hook_settings.menu_name'));
         $node->setMeta('icon', $project->config('phpdoc_hook_settings.menu_icon'));
-        $node->setAttribute('href', route('docit.phpdoc', [
+        $node->setAttribute('href', route('codex.phpdoc', [
             'projectName' => $project->getName(),
             'ref'         => $project->getRef()
         ]));

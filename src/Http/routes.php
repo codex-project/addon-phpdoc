@@ -1,6 +1,6 @@
 <?php
 
-Route::get(config('docit.hooks.phpdoc.route_prefix') . '/{projectName}/{ref?}', [
-    'as'   => 'docit.phpdoc',
+Route::get(config('codex.hooks.phpdoc.route_prefix') . '/{projectName}/{ref?}', [
+    'as'   => 'codex.phpdoc',
     'uses' => 'PhpdocController@show'
 ]);

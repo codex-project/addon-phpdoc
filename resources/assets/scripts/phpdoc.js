@@ -135,7 +135,7 @@
                 window.history.pushState(null, data.node.data.fullName, window.location.pathname + "#!/" + data.node.data.fullName);
             });
             // select random class to start with
-            var fullName = app.config.get('docit.project.phpdoc_hook_settings.default_class') || that.data.data[0].full_name;
+            var fullName = app.config.get('codex.project.phpdoc_hook_settings.default_class') || that.data.data[0].full_name;
             // check if the current location contains a hash, which means we want to open a specific doc page
             if ( location.hash.indexOf('#!/') !== - 1 ) {
                 fullName = location.hash.replace(/\#\!\//, '');

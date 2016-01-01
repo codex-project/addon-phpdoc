@@ -4,17 +4,17 @@
  *
  * MIT License and copyright information bundled with this package in the LICENSE file
  */
-namespace Docit\Hooks\Phpdoc\Hooks;
+namespace Codex\Hooks\Phpdoc\Hooks;
 
-use Docit\Core\Contracts\Hook;
-use Docit\Core\Project;
-use Docit\Hooks\Phpdoc\PhpdocDocument;
+use Codex\Core\Contracts\Hook;
+use Codex\Core\Project;
+use Codex\Hooks\Phpdoc\PhpdocDocument;
 use Illuminate\Contracts\Container\Container;
 
 /**
  * This is the Hook.
  *
- * @package        Docit\Core
+ * @package        Codex\Core
  * @author         Caffeinated Dev Team
  * @copyright      Copyright (c) 2015, Caffeinated
  * @license        https://tldrlegal.com/license/mit-license MIT License
@@ -38,7 +38,7 @@ class ProjectHook implements Hook
     /**
      * handle
      *
-     * @param \Docit\Core\Project $project
+     * @param \Codex\Core\Project $project
      */
     public function handle(Project $project)
     {

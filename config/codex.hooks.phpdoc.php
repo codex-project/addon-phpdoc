@@ -8,7 +8,7 @@ return [
      |---------------------------------------------------------------------
      |
      | This prefix will be used in the route to the PhpdocController.
-     | This will not replace the default docit prefix, but append to it.
+     | This will not replace the default codex prefix, but append to it.
      |
      */
 
@@ -20,7 +20,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | These are the default settings used to pre-populate all project
-    | configuration files. These values are merged in with Docit's
+    | configuration files. These values are merged in with Codex's
     | main `default_project_config` array.
     |
     */
@@ -92,7 +92,7 @@ return [
              |
              */
 
-            'layout'    => 'docit::layouts/default',
+            'layout'    => 'codex::layouts/default',
 
             /*
              |---------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
              |
              */
 
-            'view'      => 'docit-phpdoc::phpdoc',
+            'view'      => 'codex-phpdoc::phpdoc',
 
             /*
              |---------------------------------------------------------------------

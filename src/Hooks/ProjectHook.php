@@ -47,7 +47,7 @@ class ProjectHook implements Hook
             /** @var Project $this */
             return $that->container->make(PhpdocDocument::class, [
                 'project' => $this,
-                'factory' => $this->getFactory()
+                'factory' => $this->getCodex()
             ]);
         });
     }

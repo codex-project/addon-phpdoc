@@ -360,13 +360,13 @@
     </parse_markers>
     <source>eJy9VMFu2zAMvfsreAjgNEjte7NmA1oMDbBDkW6nuTAUmYmF2ZIm0UGGof8+SnHsLm3RW3WRSJFPfI+0P322tU0SLVr0VkiEG1Phobgz5pcv7mtbGVncO7NXFTq/SJLOI6yapmuVFoTFV9PpSpAyunjorDWOxuhibTrCB3R7JfHkBeHhzLU4Bw15Su+O+XydyEZ4D6/C4YFQVy8wk78J8Mpns7jDDL7XysNIkw1hbaOwAjJANYI0mpxpGgZ14SUPSsMf0w3mVjWY9XAn1JUGUVUqCDAHRQHWIwWSAfLH+hvsUKMTZFzqGcjQWMM51pe9cODJMfXelcfdOkMoiSudjPVfQ/pKp+6IbHEzEPEpi3emwy1ulcZnxKBlnAY2Slf8sp+DFcSy68CXd3YgyRe1WuFEC1C82TaASYR3Q4pD6hh2b1T1P79u0ygJ207LoCNsWKVpD9JjXMTAY08jnzwZzlwJarq6immn+EW8fnqLfWjOqavGRTNOg4yj/JFkW2Hf4dq7L5c7Ptjpz9Q6JnFI4XoZZnardtNUhlHINsJjGaPTizmkw7DE0AnxB3C5HJyP87GIQbZnz4bl8HenHEuFouGpqKdlebtalyVkkOZZlodxy486ZvwbSXvZo/RDC56Sf305YlQ=</source>
   </file>
-  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="0ae38cec00cb12db2c42831b856ca796" package="Default">
+  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="b502e294b9f8b925fbb4adfdb7c9dd6b" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <namespace-alias name="Factory">\Codex\Core\Contracts\Factory</namespace-alias>
+    <namespace-alias name="Codex">\Codex\Core\Contracts\Codex</namespace-alias>
     <namespace-alias name="Document">\Codex\Core\Document</namespace-alias>
     <namespace-alias name="Project">\Codex\Core\Project</namespace-alias>
     <namespace-alias name="Container">\Illuminate\Contracts\Container\Container</namespace-alias>
@@ -405,7 +405,7 @@
         <argument line="0" by_reference="false">
           <name>$codex</name>
           <default></default>
-          <type>\Codex\Core\Contracts\Factory</type>
+          <type>\Codex\Core\Contracts\Codex</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$files</name>
@@ -460,7 +460,7 @@
       <error line="42" code="PPC:ERR-50008">No summary for method render()</error>
       <error line="28" code="PPC:ERR-50007">No summary for property $parser</error>
     </parse_markers>
-    <source>eJyNVV1v2zoMfc+v0B2K2S7c5N4Ce0mX7qPb2gLrEGx9W4ZAsWlbqy0ZktytGPrfLyVL/kq6zQhi2SIPeQ4p+uWruqhni+PjGTkmayo1ERnRBZALmmXAONWQkvXVmtQ0uaM5qDkaGtub61vykSXAFRDKU5KI+kGyvNCE8UzIimomONk1PC0R4QfTBcIy5XHQyob5eH3x/tOX9yRjJSDsYsZpBQqNMAORws/NlRB3arMu6lQkZ7NZo/zGhZCAf1xLmmi1+YD/Qj6cTS3eiaSpgOu9jbUU3yFx76/Lsqks2wGkWVHGQfar31h/QAbqQWmoBkvM2Gl7a8jjz5Bu2fjMvKKvvTTuGvC327TRhZCk2x4U6B3ck1uglbXrK+Fg/GOYROT03/9exENf61K6Qrqr0LpWy8VCl6ksIaflPBHVwhktKqZPvMOgC2z1kpIqNeFH4KcGniriX8x+zUwUK4y5MIF7Kslmv+Duhn2pQJ4664W911JoLB+SP6rtNkpt3zc7TI5kDU9sB263ieBKyybRoesRcpSYSDHp60SOTAOqmLiuQNB2gVr52hs3t4xsqJaGuRhnWwU6DCqoMMC2ZChSEJPg9DKIzjozzBSPgblWXYCTc/My7B8xSMbyMKgt9W2BchhszXiu5sY2iKaQn/DMIKRzCfpdVAb1Xi6HInjynnHPtOcXt7hxDz8Mac6xSduojmE5/CDDOu1ZViBzeKO1ZLtGg/pLrpbmFAo3161c+O9yejxceGSeggx9qXqkO3joDhGmX6UvQoeeO/SRwNjR+kakLGPYayufiBXv5Hy4eQilh8kBdcUDhxAZLRX0EVhGwlGUC5oUxm5jF8slAobPfpm8H+fGrnJ2z+IWKiL/rBwqef68cysoSo1OUTTo1IMBrf/ozdRlSgFbacCgrUK3ImAyGQM87fw4EsJ3BK3reQq7Jg/20v8bqKO2+rZiQTDRuvdftQh7EQbeo25393DcBKY+e7WPxvL4ouCnEe6xLU1h4j7QH6yfqP64ZGd/qMCA1LCz2kzaRhpK2S0l6Eby3r87ddMpfgnaft4aWRIt2s996md+a9MNfAeKMwnP+niwT84xooXTeeu8pcB5EgZ2oM3d8IvJ1xHtwA0bM8QCsjrvCupnEGpg9sIoHvtJyILu6bDfZ8hcaub6Np5HA2HQ9K0EmiayqXa/JTuyfIr2gUz8p1XdAG/CyL7rgW7FFbLxPWoF7XJ9nP0Pmm76AA==</source>
+    <source>eJyNVV1v1DoQfd9fYVBFkirdhUq8bNneCwXaShStuH27i1beZJKYJnZkO4UK9b8zdux87RaIqsZrz5yZc2Y8efNPXdSzxfHxjByTNZWaiIzoAsgFzTJgnGpIyfpqTWqa3NEc1BwNje3N9S35xBLgCgjlKUlE/SBZXmjCeCZkRTUTnOwanpaI8J3pAmGZ8jhoZcN8ur748Pm/DyRjJSDsYsZpBQqNMAORwo/NlRB3arMu6lQkZ7NZo/zBhZCA/7iWNNFqYzfPpufvRdJUwPXewVqKb5C4/euybCrLdQTINWUcZL/6jfVHzF89KA3VYIn5OmVvDXX8M5RbLj4zr+e/Xhj3DNjbY9roQkjSHQ/K8x7uyS3Qytr1dXAw/meYROT05avX8dDXupSujO4ptK7VcrHQZSpLyGk5T0S1cEaLiukT7zDoAVu7pKRKTfgR+KGBp4r4jdnPmYlihTEPJnBPJdnsl9u9sCsVyFNnvbDvWgqN5UPyR7U9RqntfrPD5EjW8MT233abCK60bBId2gDkKDGvmPRVIkem+VRMXE8gZLtApXzljZtbRjZQS8I8jLOtAh0GFVRCPmxLhhIFMQlOL4PorDPDPPEKmGfVBTg5N5th/xODZCwPg9oS3xYohsHWjOdqbmyDaAr5Ge8LQjqXoD9FXVDt5XIogSfvGfdMe35xixv38MOQ5g6btI3mGJbDdzKs0p5lBTKHt1pLtms0qL/kamlOofBw3cqF/11Oj4fLjsxTkKEvVY90Bw/dFcL0q/R16NBzhz4SGPtZ34iUZQw7beUTseKdnA8PD6H0MDmgrnjdECKjpYI+AstIOIpyQZPC2G3sYrlEwPD5T5P349zYVc7uedxCReTZyqGSFy86t4Ki1OgURYNOPRjQ+o92pi5TCthKAwZtFboVAZPJGOBp58eREL4jaF3PU9g1ebCX/t9AHbXVtxULgonWvf+qRdiLMPAedbt7h+MmMPXZq300lscXBT+LcI9taQoT94H+YP1E9cclO/tDBQakhp3VZtI20lDKbilBN5L3/t2tm87wS9D249bIkmjRfupTP/Fbm27cO1CcSXjXx2N9co8RLZzOW+ctBc6TMLADbe6GX0z+H9EO3LAxQywgq/OuoH4GoQbmLIzisZ+ELOh+Hfb7AplLzTxfx/NoIAyavpNA00Q21e63ZEeWT9E+kIn/sKob4E0Y2b0e6FZcIRvfo1bQLtfH2S+O2/g2</source>
   </file>
   <file path="Hooks/FactoryHook.php" generated-path="Hooks.FactoryHook.html" hash="75b593cb0f862989ebe206cd79d8dc8c" package="Default">
     <docblock line="0">
@@ -560,7 +560,7 @@
     </parse_markers>
     <source>eJyNVE1v2zAMvftX8DCgTpDE24Bd2i4rkKFogQ0ohh4DBJrMxFplSZDobMHQ/z592E0cZ2l1sCnx8ZF8tHz9xVQmU6xGZxhHWOgS/yzvtH5yy4fKlJqnzVWWNa5zL7RF/1BkGScXAVfH7lvv0naXzu+lbGqhGB2GeWstNssfaLQTJ7G3QqLbOcL6wPSVFONxBmPYn8E6ZYPKlzLzvuC+8Q09sQ0CtHXt8dOAixjWUKUtdBh4sPoXcoKvuIVHZHUEcW12Vmwq8qDOyvkIPr7/8GnSD4x4KTgqFxJXRMZdFgXJ0krcMDnjui5af1ELmnbY7/eP8C3ZnqPIuGTOQatiUBhEbSTWqMhB2Gd/s1B21CIsn3fLLCxf069FF/FtrCZfNZbwbh0QXtzXSM8M8H/UPAKH3AuLnhEYKPx9MM1e08oRUxzbkJeqDLOshrcW1pVwLvykWJBWEqffXvPTjw7WjeIktILVyqdwZBtO+TDx5PBjTWyjSJOGGHNQJdx0nvDwea/aESAGQwC0Ewu+54G2d0yVEoEqPL4cp4UcXl2fIBldyPjGIjVWwVaL8qwYVUyeHxMNWm7Pp3OHlIaWvzjDYtay3cqikf7f5N+8sU5ssQ/qMyXV8tFkiDkUeDrfIOUXPHQ9C8K4mYm/u4tRL3C/G3VKP2f/AJUEnKk=</source>
   </file>
-  <file path="Hooks/ProjectHook.php" generated-path="Hooks.ProjectHook.html" hash="a754edd852f85c818929bce124f5e00c" package="Default">
+  <file path="Hooks/ProjectHook.php" generated-path="Hooks.ProjectHook.html" hash="0a29e91fcb6d567624259ab0c20e54a3" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
@@ -632,7 +632,7 @@
       <error line="32" code="PPC:ERR-50008">No summary for method __construct()</error>
       <error line="27" code="PPC:ERR-50007">No summary for property $container</error>
     </parse_markers>
-    <source>eJyNU11r2zAUffevuA+B2CWpt8FekjUbpB0NdCOwvC2j3MpyrMWSjCR3KyP/vZIsx3YSRi8h1se5555zJX36XBVVlF5dRXAFa1QGZA6moLDEPKdMoKEZrO/XUCHZ447qawt02G+rDTwwQoWmgCIDIqsXxXaFASZyqTgaJgU81SIrLcMfZgpLy3TLY1G+zMNqeff9xx3krKSWNo0EcqotyCqQGf27vZdyr7frosokaSbzKKp1u72Uito/YRQSoz1gfrq9VvI3Jaa/PmBtPreS1JyKAFuVZc29/R67GyETVHUjKyY0b+Pc2Z9z5ejbRn1pHYfohPldrE0hFRx3e22/pc+wocg9rutvYGmnMUngw7v3Hyf9XJ9ShuMJURhT6VmamjJTJd1heU0kTwMo5cxM24Te2fozISVqDaGNzhswXpXUdUt7r9G/yFXwnXBhiz+jgu1buxiyUv+t6icrBEak1+NT9goV8rfz98gulcprQfx1fXy0OG1UTUx8KTnxWY1ZFyN3paeL4z7cDGQ7yCE6U1+gexRhdmrp/N7CqGoG/5XekManORcUo3EynfL5cTmkzWYciZLxeEfN8FWMJ12pOAH3RGLPlfTIg8/m8I9K/LMPqttQ1NRKNGp6/ZsuOO6tiUHp2czfvwn8HFC4GAeXY7hZNIUm55jc3gqpXjrMdGHtfW1W42SQ8CvpenJI2hM8RK+SqZJq</source>
+    <source>eJyNU9Fq2zAUffdX3IdA7JDU22AvyZoN0kID3Qgsb8sot7Ica7EkI8ndysi/T5Ll2E7CqAixbJ177jlH0qfPVVFF6WQSwQQ2qAzIHExBYYV5TplAQzPYPGygQnLAPdU3FuiwX9dbeGSECk0BRQZEVq+K7QsDTORScTRMCniuRVZaht/MFJaW6ZbHonybx/Xq/tv3e8hZSS1tGgnkVFuQVSAz+mf3IOVB7zZFlUnSvCyiqNbt8koqav+EUUiM9oDF+fJGyV+UmP73AWvzuJOk5lQE2Losa+7t99jdDJmgqptZMSG8rXNnf86Vo2+D+tI6DqMT5lexNoVUcFrtxX5HX2BLkXtcl29gaV9jksCHd+8/Tvu1vqQM2xNGYUyl52lqykyVdI/lDZE8DaCUMzNrC3p76/eElKg1hBidN2C8KqlLS3uv0d/IdfBJuGGbv6CC3VtTDFWpf1b1sxUCI9LL+Jy9QoX87fw9smut8loQf1yfnixOG1UTE18rTnxVY9aNkTvSs+VpHW4Hsh3kGF2oL9BdivB2buny3MKoaib/ld6Qxuc1VxSjcTKd8sXpcyibzzkSJePxnprhrRhPu1ZxAu6KxJ4r6ZEHn83mn5T4ax9Ut0NRUyvRqOnlN1tyPFgTg9bzuT9/U/gxoHBjHFyO4XbZNJpeYnJ7KqR67TCzpbXnc46TAfxn0iVyTNr9O0b/AFexkYU=</source>
   </file>
   <file path="Hooks/ProjectDocumentsMenuHook.php" generated-path="Hooks.ProjectDocumentsMenuHook.html" hash="aa15d0ead1d1069985aea3d82943fe2f" package="Default">
     <docblock line="0">

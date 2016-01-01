@@ -6,7 +6,7 @@
  */
 namespace Codex\Hooks\Phpdoc;
 
-use Codex\Core\Contracts\Factory;
+use Codex\Core\Contracts\Codex;
 use Codex\Core\Document;
 use Codex\Core\Project;
 use Illuminate\Contracts\Container\Container;
@@ -27,7 +27,7 @@ class PhpdocDocument extends Document
      */
     protected $parser;
 
-    public function __construct(Factory $codex, Filesystem $files, Project $project, Container $container)
+    public function __construct(Codex $codex, Filesystem $files, Project $project, Container $container)
     {
         ini_set('memory_limit', '2G');
         $path     = $project->path($project->config('phpdoc_hook_settings.path'));

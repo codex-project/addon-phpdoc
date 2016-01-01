@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="API Documentation" version="v2.8.5">
+  <partials/>
+  <file path="Contracts/PhpdocParser.php" generated-path="Contracts.PhpdocParser.html" hash="e1bbf1f887dfd60d2a464f00460e424f" package="Default">
+    <docblock line="0">
+      <description>Part of the Caffeinated PHP packages.</description>
+      <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <interface namespace="Codex\Hooks\Phpdoc\Contracts" line="17" package="Codex\Hooks">
+      <name>PhpdocParser</name>
+      <full_name>\Codex\Hooks\Phpdoc\Contracts\PhpdocParser</full_name>
+      <docblock line="17">
+        <description>This is the PhpdocParser.</description>
+        <long-description></long-description>
+        <tag name="package" line="17" description="Codex\Hooks"/>
+        <tag name="author" line="17" description="Caffeinated Dev Team"/>
+        <tag name="copyright" line="17" description="Copyright (c) 2015, Caffeinated"/>
+        <tag name="license" line="17" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+      </docblock>
+    </interface>
+    <source>eJxNkE9LxDAQxe/5FHPUohsVvKigUBd2YZWCPe4lJpMmbJqEZNY/iN/dtLbaIZcwb34z793dRxMZryoGFTQiEQQNZBBqoTVaLwgVNJsGopAH0WFeFeGgfdq2sLMSfUYQXoEM8TPZzhBYr0PqBdng4fXolSuEd0umYG2eOUU1rtlt6/Xzyxq0dViwnHnRYy6ickFQ+LHfhHDI+8ZEFeS+Dp6SkJRv2XxzO0DLG2C/quIiY5rvfJgXTrWgjm1xJBMS/LUXth/xDVoU/aj79zdh5u+JPIWri8vrs+XsOOKmeKYyRDHfcE5OJYedcCsZej6JeG/pfB5YZDtmYj1h0kMmS4fsi7Fv9gOIfo5q</source>
+  </file>
+  <file path="PhpdocParser.php" generated-path="PhpdocParser.html" hash="f7951f1a367d658b53e9348c5214bba4" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Arr">\Sebwite\Support\Arr</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc" line="14" package="Codex\Hooks">
+      <extends/>
+      <name>PhpdocParser</name>
+      <full_name>\Codex\Hooks\Phpdoc\PhpdocParser</full_name>
+      <docblock line="14">
+        <description>This is the PhpdocParser.</description>
+        <long-description></long-description>
+        <tag name="package" line="14" description="Codex\Hooks"/>
+        <tag name="author" line="14" description="Caffeinated Dev Team"/>
+        <tag name="copyright" line="14" description="Copyright (c) 2015, Caffeinated"/>
+        <tag name="license" line="14" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="16" package="Codex\Hooks">
+        <name>$tree</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::tree</full_name>
+        <default></default>
+        <docblock line="16">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="18" package="Codex\Hooks">
+        <name>$data</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::data</full_name>
+        <default>array()</default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="20" package="Codex\Hooks">
+        <name>parse</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::parse()</full_name>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$xmlString</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="57" package="Codex\Hooks">
+        <name>makeEmptyTree</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::makeEmptyTree()</full_name>
+        <docblock line="57">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$filesData</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="77" package="Codex\Hooks">
+        <name>putIntoTree</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::putIntoTree()</full_name>
+        <docblock line="77">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$file</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="93" package="Codex\Hooks">
+        <name>getClass</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getClass()</full_name>
+        <docblock line="93">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$class</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="107" package="Codex\Hooks">
+        <name>getProperties</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getProperties()</full_name>
+        <docblock line="107">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$type</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="123" package="Codex\Hooks">
+        <name>getMethods</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getMethods()</full_name>
+        <docblock line="123">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$type</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="138" package="Codex\Hooks">
+        <name>getProperty</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getProperty()</full_name>
+        <docblock line="138">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$property</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="156" package="Codex\Hooks">
+        <name>getPropertyTag</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getPropertyTag()</full_name>
+        <docblock line="156">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$t</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="172" package="Codex\Hooks">
+        <name>getMethod</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getMethod()</full_name>
+        <docblock line="172">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="222" package="Codex\Hooks">
+        <name>getMethodTag</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocParser::getMethodTag()</full_name>
+        <docblock line="222">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$t</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="20" code="PPC:ERR-50015">Argument $xmlString is missing from the Docblock of parse</error>
+      <error line="20" code="PPC:ERR-50008">No summary for method parse()</error>
+      <error line="57" code="PPC:ERR-50015">Argument $filesData is missing from the Docblock of makeEmptyTree</error>
+      <error line="57" code="PPC:ERR-50008">No summary for method makeEmptyTree()</error>
+      <error line="77" code="PPC:ERR-50015">Argument $file is missing from the Docblock of putIntoTree</error>
+      <error line="77" code="PPC:ERR-50008">No summary for method putIntoTree()</error>
+      <error line="93" code="PPC:ERR-50015">Argument $class is missing from the Docblock of getClass</error>
+      <error line="93" code="PPC:ERR-50008">No summary for method getClass()</error>
+      <error line="107" code="PPC:ERR-50015">Argument $type is missing from the Docblock of getProperties</error>
+      <error line="107" code="PPC:ERR-50008">No summary for method getProperties()</error>
+      <error line="123" code="PPC:ERR-50015">Argument $type is missing from the Docblock of getMethods</error>
+      <error line="123" code="PPC:ERR-50008">No summary for method getMethods()</error>
+      <error line="138" code="PPC:ERR-50015">Argument $property is missing from the Docblock of getProperty</error>
+      <error line="138" code="PPC:ERR-50008">No summary for method getProperty()</error>
+      <error line="156" code="PPC:ERR-50015">Argument $t is missing from the Docblock of getPropertyTag</error>
+      <error line="156" code="PPC:ERR-50008">No summary for method getPropertyTag()</error>
+      <error line="172" code="PPC:ERR-50015">Argument $method is missing from the Docblock of getMethod</error>
+      <error line="172" code="PPC:ERR-50008">No summary for method getMethod()</error>
+      <error line="222" code="PPC:ERR-50015">Argument $t is missing from the Docblock of getMethodTag</error>
+      <error line="222" code="PPC:ERR-50008">No summary for method getMethodTag()</error>
+      <error line="16" code="PPC:ERR-50007">No summary for property $tree</error>
+      <error line="18" code="PPC:ERR-50007">No summary for property $data</error>
+    </parse_markers>
+    <source>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</source>
+  </file>
+  <file path="Http/Controllers/PhpdocController.php" generated-path="Http.Controllers.PhpdocController.html" hash="54fd80d67ee9f3036fa31642d468f37a" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Controller">\Codex\Core\Http\Controllers\Controller</namespace-alias>
+    <namespace-alias name="PhpdocDocument">\Codex\Hooks\Phpdoc\PhpdocDocument</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Http\Controllers" line="16" package="Laradic\Codex\Http\Controllers">
+      <extends>\Codex\Core\Http\Controllers\Controller</extends>
+      <name>PhpdocController</name>
+      <full_name>\Codex\Hooks\Phpdoc\Http\Controllers\PhpdocController</full_name>
+      <docblock line="16">
+        <description>Class GithubController</description>
+        <long-description></long-description>
+        <tag name="package" line="16" description="Laradic\Codex\Http\Controllers"/>
+        <tag name="author" line="16" description="Robin Radic"/>
+        <tag name="license" line="16" description="MIT" link="http://opensource.org/licenses/MIT"/>
+        <tag name="copyright" line="16" description="2011-2015, Robin Radic"/>
+        <tag name="link" line="16" description="http://radic.mit-license.org" link="http://radic.mit-license.org"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Http\Controllers" line="26" package="Laradic\Codex\Http\Controllers">
+        <name>show</name>
+        <full_name>\Codex\Hooks\Phpdoc\Http\Controllers\PhpdocController::show()</full_name>
+        <docblock line="26">
+          <description>Render the documentation page for the given project and version.</description>
+          <long-description></long-description>
+          <tag name="param" line="26" description="" type="string" variable="$projectSlug">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="26" description="" type="string|null" variable="$ref">
+            <type>string</type>
+            <type>null</type>
+          </tag>
+          <tag name="param" line="26" description="" type="string" variable="$path">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="26" description="" type="\Codex\Hooks\Phpdoc\Http\Controllers\PhpdocController">
+            <type>\Codex\Hooks\Phpdoc\Http\Controllers\PhpdocController</type>
+          </tag>
+          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$projectName</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$ref</name>
+          <default>null</default>
+          <type>string|null</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJx1Ut1r2zAQf/dfcQ8G2yFO1sFe1i0rpLAOtlGyPQaCIsu2Flsy+khbtvzvPcly4jSZHmxx9/u4O92nL13dRYK0THeEMljKgj2vH6Tc6fVj3RWSrh+M6dZLKYySTcOUvo0iqwfkUip2gRjdb0fYM9X+dy+pbZkwqDmfTCKYwLIhWsNXbmq7PclgxiXvsMYdqRi4850oUnC6DuJvavBwYk0tlUfDSm65gJWj+FzDKRO6l/rx7bePUdm9KF7VBmPv393c5Pj5ML1CFTsIp0bfj/O5L2XWcpMH3ZlUFYLnEfUN9e2e6gP2bJgoNIx6/Bs5QT8HdyawQgRCTc2gCIMihksBnZtBKftUxfcMQ0r+YdQAEQXssX+EzYLOIIfTU6QFbRQXFUbiwPnV2Ooq5p+wTeOAipXXReKOmPqYUsxYJSA2NdchOPf/zm5xLFBaQX39upZP6WD/E5dv6j3gMzjHzHP6acCoTkx76XxREmqkeskXFTOPffJMLsN9Gti8hJTrjRNOnUmWjaQhdOekA9+L3rOS2MasWJmi1oA8RBc15QvNPMxLn6D4inC3JwrO9xzi4SGH0XixY/BNGefkcSkxxb0JjIGdL5RfmHTcfpjYnrOnfEFl20mNiBGHGKPSxOWTbHoxYLQpeZUmoSq9QZLVGwffDGpJNjYcL8Hg25Id+7+n00G/o0kyhWTAunto9WRziA7RK1PoePA=</source>
+  </file>
+  <file path="Http/routes.php" generated-path="Http.routes.html" hash="4505c874faeb8b70eb855e6b3ad81eb3" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJwtjE0LgzAQRO/7K3JbBYl3+2Gh91K8SikSV2O1bkgiFcT/3lg7l4F5jznmRhuAgidPWdaSjxSPTddGqLimWWrm3sng1Kyk3aynsdR0M8ZCCkwXY/lFyt+qN63pElC+YiJKECFYOQx1Oov/2/6DyU4nR4Fv9P7brzx6y8NA9uI0fxAe8QG+7IQzsQ==</source>
+  </file>
+  <file path="Providers/RouteServiceProvider.php" generated-path="Providers.RouteServiceProvider.html" hash="2bc679fe364a87548632ea999f850e22" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="ServiceProvider">\Illuminate\Foundation\Support\Providers\RouteServiceProvider</namespace-alias>
+    <namespace-alias name="Router">\Illuminate\Routing\Router</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Providers" line="8" package="Default">
+      <extends>\Illuminate\Foundation\Support\Providers\RouteServiceProvider</extends>
+      <name>RouteServiceProvider</name>
+      <full_name>\Codex\Hooks\Phpdoc\Providers\RouteServiceProvider</full_name>
+      <docblock line="8">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="8" description="Default"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc\Providers" line="17" package="Default">
+        <name>$namespace</name>
+        <full_name>\Codex\Hooks\Phpdoc\Providers\RouteServiceProvider::namespace</full_name>
+        <default>'Codex\Hooks\Phpdoc\Http\Controllers'</default>
+        <docblock line="17">
+          <description>This namespace is applied to the controller routes in your routes file.</description>
+          <long-description>In addition, it is set as the URL generator's root namespace.</long-description>
+          <tag name="var" line="17" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Providers" line="25" package="Default">
+        <name>boot</name>
+        <full_name>\Codex\Hooks\Phpdoc\Providers\RouteServiceProvider::boot()</full_name>
+        <docblock line="25">
+          <description>Define your route model bindings, pattern filters, etc.</description>
+          <long-description></long-description>
+          <tag name="param" line="25" description="" type="\Illuminate\Routing\Router" variable="$router">
+            <type>\Illuminate\Routing\Router</type>
+          </tag>
+          <tag name="return" line="25" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$router</name>
+          <default></default>
+          <type>\Illuminate\Routing\Router</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Providers" line="38" package="Default">
+        <name>map</name>
+        <full_name>\Codex\Hooks\Phpdoc\Providers\RouteServiceProvider::map()</full_name>
+        <docblock line="38">
+          <description>Define the routes for the application.</description>
+          <long-description></long-description>
+          <tag name="param" line="38" description="" type="\Illuminate\Routing\Router" variable="$router">
+            <type>\Illuminate\Routing\Router</type>
+          </tag>
+          <tag name="return" line="38" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$router</name>
+          <default></default>
+          <type>\Illuminate\Routing\Router</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="8" code="PPC:ERR-50005">No summary for class \Codex\Hooks\Phpdoc\Providers\RouteServiceProvider</error>
+    </parse_markers>
+    <source>eJy9VMFu2zAMvfsreAjgNEjte7NmA1oMDbBDkW6nuTAUmYmF2ZIm0UGGof8+SnHsLm3RW3WRSJFPfI+0P322tU0SLVr0VkiEG1Phobgz5pcv7mtbGVncO7NXFTq/SJLOI6yapmuVFoTFV9PpSpAyunjorDWOxuhibTrCB3R7JfHkBeHhzLU4Bw15Su+O+XydyEZ4D6/C4YFQVy8wk78J8Mpns7jDDL7XysNIkw1hbaOwAjJANYI0mpxpGgZ14SUPSsMf0w3mVjWY9XAn1JUGUVUqCDAHRQHWIwWSAfLH+hvsUKMTZFzqGcjQWMM51pe9cODJMfXelcfdOkMoiSudjPVfQ/pKp+6IbHEzEPEpi3emwy1ulcZnxKBlnAY2Slf8sp+DFcSy68CXd3YgyRe1WuFEC1C82TaASYR3Q4pD6hh2b1T1P79u0ygJ207LoCNsWKVpD9JjXMTAY08jnzwZzlwJarq6immn+EW8fnqLfWjOqavGRTNOg4yj/JFkW2Hf4dq7L5c7Ptjpz9Q6JnFI4XoZZnardtNUhlHINsJjGaPTizmkw7DE0AnxB3C5HJyP87GIQbZnz4bl8HenHEuFouGpqKdlebtalyVkkOZZlodxy486ZvwbSXvZo/RDC56Sf305YlQ=</source>
+  </file>
+  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="0ae38cec00cb12db2c42831b856ca796" package="Default">
+    <docblock line="0">
+      <description>Part of the Caffeinated PHP packages.</description>
+      <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Factory">\Codex\Core\Contracts\Factory</namespace-alias>
+    <namespace-alias name="Document">\Codex\Core\Document</namespace-alias>
+    <namespace-alias name="Project">\Codex\Core\Project</namespace-alias>
+    <namespace-alias name="Container">\Illuminate\Contracts\Container\Container</namespace-alias>
+    <namespace-alias name="Filesystem">\Illuminate\Contracts\Filesystem\Filesystem</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc" line="23" package="Codex\Hooks">
+      <extends>\Codex\Core\Document</extends>
+      <name>PhpdocDocument</name>
+      <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument</full_name>
+      <docblock line="23">
+        <description>This is the PhpdocDocument.</description>
+        <long-description></long-description>
+        <tag name="package" line="23" description="Codex\Hooks"/>
+        <tag name="author" line="23" description="Caffeinated Dev Team"/>
+        <tag name="copyright" line="23" description="Copyright (c) 2015, Caffeinated"/>
+        <tag name="license" line="23" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="28" package="Codex\Hooks">
+        <name>$parser</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::parser</full_name>
+        <default></default>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="28" description="" type="\Codex\Hooks\Phpdoc\PhpdocParser2" variable="">
+            <type>\Codex\Hooks\Phpdoc\PhpdocParser2</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="30" package="Codex\Hooks">
+        <name>__construct</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::__construct()</full_name>
+        <docblock line="30">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$codex</name>
+          <default></default>
+          <type>\Codex\Core\Contracts\Factory</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$files</name>
+          <default></default>
+          <type>\Illuminate\Contracts\Filesystem\Filesystem</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$project</name>
+          <default></default>
+          <type>\Codex\Core\Project</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$container</name>
+          <default></default>
+          <type>\Illuminate\Contracts\Container\Container</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="42" package="Codex\Hooks">
+        <name>render</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::render()</full_name>
+        <docblock line="42">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="77" package="Codex\Hooks">
+        <name>url</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::url()</full_name>
+        <docblock line="77">
+          <description>Get the url to this document</description>
+          <long-description></long-description>
+          <tag name="return" line="77" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="88" package="Codex\Hooks">
+        <name>getBreadcrumb</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::getBreadcrumb()</full_name>
+        <docblock line="88">
+          <description>getBreadcrumb</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="30" code="PPC:ERR-50015">Argument $codex is missing from the Docblock of __construct</error>
+      <error line="30" code="PPC:ERR-50015">Argument $files is missing from the Docblock of __construct</error>
+      <error line="30" code="PPC:ERR-50015">Argument $project is missing from the Docblock of __construct</error>
+      <error line="30" code="PPC:ERR-50015">Argument $container is missing from the Docblock of __construct</error>
+      <error line="30" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="42" code="PPC:ERR-50008">No summary for method render()</error>
+      <error line="28" code="PPC:ERR-50007">No summary for property $parser</error>
+    </parse_markers>
+    <source>eJyNVV1v2zoMfc+v0B2K2S7c5N4Ce0mX7qPb2gLrEGx9W4ZAsWlbqy0ZktytGPrfLyVL/kq6zQhi2SIPeQ4p+uWruqhni+PjGTkmayo1ERnRBZALmmXAONWQkvXVmtQ0uaM5qDkaGtub61vykSXAFRDKU5KI+kGyvNCE8UzIimomONk1PC0R4QfTBcIy5XHQyob5eH3x/tOX9yRjJSDsYsZpBQqNMAORws/NlRB3arMu6lQkZ7NZo/zGhZCAf1xLmmi1+YD/Qj6cTS3eiaSpgOu9jbUU3yFx76/Lsqks2wGkWVHGQfar31h/QAbqQWmoBkvM2Gl7a8jjz5Bu2fjMvKKvvTTuGvC327TRhZCk2x4U6B3ck1uglbXrK+Fg/GOYROT03/9exENf61K6Qrqr0LpWy8VCl6ksIaflPBHVwhktKqZPvMOgC2z1kpIqNeFH4KcGniriX8x+zUwUK4y5MIF7Kslmv+Duhn2pQJ4664W911JoLB+SP6rtNkpt3zc7TI5kDU9sB263ieBKyybRoesRcpSYSDHp60SOTAOqmLiuQNB2gVr52hs3t4xsqJaGuRhnWwU6DCqoMMC2ZChSEJPg9DKIzjozzBSPgblWXYCTc/My7B8xSMbyMKgt9W2BchhszXiu5sY2iKaQn/DMIKRzCfpdVAb1Xi6HInjynnHPtOcXt7hxDz8Mac6xSduojmE5/CDDOu1ZViBzeKO1ZLtGg/pLrpbmFAo3161c+O9yejxceGSeggx9qXqkO3joDhGmX6UvQoeeO/SRwNjR+kakLGPYayufiBXv5Hy4eQilh8kBdcUDhxAZLRX0EVhGwlGUC5oUxm5jF8slAobPfpm8H+fGrnJ2z+IWKiL/rBwqef68cysoSo1OUTTo1IMBrf/ozdRlSgFbacCgrUK3ImAyGQM87fw4EsJ3BK3reQq7Jg/20v8bqKO2+rZiQTDRuvdftQh7EQbeo25393DcBKY+e7WPxvL4ouCnEe6xLU1h4j7QH6yfqP64ZGd/qMCA1LCz2kzaRhpK2S0l6Eby3r87ddMpfgnaft4aWRIt2s996md+a9MNfAeKMwnP+niwT84xooXTeeu8pcB5EgZ2oM3d8IvJ1xHtwA0bM8QCsjrvCupnEGpg9sIoHvtJyILu6bDfZ8hcaub6Np5HA2HQ9K0EmiayqXa/JTuyfIr2gUz8p1XdAG/CyL7rgW7FFbLxPWoF7XJ9nP0Pmm76AA==</source>
+  </file>
+  <file path="Hooks/FactoryHook.php" generated-path="Hooks.FactoryHook.html" hash="75b593cb0f862989ebe206cd79d8dc8c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Hook">\Codex\Core\Contracts\Hook</namespace-alias>
+    <namespace-alias name="Factory">\Codex\Core\Factory</namespace-alias>
+    <namespace-alias name="Repository">\Illuminate\Contracts\Config\Repository</namespace-alias>
+    <namespace-alias name="Filesystem">\Illuminate\Filesystem\Filesystem</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Hooks" line="17" package="Codex\Filesystem-hook">
+      <extends/>
+      <implements>\Codex\Core\Contracts\Hook</implements>
+      <name>FactoryHook</name>
+      <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook</full_name>
+      <docblock line="17">
+        <description>Filesystem factory hook.</description>
+        <long-description></long-description>
+        <tag name="package" line="17" description="Codex\Filesystem-hook"/>
+        <tag name="author" line="17" description="Codex Project Dev Team"/>
+        <tag name="copyright" line="17" description="Copyright (c) 2015, Codex Project"/>
+        <tag name="license" line="17" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc\Hooks" line="22" package="Codex\Filesystem-hook">
+        <name>$files</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::files</full_name>
+        <default></default>
+        <docblock line="22">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="22" description="" type="\Illuminate\Filesystem\Filesystem" variable="">
+            <type>\Illuminate\Filesystem\Filesystem</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc\Hooks" line="27" package="Codex\Filesystem-hook">
+        <name>$config</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::config</full_name>
+        <default></default>
+        <docblock line="27">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="27" description="" type="\Illuminate\Contracts\Config\Repository" variable="">
+            <type>\Illuminate\Contracts\Config\Repository</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="35" package="Codex\Filesystem-hook">
+        <name>__construct</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::__construct()</full_name>
+        <docblock line="35">
+          <description>Create a new FilesystemFactoryHook instance</description>
+          <long-description></long-description>
+          <tag name="param" line="35" description="" type="\Illuminate\Contracts\Config\Repository" variable="$config">
+            <type>\Illuminate\Contracts\Config\Repository</type>
+          </tag>
+          <tag name="param" line="35" description="" type="\Illuminate\Filesystem\Filesystem" variable="$files">
+            <type>\Illuminate\Filesystem\Filesystem</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Illuminate\Contracts\Config\Repository</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$files</name>
+          <default></default>
+          <type>\Illuminate\Filesystem\Filesystem</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="48" package="Codex\Filesystem-hook">
+        <name>handle</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::handle()</full_name>
+        <docblock line="48">
+          <description>Handle the factory hook.</description>
+          <long-description></long-description>
+          <tag name="param" line="48" description="" type="\Codex\Core\Factory" variable="$factory">
+            <type>\Codex\Core\Factory</type>
+          </tag>
+          <tag name="return" line="48" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$factory</name>
+          <default></default>
+          <type>\Codex\Core\Factory</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="22" code="PPC:ERR-50007">No summary for property $files</error>
+      <error line="27" code="PPC:ERR-50007">No summary for property $config</error>
+    </parse_markers>
+    <source>eJyNVE1v2zAMvftX8DCgTpDE24Bd2i4rkKFogQ0ohh4DBJrMxFplSZDobMHQ/z592E0cZ2l1sCnx8ZF8tHz9xVQmU6xGZxhHWOgS/yzvtH5yy4fKlJqnzVWWNa5zL7RF/1BkGScXAVfH7lvv0naXzu+lbGqhGB2GeWstNssfaLQTJ7G3QqLbOcL6wPSVFONxBmPYn8E6ZYPKlzLzvuC+8Q09sQ0CtHXt8dOAixjWUKUtdBh4sPoXcoKvuIVHZHUEcW12Vmwq8qDOyvkIPr7/8GnSD4x4KTgqFxJXRMZdFgXJ0krcMDnjui5af1ELmnbY7/eP8C3ZnqPIuGTOQatiUBhEbSTWqMhB2Gd/s1B21CIsn3fLLCxf069FF/FtrCZfNZbwbh0QXtzXSM8M8H/UPAKH3AuLnhEYKPx9MM1e08oRUxzbkJeqDLOshrcW1pVwLvykWJBWEqffXvPTjw7WjeIktILVyqdwZBtO+TDx5PBjTWyjSJOGGHNQJdx0nvDwea/aESAGQwC0Ewu+54G2d0yVEoEqPL4cp4UcXl2fIBldyPjGIjVWwVaL8qwYVUyeHxMNWm7Pp3OHlIaWvzjDYtay3cqikf7f5N+8sU5ssQ/qMyXV8tFkiDkUeDrfIOUXPHQ9C8K4mYm/u4tRL3C/G3VKP2f/AJUEnKk=</source>
+  </file>
+  <file path="Hooks/ProjectHook.php" generated-path="Hooks.ProjectHook.html" hash="a754edd852f85c818929bce124f5e00c" package="Default">
+    <docblock line="0">
+      <description>Part of the Caffeinated PHP packages.</description>
+      <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Hook">\Codex\Core\Contracts\Hook</namespace-alias>
+    <namespace-alias name="Project">\Codex\Core\Project</namespace-alias>
+    <namespace-alias name="PhpdocDocument">\Codex\Hooks\Phpdoc\PhpdocDocument</namespace-alias>
+    <namespace-alias name="Container">\Illuminate\Contracts\Container\Container</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Hooks" line="22" package="Codex\Core">
+      <extends/>
+      <implements>\Codex\Core\Contracts\Hook</implements>
+      <name>ProjectHook</name>
+      <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook</full_name>
+      <docblock line="22">
+        <description>This is the Hook.</description>
+        <long-description></long-description>
+        <tag name="package" line="22" description="Codex\Core"/>
+        <tag name="author" line="22" description="Caffeinated Dev Team"/>
+        <tag name="copyright" line="22" description="Copyright (c) 2015, Caffeinated"/>
+        <tag name="license" line="22" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+      </docblock>
+      <property static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="27" package="Codex\Core">
+        <name>$container</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook::container</full_name>
+        <default></default>
+        <docblock line="27">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="27" description="" type="\Illuminate\Contracts\Container\Container" variable="">
+            <type>\Illuminate\Contracts\Container\Container</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="32" package="Codex\Core">
+        <name>__construct</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook::__construct()</full_name>
+        <docblock line="32">
+          <description></description>
+          <long-description></long-description>
+          <tag name="param" line="32" description="" type="\Illuminate\Contracts\Container\Container" variable="$container">
+            <type>\Illuminate\Contracts\Container\Container</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$container</name>
+          <default></default>
+          <type>\Illuminate\Contracts\Container\Container</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="43" package="Codex\Core">
+        <name>handle</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook::handle()</full_name>
+        <docblock line="43">
+          <description>handle</description>
+          <long-description></long-description>
+          <tag name="param" line="43" description="" type="\Codex\Core\Project" variable="$project">
+            <type>\Codex\Core\Project</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$project</name>
+          <default></default>
+          <type>\Codex\Core\Project</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="32" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="27" code="PPC:ERR-50007">No summary for property $container</error>
+    </parse_markers>
+    <source>eJyNU11r2zAUffevuA+B2CWpt8FekjUbpB0NdCOwvC2j3MpyrMWSjCR3KyP/vZIsx3YSRi8h1se5555zJX36XBVVlF5dRXAFa1QGZA6moLDEPKdMoKEZrO/XUCHZ447qawt02G+rDTwwQoWmgCIDIqsXxXaFASZyqTgaJgU81SIrLcMfZgpLy3TLY1G+zMNqeff9xx3krKSWNo0EcqotyCqQGf27vZdyr7frosokaSbzKKp1u72Uito/YRQSoz1gfrq9VvI3Jaa/PmBtPreS1JyKAFuVZc29/R67GyETVHUjKyY0b+Pc2Z9z5ejbRn1pHYfohPldrE0hFRx3e22/pc+wocg9rutvYGmnMUngw7v3Hyf9XJ9ShuMJURhT6VmamjJTJd1heU0kTwMo5cxM24Te2fozISVqDaGNzhswXpXUdUt7r9G/yFXwnXBhiz+jgu1buxiyUv+t6icrBEak1+NT9goV8rfz98gulcprQfx1fXy0OG1UTUx8KTnxWY1ZFyN3paeL4z7cDGQ7yCE6U1+gexRhdmrp/N7CqGoG/5XekManORcUo3EynfL5cTmkzWYciZLxeEfN8FWMJ12pOAH3RGLPlfTIg8/m8I9K/LMPqttQ1NRKNGp6/ZsuOO6tiUHp2czfvwn8HFC4GAeXY7hZNIUm55jc3gqpXjrMdGHtfW1W42SQ8CvpenJI2hM8RK+SqZJq</source>
+  </file>
+  <file path="Hooks/ProjectDocumentsMenuHook.php" generated-path="Hooks.ProjectDocumentsMenuHook.html" hash="aa15d0ead1d1069985aea3d82943fe2f" package="Default">
+    <docblock line="0">
+      <description>Part of the Caffeinated PHP packages.</description>
+      <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Hook">\Codex\Core\Contracts\Hook</namespace-alias>
+    <namespace-alias name="Menu">\Codex\Core\Menus\Menu</namespace-alias>
+    <namespace-alias name="Project">\Codex\Core\Project</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Hooks" line="21" package="Codex\Core">
+      <extends/>
+      <implements>\Codex\Core\Contracts\Hook</implements>
+      <name>ProjectDocumentsMenuHook</name>
+      <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook</full_name>
+      <docblock line="21">
+        <description>This is the Hook.</description>
+        <long-description></long-description>
+        <tag name="package" line="21" description="Codex\Core"/>
+        <tag name="author" line="21" description="Caffeinated Dev Team"/>
+        <tag name="copyright" line="21" description="Copyright (c) 2015, Caffeinated"/>
+        <tag name="license" line="21" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="29" package="Codex\Core">
+        <name>handle</name>
+        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook::handle()</full_name>
+        <docblock line="29">
+          <description>handle</description>
+          <long-description></long-description>
+          <tag name="param" line="29" description="" type="\Codex\Core\Project" variable="$project">
+            <type>\Codex\Core\Project</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$project</name>
+          <default></default>
+          <type>\Codex\Core\Project</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$menu</name>
+          <default></default>
+          <type>\Codex\Core\Menus\Menu</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="29" code="PPC:ERR-50015">Argument $menu is missing from the Docblock of handle</error>
+      <error line="29" code="PPC:ERR-50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $menu in handle()</error>
+    </parse_markers>
+    <source>eJyVUl1r2zAUfdevuIOA7ZDE22AvzZptpIUWmhLWvC0jKPKVrdWWjCTvg5L/PkmxXSfZy4SxfXXPPffcI338VBc1ScdjAmNYU21BcbAFwpJyjkJSixms79ZQU/ZMczQzB/TY1f0GHgRDaRCozICp+o8WeWFBSK50Ra1QEvaNzErH8EvYwtEK0/E4VGjzcL+8fXy6BS5KdLQpkbRC40BOgcrw9/ZOqWezXRd1ptgxmBPSmC69VBrdS1pNmTUBMD9Pr1A2JrwvUmutfiCzjrK1YOM1usdr82TduJ873e165QhZ2thCaeizA/Nu8CdskFYB9+pSy9KFMUvg/dt3HybD2lBStia3q7C2NldpastMl5jTcsZUlbagtBJ22hUMTig4y0pqDLQT3yjWVCit8bb4QUFUdYlhKwxOXgjx/YIvfo2hoP4w26jbdMZoWsH20lQY1cefFpqGb93snUDgjWThhhxJ4/OaCXhhMHKCmiQUvpDOAsEhftMjpwumJBd5HKGk+xJ3dbgru8INEU2A09JgkgzK/dJoGy3n/d6h/xtJNwhcHztPFzTL4ujI6Mguew6a7QxaK2RuZr505y9ylCTzU+bpwqFWaGkcCcfxn5yh5N+cX6zVYt9YjKNCI3fEWoWI+YOZ9SN8O/Ehaps/erFwvRioyTHsxsnktMKT99F5xVfkcdLjv3dSD+RA/gIkTlob</source>
+  </file>
+  <file path="HookServiceProvider.php" generated-path="HookServiceProvider.html" hash="8079c8d94489051f985201ae790a52f4" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="ProvidesCodex">\Codex\Core\Traits\ProvidesCodex</namespace-alias>
+    <namespace-alias name="FactoryHook">\Codex\Hooks\Phpdoc\Hooks\FactoryHook</namespace-alias>
+    <namespace-alias name="ProjectDocumentsMenuHook">\Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook</namespace-alias>
+    <namespace-alias name="ProjectHook">\Codex\Hooks\Phpdoc\Hooks\ProjectHook</namespace-alias>
+    <namespace-alias name="ServiceProvider">\Sebwite\Support\ServiceProvider</namespace-alias>
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc" line="19" package="Codex\Hooks\Phpdoc">
+      <extends>\Sebwite\Support\ServiceProvider</extends>
+      <name>HookServiceProvider</name>
+      <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider</full_name>
+      <docblock line="19">
+        <description>The main service provider</description>
+        <long-description></long-description>
+        <tag name="author" line="19" description="Caffeinated"/>
+        <tag name="copyright" line="19" description="Copyright (c) 2015, Caffeinated"/>
+        <tag name="license" line="19" description="MIT" link="https://tldrlegal.com/license/mit-license"/>
+        <tag name="package" line="19" description="Codex\Hooks\Phpdoc"/>
+      </docblock>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="23" package="Codex\Hooks\Phpdoc">
+        <name>$dir</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::dir</full_name>
+        <default>__DIR__</default>
+        <docblock line="23">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="25" package="Codex\Hooks\Phpdoc">
+        <name>$configFiles</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::configFiles</full_name>
+        <default>array('codex.hooks.phpdoc')</default>
+        <docblock line="25">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="27" package="Codex\Hooks\Phpdoc">
+        <name>$viewDirs</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::viewDirs</full_name>
+        <default>array('views' =&gt; 'codex-phpdoc')</default>
+        <docblock line="27">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="29" package="Codex\Hooks\Phpdoc">
+        <name>$assetDirs</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::assetDirs</full_name>
+        <default>array('assets' =&gt; 'codex-phpdoc')</default>
+        <docblock line="29">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc" line="31" package="Codex\Hooks\Phpdoc">
+        <name>$providers</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::providers</full_name>
+        <default>array(\Codex\Hooks\Phpdoc\Providers\RouteServiceProvider::class)</default>
+        <docblock line="31">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="38" package="Codex\Hooks\Phpdoc">
+        <name>register</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::register()</full_name>
+        <docblock line="38">
+          <description>{@inheritdoc}</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="23" code="PPC:ERR-50007">No summary for property $dir</error>
+      <error line="25" code="PPC:ERR-50007">No summary for property $configFiles</error>
+      <error line="27" code="PPC:ERR-50007">No summary for property $viewDirs</error>
+      <error line="29" code="PPC:ERR-50007">No summary for property $assetDirs</error>
+      <error line="31" code="PPC:ERR-50007">No summary for property $providers</error>
+    </parse_markers>
+    <source>eJyVVF9v2jAQf/en8EOlACpkm7SXsHaVYNX60GkqvC0Tcu0L8Rpsy3YoqOK77+wkhUG3dn6IdP798fnOl0+fTWkIUWwFzjAOdKIFbPKvWj+4/HtphOZjQmrXARNtIZ9bJj3CVq+lABeR8QHpUN0G14x7bbcheIWJrr+A+6nm9QqUd7eg6rfL9swZ3D9KD/msNkZbn8/AriWHNmmLt0oHA0IHdF4CXTGpqGsY1LQUBAN+xWpfakvbNWFFAVIxDyKiXJutlcvSN+hz1ON9+uHd+4/nJ4oKD1GYYbNK743L0tRXwlawZNWI61XactKV9MOOf3szj3rs0wNbdvrTiiApJbxiztGwfXRxChsPSjh6tE+eSLALpTtqbNzHonisLwh6JqSlF3SxmN7cLRanMNeqkMtrWYFD2g+a8GAzKkOGIxMzTOjPU91awuNU2lYUIpfQi8tWP/yHEm8Kfi+N4Vu1XbOjlnRN7ori8jtdezgqVZbF6kZ2ZxkfU1gD+nQlVQlWejxz126mzbn1PTaTFrXiXmpFLSyl82B7/Qg/PZ9/xozBhAyzOAJZtueN9xRfSje8ZELEFNv3/w0H+cuGV7VDf9dretF7oQUjG1QLY6GQm6T/onHsf3hCvaRo5hczYWKbnNODeW6r8ZqDaRLMRDfYQ/zWaPW3gf9P3y6zgx/Bnw47siO/AcM3nmk=</source>
+  </file>
+  <package name="Codex" full_name="Codex">
+    <package name="Core" full_name="Codex\Core"/>
+    <package name="Filesystem-hook" full_name="Codex\Filesystem-hook"/>
+    <package name="Hooks" full_name="Codex\Hooks">
+      <package name="Phpdoc" full_name="Codex\Hooks\Phpdoc"/>
+    </package>
+  </package>
+  <package name="Default" full_name="Default"/>
+  <package name="Laradic" full_name="Laradic">
+    <package name="Codex" full_name="Laradic\Codex">
+      <package name="Http" full_name="Laradic\Codex\Http">
+        <package name="Controllers" full_name="Laradic\Codex\Http\Controllers"/>
+      </package>
+    </package>
+  </package>
+  <package name="global" full_name="global"/>
+  <namespace name="Codex" full_name="Codex">
+    <namespace name="Hooks" full_name="Codex\Hooks">
+      <namespace name="Phpdoc" full_name="Codex\Hooks\Phpdoc">
+        <namespace name="Contracts" full_name="Codex\Hooks\Phpdoc\Contracts"/>
+        <namespace name="Hooks" full_name="Codex\Hooks\Phpdoc\Hooks"/>
+        <namespace name="Http" full_name="Codex\Hooks\Phpdoc\Http">
+          <namespace name="Controllers" full_name="Codex\Hooks\Phpdoc\Http\Controllers"/>
+        </namespace>
+        <namespace name="Providers" full_name="Codex\Hooks\Phpdoc\Providers"/>
+      </namespace>
+    </namespace>
+  </namespace>
+  <deprecated count="0"/>
+</project>

@@ -24,9 +24,6 @@
                 <include name="**/*.php"/>
             </fileset>
 
-            <fileset dir="${project.basedir}/tests">
-                <include name="**/*.php"/>
-            </fileset>
         </apply>
     </target>
 
@@ -37,7 +34,6 @@
             <arg value="--extensions=php"/>
             <arg value="--ignore=autoload.php"/>
             <arg path="${project.basedir}/src"/>
-            <arg path="${project.basedir}/tests"/>
         </exec>
     </target>
 
@@ -47,7 +43,6 @@
             <arg value="--extensions=php"/>
             <arg value="--ignore=autoload.php"/>
             <arg path="${project.basedir}/src"/>
-            <arg path="${project.basedir}/tests"/>
         </exec>
     </target>
 

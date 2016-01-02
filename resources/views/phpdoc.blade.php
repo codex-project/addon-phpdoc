@@ -1,11 +1,11 @@
 @extends($document->attr('layout'))
 
-@push('stylesheets')
+@push('styles')
 <link href="{{ asset('vendor/codex-phpdoc/styles/phpdoc.css') }}" type="text/css" rel="stylesheet">
 @endpush
 
-@section('pageTitle', $document->attr('menu_name'))
-@section('pageSubtitle', '')
+@section('page-title', $document->attr('menu_name'))
+@section('page-subtitle', '')
 
 @section('breadcrumb')
     @parent

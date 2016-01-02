@@ -28,11 +28,11 @@ class ProjectDocumentsMenuHook implements Hook
      */
     public function handle(Project $project, Menu $menu)
     {
-        if (! $project->config('enable_phpdoc_hook', false)) {
+        if (! $project->hasEnabledHook('phpdoc')) {
             return;
         }
-        $node = $menu->add('phpdoc', $project->config('phpdoc_hook_settings.menu_name'));
-        $node->setMeta('icon', $project->config('phpdoc_hook_settings.menu_icon'));
+        $node = $menu->add('phpdoc', $project->config('hooks.phpdoc.menu_name'));
+        $node->setMeta('icon', $project->config('hooks.phpdoc.menu_icon'));
         $node->setAttribute('href', route('codex.phpdoc', [
             'projectName' => $project->getName(),
             'ref'         => $project->getRef()

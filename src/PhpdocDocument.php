@@ -30,11 +30,11 @@ class PhpdocDocument extends Document
     public function __construct(Codex $codex, Filesystem $files, Project $project, Container $container)
     {
         ini_set('memory_limit', '2G');
-        $path     = $project->path($project->config('phpdoc_hook_settings.path'));
+        $path     = $project->path($project->config('hooks.phpdoc.path'));
         $pathName = 'phpdoc';
         parent::__construct($codex, $files, $project, $container, $path, $pathName);
         $this->parser = new PhpdocParser;
-        $this->mergeAttributes($project->config('phpdoc_hook_settings'));
+        $this->mergeAttributes($project->config('hooks.phpdoc'));
 
         $this->setPath($path);
     }

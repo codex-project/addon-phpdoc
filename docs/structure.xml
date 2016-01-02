@@ -360,7 +360,7 @@
     </parse_markers>
     <source>eJy9VMFu2zAMvfsreAjgNEjte7NmA1oMDbBDkW6nuTAUmYmF2ZIm0UGGof8+SnHsLm3RW3WRSJFPfI+0P322tU0SLVr0VkiEG1Phobgz5pcv7mtbGVncO7NXFTq/SJLOI6yapmuVFoTFV9PpSpAyunjorDWOxuhibTrCB3R7JfHkBeHhzLU4Bw15Su+O+XydyEZ4D6/C4YFQVy8wk78J8Mpns7jDDL7XysNIkw1hbaOwAjJANYI0mpxpGgZ14SUPSsMf0w3mVjWY9XAn1JUGUVUqCDAHRQHWIwWSAfLH+hvsUKMTZFzqGcjQWMM51pe9cODJMfXelcfdOkMoiSudjPVfQ/pKp+6IbHEzEPEpi3emwy1ulcZnxKBlnAY2Slf8sp+DFcSy68CXd3YgyRe1WuFEC1C82TaASYR3Q4pD6hh2b1T1P79u0ygJ207LoCNsWKVpD9JjXMTAY08jnzwZzlwJarq6immn+EW8fnqLfWjOqavGRTNOg4yj/JFkW2Hf4dq7L5c7Ptjpz9Q6JnFI4XoZZnardtNUhlHINsJjGaPTizmkw7DE0AnxB3C5HJyP87GIQbZnz4bl8HenHEuFouGpqKdlebtalyVkkOZZlodxy486ZvwbSXvZo/RDC56Sf305YlQ=</source>
   </file>
-  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="b502e294b9f8b925fbb4adfdb7c9dd6b" package="Default">
+  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="b29c3ba1fd0736cd5596ab67b6e90a5d" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
@@ -460,107 +460,51 @@
       <error line="42" code="PPC:ERR-50008">No summary for method render()</error>
       <error line="28" code="PPC:ERR-50007">No summary for property $parser</error>
     </parse_markers>
-    <source>eJyNVV1v1DoQfd9fYVBFkirdhUq8bNneCwXaShStuH27i1beZJKYJnZkO4UK9b8zdux87RaIqsZrz5yZc2Y8efNPXdSzxfHxjByTNZWaiIzoAsgFzTJgnGpIyfpqTWqa3NEc1BwNje3N9S35xBLgCgjlKUlE/SBZXmjCeCZkRTUTnOwanpaI8J3pAmGZ8jhoZcN8ur748Pm/DyRjJSDsYsZpBQqNMAORwo/NlRB3arMu6lQkZ7NZo/zBhZCA/7iWNNFqYzfPpufvRdJUwPXewVqKb5C4/euybCrLdQTINWUcZL/6jfVHzF89KA3VYIn5OmVvDXX8M5RbLj4zr+e/Xhj3DNjbY9roQkjSHQ/K8x7uyS3Qytr1dXAw/meYROT05avX8dDXupSujO4ptK7VcrHQZSpLyGk5T0S1cEaLiukT7zDoAVu7pKRKTfgR+KGBp4r4jdnPmYlihTEPJnBPJdnsl9u9sCsVyFNnvbDvWgqN5UPyR7U9RqntfrPD5EjW8MT233abCK60bBId2gDkKDGvmPRVIkem+VRMXE8gZLtApXzljZtbRjZQS8I8jLOtAh0GFVRCPmxLhhIFMQlOL4PorDPDPPEKmGfVBTg5N5th/xODZCwPg9oS3xYohsHWjOdqbmyDaAr5Ge8LQjqXoD9FXVDt5XIogSfvGfdMe35xixv38MOQ5g6btI3mGJbDdzKs0p5lBTKHt1pLtms0qL/kamlOofBw3cqF/11Oj4fLjsxTkKEvVY90Bw/dFcL0q/R16NBzhz4SGPtZ34iUZQw7beUTseKdnA8PD6H0MDmgrnjdECKjpYI+AstIOIpyQZPC2G3sYrlEwPD5T5P349zYVc7uedxCReTZyqGSFy86t4Ki1OgURYNOPRjQ+o92pi5TCthKAwZtFboVAZPJGOBp58eREL4jaF3PU9g1ebCX/t9AHbXVtxULgonWvf+qRdiLMPAedbt7h+MmMPXZq300lscXBT+LcI9taQoT94H+YP1E9cclO/tDBQakhp3VZtI20lDKbilBN5L3/t2tm87wS9D249bIkmjRfupTP/Fbm27cO1CcSXjXx2N9co8RLZzOW+ctBc6TMLADbe6GX0z+H9EO3LAxQywgq/OuoH4GoQbmLIzisZ+ELOh+Hfb7AplLzTxfx/NoIAyavpNA00Q21e63ZEeWT9E+kIn/sKob4E0Y2b0e6FZcIRvfo1bQLtfH2S+O2/g2</source>
+    <source>eJyNVdtu1DAQfd+vMKgiSZXuQiVetmy5lEsrUbSCvrGo8iaTxDSxI9spVKj/ztixc9stJaoarz1zZs6Z8eTV67qoZ4vDwxk5JGsqNREZ0QWQM5plwDjVkJL1+ZrUNLmhOag5Ghrby4sr8pklwBUQylOSiPpOsrzQhPFMyIpqJjjZNjwtEeEX0wXCMuVx0MqG+Xxx9uHLtw8kYyUg7GLGaQUKjTADkcLvzbkQN2qzLupUJCezWaP8wZmQgP+4ljTRamM3T6bn70XSVMD1zsFaip+QuP2Lsmwqy3UEyDVlHGS/+of1R8xf3SkN1WCJ+Tplrwx1/DOUWy4+M6/nGy+Mewbs7TFtdCEk6Y4H5XkPt+QKaGXt+jo4GP8zTCJy/PzFy3joa11KV0b3FFrXarlY6DKVJeS0nCeiWjijRcX0kXcY9ICtXVJSpSb8CPzWwFNF/Mbsz8xEscKYBxO4pZJsdsvtXtiVCuSxs17Ydy2FxvIh+YPaHqPUdr/ZYnIka3hi++/6OhFcadkkOrQByEFiXjHpq0QOTPOpmLieQMh2gUr5yhs3t4xsoJaEeRhn1wp0GFRQCXl3XTKUKIhJcPwpiE46M8wTr4B5Vl2Ao1OzGfY/MUjG8jAojArz2tKfG5sgmkJ9wXuCUEFrFPSnqAeqvFwOqXvSnmnPsOcVt7hxDz8Mae6uSddojWE5/CLD6uxYViBzeKu1ZNtGg3qEo6U3hUBR1608+N/lcr+/zMg4BRn60vRIN3DXXRlMu0pfhg49d+gjYbF/9aVIWcaws1Y+ESva0enwcB9KD5MD6onXCyEyWiroI7CMhKMoZzQpjN3GLpZLBAyf/jF538+NXeXsnsYtVESerBwqefascysoSoxOUTTozL0Brf9oZ+oypYAtNGDQVqFbETCZjAEedr4fCeE7gdb1PIVtkwc76f8P1EFbfVuxIJho3fuvWoSdCAPvUZe7dzhuAlOfndpHY3l8UfAzCLfYlqYwcR/oEesHqj8u2ckjFRiQGnZWm0nbSEMpu6UE3Uje+3e3bjqzP4G2H7NGlkSL9tOe+gnf2nTj3YHiLGI8H4/xyT1GtHA6X523FDhHwsAOMj81YvJ9RDtwQ8YMr4CsTruC+tmDGpizMIrHfhKyoPu13+8rZC418/wYz6OBMGj6TgJNE9lU23+SHVk+RHtPJv5Dqi6BN2Fk93qgK3GObHyPWkG7XO9nfwFiKvEa</source>
   </file>
-  <file path="Hooks/FactoryHook.php" generated-path="Hooks.FactoryHook.html" hash="75b593cb0f862989ebe206cd79d8dc8c" package="Default">
+  <file path="Hooks/FactoryHook.php" generated-path="Hooks.FactoryHook.html" hash="35730f63eddbcd9dd0426f258b3bde8e" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
+    <namespace-alias name="Codex">\Codex\Core\Contracts\Codex</namespace-alias>
     <namespace-alias name="Hook">\Codex\Core\Contracts\Hook</namespace-alias>
-    <namespace-alias name="Factory">\Codex\Core\Factory</namespace-alias>
-    <namespace-alias name="Repository">\Illuminate\Contracts\Config\Repository</namespace-alias>
-    <namespace-alias name="Filesystem">\Illuminate\Filesystem\Filesystem</namespace-alias>
-    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Hooks" line="17" package="Codex\Filesystem-hook">
+    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Hooks" line="15" package="Codex\Filesystem-hook">
       <extends/>
       <implements>\Codex\Core\Contracts\Hook</implements>
       <name>FactoryHook</name>
       <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook</full_name>
-      <docblock line="17">
+      <docblock line="15">
         <description>Filesystem factory hook.</description>
         <long-description></long-description>
-        <tag name="package" line="17" description="Codex\Filesystem-hook"/>
-        <tag name="author" line="17" description="Codex Project Dev Team"/>
-        <tag name="copyright" line="17" description="Copyright (c) 2015, Codex Project"/>
-        <tag name="license" line="17" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
+        <tag name="package" line="15" description="Codex\Filesystem-hook"/>
+        <tag name="author" line="15" description="Codex Project Dev Team"/>
+        <tag name="copyright" line="15" description="Copyright (c) 2015, Codex Project"/>
+        <tag name="license" line="15" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
       </docblock>
-      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc\Hooks" line="22" package="Codex\Filesystem-hook">
-        <name>$files</name>
-        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::files</full_name>
-        <default></default>
-        <docblock line="22">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" line="22" description="" type="\Illuminate\Filesystem\Filesystem" variable="">
-            <type>\Illuminate\Filesystem\Filesystem</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" namespace="Codex\Hooks\Phpdoc\Hooks" line="27" package="Codex\Filesystem-hook">
-        <name>$config</name>
-        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::config</full_name>
-        <default></default>
-        <docblock line="27">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" line="27" description="" type="\Illuminate\Contracts\Config\Repository" variable="">
-            <type>\Illuminate\Contracts\Config\Repository</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="35" package="Codex\Filesystem-hook">
-        <name>__construct</name>
-        <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::__construct()</full_name>
-        <docblock line="35">
-          <description>Create a new FilesystemFactoryHook instance</description>
-          <long-description></long-description>
-          <tag name="param" line="35" description="" type="\Illuminate\Contracts\Config\Repository" variable="$config">
-            <type>\Illuminate\Contracts\Config\Repository</type>
-          </tag>
-          <tag name="param" line="35" description="" type="\Illuminate\Filesystem\Filesystem" variable="$files">
-            <type>\Illuminate\Filesystem\Filesystem</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$config</name>
-          <default></default>
-          <type>\Illuminate\Contracts\Config\Repository</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$files</name>
-          <default></default>
-          <type>\Illuminate\Filesystem\Filesystem</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="48" package="Codex\Filesystem-hook">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="17" package="Codex\Filesystem-hook">
         <name>handle</name>
         <full_name>\Codex\Hooks\Phpdoc\Hooks\FactoryHook::handle()</full_name>
-        <docblock line="48">
-          <description>Handle the factory hook.</description>
+        <docblock line="17">
+          <description></description>
           <long-description></long-description>
-          <tag name="param" line="48" description="" type="\Codex\Core\Factory" variable="$factory">
-            <type>\Codex\Core\Factory</type>
-          </tag>
-          <tag name="return" line="48" description="" type="void">
-            <type>void</type>
-          </tag>
         </docblock>
         <argument line="0" by_reference="false">
-          <name>$factory</name>
+          <name>$codex</name>
           <default></default>
-          <type>\Codex\Core\Factory</type>
+          <type>\Codex\Core\Contracts\Codex</type>
         </argument>
       </method>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="22" code="PPC:ERR-50007">No summary for property $files</error>
-      <error line="27" code="PPC:ERR-50007">No summary for property $config</error>
+      <error line="17" code="PPC:ERR-50015">Argument $codex is missing from the Docblock of handle</error>
+      <error line="17" code="PPC:ERR-50008">No summary for method handle()</error>
     </parse_markers>
-    <source>eJyNVE1v2zAMvftX8DCgTpDE24Bd2i4rkKFogQ0ohh4DBJrMxFplSZDobMHQ/z592E0cZ2l1sCnx8ZF8tHz9xVQmU6xGZxhHWOgS/yzvtH5yy4fKlJqnzVWWNa5zL7RF/1BkGScXAVfH7lvv0naXzu+lbGqhGB2GeWstNssfaLQTJ7G3QqLbOcL6wPSVFONxBmPYn8E6ZYPKlzLzvuC+8Q09sQ0CtHXt8dOAixjWUKUtdBh4sPoXcoKvuIVHZHUEcW12Vmwq8qDOyvkIPr7/8GnSD4x4KTgqFxJXRMZdFgXJ0krcMDnjui5af1ELmnbY7/eP8C3ZnqPIuGTOQatiUBhEbSTWqMhB2Gd/s1B21CIsn3fLLCxf069FF/FtrCZfNZbwbh0QXtzXSM8M8H/UPAKH3AuLnhEYKPx9MM1e08oRUxzbkJeqDLOshrcW1pVwLvykWJBWEqffXvPTjw7WjeIktILVyqdwZBtO+TDx5PBjTWyjSJOGGHNQJdx0nvDwea/aESAGQwC0Ewu+54G2d0yVEoEqPL4cp4UcXl2fIBldyPjGIjVWwVaL8qwYVUyeHxMNWm7Pp3OHlIaWvzjDYtay3cqikf7f5N+8sU5ssQ/qMyXV8tFkiDkUeDrfIOUXPHQ9C8K4mYm/u4tRL3C/G3VKP2f/AJUEnKk=</source>
+    <source>eJx1kUtLAzEQx+/5FHMQ+sDuquDFFRVaioJCDz0WSszObmLzIsmKRfrdzaOLeDCHPOb/m38mk/tHyy3RVKG3lCEsTYtfu2djDn634bY1rBwaQgY/ykvjME46OMqC3+Vg87+eDGJ+PZ8TmMNaSPRHH1BBF2XjjsAjUEUtyU+xjAPtEeBs9ssvEpcZOgRuHIwMbJz5QBZghZ+wRaoyxIw9OtHzEKFxN2UzuLm6vr38m5h5KRhqny7mIVh/V9dBtk5iT2XFjKrPeq1EWIzs28sWXss+etSESeo9rMu70rtBKCtRoQ4e0pl8k1S2Hd6jBXSDZkEYDZzqVuK0FHXB0jLLYMHTKNHFg0LX4wo7OshwLj+2uhP9dJKJKnXJVzZ/XtUWcG8LuWcZncya7HsiJ/IDbJKszw==</source>
   </file>
-  <file path="Hooks/ProjectHook.php" generated-path="Hooks.ProjectHook.html" hash="0a29e91fcb6d567624259ab0c20e54a3" package="Default">
+  <file path="Hooks/ProjectHook.php" generated-path="Hooks.ProjectHook.html" hash="7603a7b6a15b860ffcb4059297def3d5" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
@@ -632,9 +576,9 @@
       <error line="32" code="PPC:ERR-50008">No summary for method __construct()</error>
       <error line="27" code="PPC:ERR-50007">No summary for property $container</error>
     </parse_markers>
-    <source>eJyNU9Fq2zAUffdX3IdA7JDU22AvyZoN0kID3Qgsb8sot7Ica7EkI8ndysi/T5Ll2E7CqAixbJ177jlH0qfPVVFF6WQSwQQ2qAzIHExBYYV5TplAQzPYPGygQnLAPdU3FuiwX9dbeGSECk0BRQZEVq+K7QsDTORScTRMCniuRVZaht/MFJaW6ZbHonybx/Xq/tv3e8hZSS1tGgnkVFuQVSAz+mf3IOVB7zZFlUnSvCyiqNbt8koqav+EUUiM9oDF+fJGyV+UmP73AWvzuJOk5lQE2Losa+7t99jdDJmgqptZMSG8rXNnf86Vo2+D+tI6DqMT5lexNoVUcFrtxX5HX2BLkXtcl29gaV9jksCHd+8/Tvu1vqQM2xNGYUyl52lqykyVdI/lDZE8DaCUMzNrC3p76/eElKg1hBidN2C8KqlLS3uv0d/IdfBJuGGbv6CC3VtTDFWpf1b1sxUCI9LL+Jy9QoX87fw9smut8loQf1yfnixOG1UTE18rTnxVY9aNkTvSs+VpHW4Hsh3kGF2oL9BdivB2buny3MKoaib/ld6Qxuc1VxSjcTKd8sXpcyibzzkSJePxnprhrRhPu1ZxAu6KxJ4r6ZEHn83mn5T4ax9Ut0NRUyvRqOnlN1tyPFgTg9bzuT9/U/gxoHBjHFyO4XbZNJpeYnJ7KqR67TCzpbXnc46TAfxn0iVyTNr9O0b/AFexkYU=</source>
+    <source>eJyNVFFr2zAQfvevuEHAdkjqbbCXZM0GaaCBbgSWt2WUiyzHWmzJSHK3MvLfK8lybCdlVIRY8n333d13J3/+UuVVkIzHAYxhg1KDyEDnFJaYZZRx1DSFzf0GKiRHPFB1Y4AW+229hQdGKFcUkKdARPUs2SHXwHgmZImaCQ77mqeFYfjDdG5omWp5DMqFeVgvV99/rCBjBTW0ScCxpMqATAYipX9390Ic1W6TV6kgzWEeBLVqzUshqfnjWiLRygHml+aNFL8p0f33A9bmcSdIXVLuYeuiqEtXfo/d7pBxKrudScaLt7XVmZ+tytK3Qn1tK/arS8xZsda5kHC29mS/o0+wpVg6XKevZ2mPEYnh4/sPnyZ9X+dS+Pb4lWtdqVmS6CKVBT1gcUNEmXhQUjI9bR16vXU9IQUqBV5GWxuwsiqoVUu5WoN/gY3glLDLBH9CCbu3qui9Eves6r1JBEakp/Ele4USy7fz98heC5XVnLhxfXw0OKVlTXT0mnPsvJpi7RrZkZ4uzna4HaRtIafgKvsc7aXwp8uSrucWRlWz+W/qDWl06XOZMcsgene2Thc5qhXHvbmjto9RWLm7EMZxz8cuSXUt+fz87tTXALUt3GrRAXwis1mJRIooPFA9vGfhpEs+isFeushxXYY2yjXjdK7NfUi8DsMEm2x6HZkuSjwaWQahZzM30RP4OaCwK/TKhHC7aAJNrjGZmTMhnzvMdGHKc52L4gH8V9yTLG4n4hS8APWRprI=</source>
   </file>
-  <file path="Hooks/ProjectDocumentsMenuHook.php" generated-path="Hooks.ProjectDocumentsMenuHook.html" hash="aa15d0ead1d1069985aea3d82943fe2f" package="Default">
+  <file path="Hooks/ProjectDocumentsMenuHook.php" generated-path="Hooks.ProjectDocumentsMenuHook.html" hash="3811f183753990b31a2a2fb2d4f81f9d" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
@@ -682,7 +626,7 @@
       <error line="29" code="PPC:ERR-50015">Argument $menu is missing from the Docblock of handle</error>
       <error line="29" code="PPC:ERR-50016">The type hint of the argument is incorrect for the type definition of the @param tag with argument $menu in handle()</error>
     </parse_markers>
-    <source>eJyVUl1r2zAUfdevuIOA7ZDE22AvzZptpIUWmhLWvC0jKPKVrdWWjCTvg5L/PkmxXSfZy4SxfXXPPffcI338VBc1ScdjAmNYU21BcbAFwpJyjkJSixms79ZQU/ZMczQzB/TY1f0GHgRDaRCozICp+o8WeWFBSK50Ra1QEvaNzErH8EvYwtEK0/E4VGjzcL+8fXy6BS5KdLQpkbRC40BOgcrw9/ZOqWezXRd1ptgxmBPSmC69VBrdS1pNmTUBMD9Pr1A2JrwvUmutfiCzjrK1YOM1usdr82TduJ873e165QhZ2thCaeizA/Nu8CdskFYB9+pSy9KFMUvg/dt3HybD2lBStia3q7C2NldpastMl5jTcsZUlbagtBJ22hUMTig4y0pqDLQT3yjWVCit8bb4QUFUdYlhKwxOXgjx/YIvfo2hoP4w26jbdMZoWsH20lQY1cefFpqGb93snUDgjWThhhxJ4/OaCXhhMHKCmiQUvpDOAsEhftMjpwumJBd5HKGk+xJ3dbgru8INEU2A09JgkgzK/dJoGy3n/d6h/xtJNwhcHztPFzTL4ujI6Mguew6a7QxaK2RuZr505y9ylCTzU+bpwqFWaGkcCcfxn5yh5N+cX6zVYt9YjKNCI3fEWoWI+YOZ9SN8O/Ehaps/erFwvRioyTHsxsnktMKT99F5xVfkcdLjv3dSD+RA/gIkTlob</source>
+    <source>eJyNUl2P0zAQfPevWKRKTaq2ASReKFdAvUp30vVUQd8oQq6zacwldmRvgNOp/x3b+bi0xwNWlWbtmdnZiT98rPKKJZMJgwlsuSHQGVCOsOJZhlJxwhS2N1uouHjgR7RzB/TYze0O7qRAZRG4SkHo6tHIY04gVaZNyUlqBYdapYVT+C0pd7LSdjoOFdrc3a7W91/XkMkCnWzCFC/ROpBzoFP8s7/R+sHut3mVatEUC8Zq2x2vtEH3UGS4IBsAi8vjDarahueLo63RP1GQk2wj2HmP7ue9ebFu3E+d73Y9a4RTXlOuDfSng/Cu8RfskJcB95xSq9KVkYjh7es376ZDbqAUbcjtyokq+z5JqEhNgUdezIUukxaUlJJmHWHwhUKyouDWQjvxtRZ1iYqsj8UPCrKsCgxbYXD2xJjvF3LxawI59x+zrbpNF4zhJexfhgqjqnlpoUn4r+qDMwhZrUS4IY1odMmZgjcGI2eojgPxiXURyAyiVz1ytsy5XSt+cPfMG4/GVbgs4zgecPwySLVRi37v1L+NlHMPV0272ZKnaa8yHTQSWmXyGI1zfw3nDWDuKT/8rXUNF+eKs6VF2iDxaCwd9z+1AvTfWp+JjDzUhI5nMHOCRodK+PTnveVvZ3OP26b33iRcLQcujhh2o3h6zvDifXXJ+IJZFPf4753VEzuxvym1TtQ=</source>
   </file>
   <file path="HookServiceProvider.php" generated-path="HookServiceProvider.html" hash="8079c8d94489051f985201ae790a52f4" package="Default">
     <docblock line="0">

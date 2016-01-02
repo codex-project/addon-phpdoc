@@ -12,7 +12,7 @@ return [
      |
      */
 
-    'route_prefix'           => 'phpdoc',
+    'route_prefix' => 'phpdoc',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,18 +26,6 @@ return [
     */
 
     'default_project_config' => [
-
-        /*
-        |--------------------------------------------------------------------------
-        | Enable Phpdoc Hook
-        |--------------------------------------------------------------------------
-        |
-        | Project's may individually enable or disable the use of the phpdoc hook.
-        |
-        */
-
-        'enable_phpdoc_hook'      => false,
-
         /*
          |---------------------------------------------------------------------
          | Phpdoc Hook Settings
@@ -46,77 +34,77 @@ return [
          | These are the phpdoc hook specific settings.
          |
          */
+        'hooks' => [
+            'phpdoc' => [
 
-        'phpdoc_hook_settings' => [
+                /*
+                 |---------------------------------------------------------------------
+                 | Menu icon class
+                 |---------------------------------------------------------------------
+                 |
+                 | The menu icon class will be added to the icon tag. Uses font-awesome
+                 |
+                 */
 
-            /*
-             |---------------------------------------------------------------------
-             | Menu icon class
-             |---------------------------------------------------------------------
-             |
-             | The menu icon class will be added to the icon tag. Uses font-awesome
-             |
-             */
+                'menu_icon' => 'fa fa-code',
 
-            'menu_icon' => 'fa fa-code',
+                /*
+                 |---------------------------------------------------------------------
+                 | Menu name
+                 |---------------------------------------------------------------------
+                 |
+                 | The name that will be displayed for the menu item
+                 |
+                 */
 
-            /*
-             |---------------------------------------------------------------------
-             | Menu name
-             |---------------------------------------------------------------------
-             |
-             | The name that will be displayed for the menu item
-             |
-             */
+                'menu_name' => 'API Documentation',
 
-            'menu_name' => 'API Documentation',
+                /*
+                 |---------------------------------------------------------------------
+                 | Phpdoc xml file path
+                 |---------------------------------------------------------------------
+                 |
+                 | The path to the structure.xml file. This is relative to the project's
+                 | version directory
+                 |
+                 */
 
-            /*
-             |---------------------------------------------------------------------
-             | Phpdoc xml file path
-             |---------------------------------------------------------------------
-             |
-             | The path to the structure.xml file. This is relative to the project's
-             | version directory
-             |
-             */
+                'path' => 'structure.xml',
 
-            'path'      => 'structure.xml',
+                /*
+                 |---------------------------------------------------------------------
+                 | The layout view
+                 |---------------------------------------------------------------------
+                 |
+                 | The layout that will be used to extend the view.
+                 |
+                 */
 
-            /*
-             |---------------------------------------------------------------------
-             | The layout view
-             |---------------------------------------------------------------------
-             |
-             | The layout that will be used to extend the view.
-             |
-             */
+                'layout' => 'codex::layouts/default',
 
-            'layout'    => 'codex::layouts/default',
+                /*
+                 |---------------------------------------------------------------------
+                 | The view file
+                 |---------------------------------------------------------------------
+                 |
+                 | The view file that will be used to display phpdoc
+                 |
+                 */
 
-            /*
-             |---------------------------------------------------------------------
-             | The view file
-             |---------------------------------------------------------------------
-             |
-             | The view file that will be used to display phpdoc
-             |
-             */
+                'view' => 'codex-phpdoc::phpdoc',
 
-            'view'      => 'codex-phpdoc::phpdoc',
+                /*
+                 |---------------------------------------------------------------------
+                 | Default class
+                 |---------------------------------------------------------------------
+                 |
+                 | The default class to show. If null, a random class will be used.
+                 |
+                 */
 
-            /*
-             |---------------------------------------------------------------------
-             | Default class
-             |---------------------------------------------------------------------
-             |
-             | The default class to show. If null, a random class will be used.
-             |
-             */
+                'default_class' => null
 
-            'default_class'      => null
-
-
+            ]
         ]
     ]
 ];

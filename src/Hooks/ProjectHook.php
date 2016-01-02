@@ -42,6 +42,9 @@ class ProjectHook implements Hook
      */
     public function handle(Project $project)
     {
+        if (! $project->hasEnabledHook('phpdoc')) {
+            return;
+        }
         $that = $this;
         Project::macro('getPhpdocDocument', function () use ($that) {
             /** @var Project $this */

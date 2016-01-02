@@ -504,80 +504,6 @@
     </parse_markers>
     <source>eJx1kUtLAzEQx+/5FHMQ+sDuquDFFRVaioJCDz0WSszObmLzIsmKRfrdzaOLeDCHPOb/m38mk/tHyy3RVKG3lCEsTYtfu2djDn634bY1rBwaQgY/ykvjME46OMqC3+Vg87+eDGJ+PZ8TmMNaSPRHH1BBF2XjjsAjUEUtyU+xjAPtEeBs9ssvEpcZOgRuHIwMbJz5QBZghZ+wRaoyxIw9OtHzEKFxN2UzuLm6vr38m5h5KRhqny7mIVh/V9dBtk5iT2XFjKrPeq1EWIzs28sWXss+etSESeo9rMu70rtBKCtRoQ4e0pl8k1S2Hd6jBXSDZkEYDZzqVuK0FHXB0jLLYMHTKNHFg0LX4wo7OshwLj+2uhP9dJKJKnXJVzZ/XtUWcG8LuWcZncya7HsiJ/IDbJKszw==</source>
   </file>
-  <file path="Hooks/ProjectHook.php" generated-path="Hooks.ProjectHook.html" hash="7603a7b6a15b860ffcb4059297def3d5" package="Default">
-    <docblock line="0">
-      <description>Part of the Caffeinated PHP packages.</description>
-      <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <namespace-alias name="Hook">\Codex\Core\Contracts\Hook</namespace-alias>
-    <namespace-alias name="Project">\Codex\Core\Project</namespace-alias>
-    <namespace-alias name="PhpdocDocument">\Codex\Hooks\Phpdoc\PhpdocDocument</namespace-alias>
-    <namespace-alias name="Container">\Illuminate\Contracts\Container\Container</namespace-alias>
-    <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc\Hooks" line="22" package="Codex\Core">
-      <extends/>
-      <implements>\Codex\Core\Contracts\Hook</implements>
-      <name>ProjectHook</name>
-      <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook</full_name>
-      <docblock line="22">
-        <description>This is the Hook.</description>
-        <long-description></long-description>
-        <tag name="package" line="22" description="Codex\Core"/>
-        <tag name="author" line="22" description="Caffeinated Dev Team"/>
-        <tag name="copyright" line="22" description="Copyright (c) 2015, Caffeinated"/>
-        <tag name="license" line="22" description="MIT License" link="https://tldrlegal.com/license/mit-license"/>
-      </docblock>
-      <property static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="27" package="Codex\Core">
-        <name>$container</name>
-        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook::container</full_name>
-        <default></default>
-        <docblock line="27">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" line="27" description="" type="\Illuminate\Contracts\Container\Container" variable="">
-            <type>\Illuminate\Contracts\Container\Container</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="32" package="Codex\Core">
-        <name>__construct</name>
-        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook::__construct()</full_name>
-        <docblock line="32">
-          <description></description>
-          <long-description></long-description>
-          <tag name="param" line="32" description="" type="\Illuminate\Contracts\Container\Container" variable="$container">
-            <type>\Illuminate\Contracts\Container\Container</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$container</name>
-          <default></default>
-          <type>\Illuminate\Contracts\Container\Container</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc\Hooks" line="43" package="Codex\Core">
-        <name>handle</name>
-        <full_name>\Codex\Hooks\Phpdoc\Hooks\ProjectHook::handle()</full_name>
-        <docblock line="43">
-          <description>handle</description>
-          <long-description></long-description>
-          <tag name="param" line="43" description="" type="\Codex\Core\Project" variable="$project">
-            <type>\Codex\Core\Project</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$project</name>
-          <default></default>
-          <type>\Codex\Core\Project</type>
-        </argument>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="32" code="PPC:ERR-50008">No summary for method __construct()</error>
-      <error line="27" code="PPC:ERR-50007">No summary for property $container</error>
-    </parse_markers>
-    <source>eJyNVFFr2zAQfvevuEHAdkjqbbCXZM0GaaCBbgSWt2WUiyzHWmzJSHK3MvLfK8lybCdlVIRY8n333d13J3/+UuVVkIzHAYxhg1KDyEDnFJaYZZRx1DSFzf0GKiRHPFB1Y4AW+229hQdGKFcUkKdARPUs2SHXwHgmZImaCQ77mqeFYfjDdG5omWp5DMqFeVgvV99/rCBjBTW0ScCxpMqATAYipX9390Ic1W6TV6kgzWEeBLVqzUshqfnjWiLRygHml+aNFL8p0f33A9bmcSdIXVLuYeuiqEtXfo/d7pBxKrudScaLt7XVmZ+tytK3Qn1tK/arS8xZsda5kHC29mS/o0+wpVg6XKevZ2mPEYnh4/sPnyZ9X+dS+Pb4lWtdqVmS6CKVBT1gcUNEmXhQUjI9bR16vXU9IQUqBV5GWxuwsiqoVUu5WoN/gY3glLDLBH9CCbu3qui9Eves6r1JBEakp/Ele4USy7fz98heC5XVnLhxfXw0OKVlTXT0mnPsvJpi7RrZkZ4uzna4HaRtIafgKvsc7aXwp8uSrucWRlWz+W/qDWl06XOZMcsgene2Thc5qhXHvbmjto9RWLm7EMZxz8cuSXUt+fz87tTXALUt3GrRAXwis1mJRIooPFA9vGfhpEs+isFeushxXYY2yjXjdK7NfUi8DsMEm2x6HZkuSjwaWQahZzM30RP4OaCwK/TKhHC7aAJNrjGZmTMhnzvMdGHKc52L4gH8V9yTLG4n4hS8APWRprI=</source>
-  </file>
   <file path="Hooks/ProjectDocumentsMenuHook.php" generated-path="Hooks.ProjectDocumentsMenuHook.html" hash="3811f183753990b31a2a2fb2d4f81f9d" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
@@ -628,16 +554,16 @@
     </parse_markers>
     <source>eJyNUl2P0zAQfPevWKRKTaq2ASReKFdAvUp30vVUQd8oQq6zacwldmRvgNOp/x3b+bi0xwNWlWbtmdnZiT98rPKKJZMJgwlsuSHQGVCOsOJZhlJxwhS2N1uouHjgR7RzB/TYze0O7qRAZRG4SkHo6tHIY04gVaZNyUlqBYdapYVT+C0pd7LSdjoOFdrc3a7W91/XkMkCnWzCFC/ROpBzoFP8s7/R+sHut3mVatEUC8Zq2x2vtEH3UGS4IBsAi8vjDarahueLo63RP1GQk2wj2HmP7ue9ebFu3E+d73Y9a4RTXlOuDfSng/Cu8RfskJcB95xSq9KVkYjh7es376ZDbqAUbcjtyokq+z5JqEhNgUdezIUukxaUlJJmHWHwhUKyouDWQjvxtRZ1iYqsj8UPCrKsCgxbYXD2xJjvF3LxawI59x+zrbpNF4zhJexfhgqjqnlpoUn4r+qDMwhZrUS4IY1odMmZgjcGI2eojgPxiXURyAyiVz1ytsy5XSt+cPfMG4/GVbgs4zgecPwySLVRi37v1L+NlHMPV0272ZKnaa8yHTQSWmXyGI1zfw3nDWDuKT/8rXUNF+eKs6VF2iDxaCwd9z+1AvTfWp+JjDzUhI5nMHOCRodK+PTnveVvZ3OP26b33iRcLQcujhh2o3h6zvDifXXJ+IJZFPf4753VEzuxvym1TtQ=</source>
   </file>
-  <file path="HookServiceProvider.php" generated-path="HookServiceProvider.html" hash="8079c8d94489051f985201ae790a52f4" package="Default">
+  <file path="HookServiceProvider.php" generated-path="HookServiceProvider.html" hash="74fb0bc0eb68d8fc752a3d87dc6a83ba" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
+    <namespace-alias name="Project">\Codex\Core\Project</namespace-alias>
     <namespace-alias name="ProvidesCodex">\Codex\Core\Traits\ProvidesCodex</namespace-alias>
     <namespace-alias name="FactoryHook">\Codex\Hooks\Phpdoc\Hooks\FactoryHook</namespace-alias>
     <namespace-alias name="ProjectDocumentsMenuHook">\Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook</namespace-alias>
-    <namespace-alias name="ProjectHook">\Codex\Hooks\Phpdoc\Hooks\ProjectHook</namespace-alias>
     <namespace-alias name="ServiceProvider">\Sebwite\Support\ServiceProvider</namespace-alias>
     <class final="false" abstract="false" namespace="Codex\Hooks\Phpdoc" line="19" package="Codex\Hooks\Phpdoc">
       <extends>\Sebwite\Support\ServiceProvider</extends>
@@ -713,7 +639,7 @@
       <error line="29" code="PPC:ERR-50007">No summary for property $assetDirs</error>
       <error line="31" code="PPC:ERR-50007">No summary for property $providers</error>
     </parse_markers>
-    <source>eJyVVF9v2jAQf/en8EOlACpkm7SXsHaVYNX60GkqvC0Tcu0L8Rpsy3YoqOK77+wkhUG3dn6IdP798fnOl0+fTWkIUWwFzjAOdKIFbPKvWj+4/HtphOZjQmrXARNtIZ9bJj3CVq+lABeR8QHpUN0G14x7bbcheIWJrr+A+6nm9QqUd7eg6rfL9swZ3D9KD/msNkZbn8/AriWHNmmLt0oHA0IHdF4CXTGpqGsY1LQUBAN+xWpfakvbNWFFAVIxDyKiXJutlcvSN+hz1ON9+uHd+4/nJ4oKD1GYYbNK743L0tRXwlawZNWI61XactKV9MOOf3szj3rs0wNbdvrTiiApJbxiztGwfXRxChsPSjh6tE+eSLALpTtqbNzHonisLwh6JqSlF3SxmN7cLRanMNeqkMtrWYFD2g+a8GAzKkOGIxMzTOjPU91awuNU2lYUIpfQi8tWP/yHEm8Kfi+N4Vu1XbOjlnRN7ori8jtdezgqVZbF6kZ2ZxkfU1gD+nQlVQlWejxz126mzbn1PTaTFrXiXmpFLSyl82B7/Qg/PZ9/xozBhAyzOAJZtueN9xRfSje8ZELEFNv3/w0H+cuGV7VDf9dretF7oQUjG1QLY6GQm6T/onHsf3hCvaRo5hczYWKbnNODeW6r8ZqDaRLMRDfYQ/zWaPW3gf9P3y6zgx/Bnw47siO/AcM3nmk=</source>
+    <source>eJyNU8GO2jAQvecrfFgpARHSVuoldCkSdNU9bLVauJUV8jqTxCWJLdthQYh/r+PYJIVttz5Esee95/GbmS9fec49r8IlSI4JoDlLYL/+zthWrh9znjAy8bxausCcCVg/CvYLiJpcnq8Epko24R1NQJpIH9RXtZs7TBQTh2bzDtJeumCkLqFS8gGquqMt4eWVKlgva86ZUOsliB0lYFMR+g3RcOihIVrlgEpMKyRbBOIWooNNfIZrlTOB7JrjNAVaYQWJiRLGD4JmuWqj511ABujTh4+fR1eMQl9S6QzblSvFZRxFqkhEARkuxoSVkcVEJVWhwz/crwxfV2WLM8e/tkeDIo8UWErUHF88HMFeQZVIdHHuHb1GrrHuolzmXJuitNmQoJuECnSLNpvF/dNmcx0mrEppdkcLkBr2E/mkkRnnTYZjbjL00fM1b0fhdUGFJTU76aPbqeWH/2Dql4LqqGb7v1xXbMP1XJGdKXL9xGoFF1bFsXHXoJ2kaaZmDdFxRqscBFX6zpM9jNp76xddTJTWFVGUVUhARqUCEQxM+Hi+/wZzrhPiWOjGjuMON+kgKqcynOIkMSnaYfihx/bbnhS11PoyaGsRvFGCsWhYGy4gpXt/8KawqX/TQoGftlOpM8HJwR+h3pRaN95T4G2CceLGNdTfWkv9bYw73X5ZjEZcYiJY4Geg2pZ3ZC13NjcY9Ay1JUKzHRZOps3T1cYtAaoWFdIFCAbhtMRbCP68w+Y16rWLW+6RpveM+ugaY63sMOFUv8M4ZfvAreeepyf7f/JO3m+2ysaE</source>
   </file>
   <package name="Codex" full_name="Codex">
     <package name="Core" full_name="Codex\Core"/>

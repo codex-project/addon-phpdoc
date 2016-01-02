@@ -2,10 +2,10 @@
 
 namespace Codex\Hooks\Phpdoc;
 
+use Codex\Core\Project;
 use Codex\Core\Traits\ProvidesCodex;
 use Codex\Hooks\Phpdoc\Hooks\FactoryHook;
 use Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook;
-use Codex\Hooks\Phpdoc\Hooks\ProjectHook;
 use Sebwite\Support\ServiceProvider;
 
 /**
@@ -41,6 +41,13 @@ class HookServiceProvider extends ServiceProvider
         $this->addRouteProjectNameExclusions(config('codex.hooks.phpdoc.route_prefix'));
         $this->addCodexHook('factory:ready', FactoryHook::class);
         $this->addCodexHook('project:documents-menu', ProjectDocumentsMenuHook::class);
-        $this->addCodexHook('project:ready', ProjectHook::class);
+
+        Project::macro('getPhpdocDocument', function () {
+            /** @var Project $this */
+            return app()->make(PhpdocDocument::class, [
+                'project' => $this,
+                'factory' => $this->getCodex()
+            ]);
+        });
     }
 }

@@ -25,7 +25,7 @@ class PhpdocController extends Controller
      */
     public function show($projectName, $ref = null)
     {
-        $project = $this->factory->getProject($projectName);
+        $project = $this->codex->getProject($projectName);
 
         if (is_null($ref)) {
             $ref = $project->getDefaultRef();
@@ -36,7 +36,7 @@ class PhpdocController extends Controller
         $document = $project->getPhpdocDocument();
         $content = $document->render();
 
-        $this->view->composer($document->attr('view'), $this->factory->config('projects_menus_view_composer'));
+        $this->view->composer($document->attr('view'), $this->codex->config('projects_menus_view_composer'));
 
         return $this->view->make($document->attr('view'), compact('project', 'document', 'content'));
 

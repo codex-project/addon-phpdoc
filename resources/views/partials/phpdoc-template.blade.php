@@ -72,7 +72,7 @@
         <%= method.name %>
         <span class="fs-12">(
             <% if(method.parameters.length > 0) { %>
-            <% for(p in method.parameters) { var parameter = method.parameters[p]; %>
+            <% for(p in method.paramedters) { var parameter = method.parameters[p]; %>
             <span class="param-name">
                         <% if (parameter.reference === true) { %><strong>&amp;</strong><% } %>
                 <%= parameter.name %>

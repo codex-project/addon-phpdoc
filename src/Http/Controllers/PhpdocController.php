@@ -36,7 +36,7 @@ class PhpdocController extends Controller
         $document = $project->getPhpdocDocument();
         $content = $document->render();
 
-        $this->view->composer($document->attr('view'), $this->codex->config('projects_menus_view_composer'));
+        $this->view->share('project', $project);
 
         return $this->view->make($document->attr('view'), compact('project', 'document', 'content'));
 

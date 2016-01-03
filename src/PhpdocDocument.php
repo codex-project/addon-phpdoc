@@ -33,7 +33,7 @@ class PhpdocDocument extends Document
         $path     = $project->path($project->config('hooks.phpdoc.path'));
         $pathName = 'phpdoc';
         parent::__construct($codex, $files, $project, $container, $path, $pathName);
-        $this->parser = new PhpdocParser;
+        $this->setParser(new PhpdocParser);
         $this->mergeAttributes($project->config('hooks.phpdoc'));
 
         $this->setPath($path);
@@ -43,7 +43,7 @@ class PhpdocDocument extends Document
     {
 
         $key          = md5($this->getPath());
-        $lastModified = $this->files->lastModified($this->getPath());
+        $lastModified = $this->getFiles()->lastModified($this->getPath());
 
         $generate = false;
         if ($lastModifiedCache = \Cache::get("{$key}.lastmodified", false) !== false && \Cache::has($key)) {
@@ -58,7 +58,7 @@ class PhpdocDocument extends Document
         }
         $rendered = '';
         if ($generate === true) {
-            $rendered = $this->parser->parse($this->files->get($this->getPath()));
+            $rendered = $this->getParser()->parse($this->getFiles()->get($this->getPath()));
             \Cache::forever($key, $rendered);
             \Cache::forever("{$key}.lastmodified", $lastModified);
         } else {
@@ -87,6 +87,50 @@ class PhpdocDocument extends Document
      */
     public function getBreadcrumb()
     {
-        return $this->project->getDocumentsMenu()->getBreadcrumbToHref($this->url());
+        return $this->project->getSidebarMenu()->getBreadcrumbToHref($this->url());
+    }
+
+    /**
+     * @return string
+     */
+    public function getPathName()
+    {
+        return $this->pathName;
+    }
+
+    /**
+     * Set the pathName value
+     *
+     * @param string $pathName
+     *
+     * @return Document
+     */
+    public function setPathName($pathName)
+    {
+        $this->pathName = $pathName;
+
+        return $this;
+    }
+
+    /**
+     * @return PhpdocParser
+     */
+    public function getParser()
+    {
+        return $this->parser;
+    }
+
+    /**
+     * Set the parser value
+     *
+     * @param PhpdocParser $parser
+     *
+     * @return PhpdocDocument
+     */
+    public function setParser($parser)
+    {
+        $this->parser = $parser;
+
+        return $this;
     }
 }

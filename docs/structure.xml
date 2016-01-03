@@ -216,7 +216,7 @@
     </parse_markers>
     <source>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</source>
   </file>
-  <file path="Http/Controllers/PhpdocController.php" generated-path="Http.Controllers.PhpdocController.html" hash="b015d87e0be85a18cde46b3519dc4fb3" package="Default">
+  <file path="Http/Controllers/PhpdocController.php" generated-path="Http.Controllers.PhpdocController.html" hash="8c1fa3d579c161e1a821251694a9c459" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -273,7 +273,7 @@
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
     </parse_markers>
-    <source>eJx1UkuP0zAQvudXzKFSkqppWSQuLJSVuhKLBGhVOFaqXMdJTBM78qO7CPrfGTv2Nu0WHxJr5nvMjOfDp77pE0E6pntCGaxkyZ43D1Lu9eax6UtJNw/G9JuVFEbJtmVK3yaJ1RG5koq9QozutyPsmerwu5fUdkwY1FxMpwlMYdUSreEzN43dnWQw45J3WOOe1Azc+UoUKTndBPGLGjycWNNI5dGwljsuYO0oPtdyyoQepL59+eljVPa/Fa8bg7G3b25uCvy8m12hij2E06Dv+8XClzLvuCmC7lyqGsGLhPqGhnZP9QF7NkyUGkY9/kmcoJ+DO1NYIwKhpmFQhkERw6WA3s2gkkOq5geGISV/MWqAiBIO2D/C5kEnyuH0FOlAG8VFjZFJ4PxobX0V81fYtnVAxarrIpOemOYlpZixSsDENFyH4ML/e7vDsUBlBfX160Y+ZdH+Oy7fzHvAR3COuecM04BRnZj20sWSuicvljUzj0PqTCzHbYpcXkHG9dbJZs4iz0fCEHpzwoHvRe9ZRWxr1qzKUCsij8mrioqlZh7mpU9QfEO4OxAF51sOk/iMcTBe7CV4UcY5eVzKhOLWBEZkF0vl1yUbtx/mdeDsyU2t66VGxIhDjFFZ6vJpPrsYL5pUvM7SUJPeIsXqrQNvo1aaj+3GCxBdO7Jn/3d0OgTfL5qkM0gj1t1DoyebY3JM/gG5fHcm</source>
+    <source>eJxtU8GO0zAQvecr5lApSdW0LBIXFspKXYlFArQqHCMh13ES08SObKe7CPrvjB27dXfrQxLNvPfmzXjy4dPQDokgPdMDoQw2smLP5YOUe10+tkMlaflgzFBupDBKdh1T+jZJRh2QG6nYK0T0fRthL1Sn172kY8+EQc3VfJ7AHDYd0Ro+c9OOu7MMZmzyDj3uScPAnq9EkYrT0ou/8ODgZDStVA4NW7njAraW4nIdp0zoSerbl58uRuXwR/GmNRh7++bmpsDHu8UVqtiDPy3Wfb9aOSvLnpvC6y6lahC8SqhraGr37A/Ys2Gi0hD1+Dexgm4O9sxhiwiEmpZB5QdFDJcCBjuDWk6phh8YhpT8zagBIio4YP8IW3qdIIfTU6QHbRQXDUZmnvOjG5urmH9i7DoLVKy+LjIbiGlPKcXMqATMTMu1D67cexh3OBaoR0Gdf93KpyyU/47Lt3A14CPYirnjTNOAyCemnXSxpvbKi3XDzOOUuhDLcZsCl9eQcf3Lyma2RJ5HwuB7s8Ke70TvWU3GzmxZnaFWQB6TV46KtWYO5qTPULxDuDsQBZdbDrNwjWEwTuwUfGHjkhxbmVHcGs8I7GKt3Lpkcft+XgfOntBrSxTLUl8iXZyqxYz4DgOxJ3uWRYWIMSpLbS7NF0Blj7+liYXTgLXf3muahzLH5Jj8ByOdYII=</source>
   </file>
   <file path="Http/routes.php" generated-path="Http.routes.html" hash="4505c874faeb8b70eb855e6b3ad81eb3" package="Default">
     <docblock line="0">
@@ -360,7 +360,7 @@
     </parse_markers>
     <source>eJy9VMFu2zAMvfsreAjgNEjte7NmA1oMDbBDkW6nuTAUmYmF2ZIm0UGGof8+SnHsLm3RW3WRSJFPfI+0P322tU0SLVr0VkiEG1Phobgz5pcv7mtbGVncO7NXFTq/SJLOI6yapmuVFoTFV9PpSpAyunjorDWOxuhibTrCB3R7JfHkBeHhzLU4Bw15Su+O+XydyEZ4D6/C4YFQVy8wk78J8Mpns7jDDL7XysNIkw1hbaOwAjJANYI0mpxpGgZ14SUPSsMf0w3mVjWY9XAn1JUGUVUqCDAHRQHWIwWSAfLH+hvsUKMTZFzqGcjQWMM51pe9cODJMfXelcfdOkMoiSudjPVfQ/pKp+6IbHEzEPEpi3emwy1ulcZnxKBlnAY2Slf8sp+DFcSy68CXd3YgyRe1WuFEC1C82TaASYR3Q4pD6hh2b1T1P79u0ygJ207LoCNsWKVpD9JjXMTAY08jnzwZzlwJarq6immn+EW8fnqLfWjOqavGRTNOg4yj/JFkW2Hf4dq7L5c7Ptjpz9Q6JnFI4XoZZnardtNUhlHINsJjGaPTizmkw7DE0AnxB3C5HJyP87GIQbZnz4bl8HenHEuFouGpqKdlebtalyVkkOZZlodxy486ZvwbSXvZo/RDC56Sf305YlQ=</source>
   </file>
-  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="b29c3ba1fd0736cd5596ab67b6e90a5d" package="Default">
+  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="d4d0de8b7b61e8fd27c998dc3de2692a" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
@@ -450,6 +450,66 @@
           <long-description></long-description>
         </docblock>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="96" package="Codex\Hooks">
+        <name>getPathName</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::getPathName()</full_name>
+        <docblock line="96">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="96" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="108" package="Codex\Hooks">
+        <name>setPathName</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::setPathName()</full_name>
+        <docblock line="108">
+          <description>Set the pathName value</description>
+          <long-description></long-description>
+          <tag name="param" line="108" description="" type="string" variable="$pathName">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="108" description="" type="\Codex\Core\Document">
+            <type>\Codex\Core\Document</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$pathName</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="118" package="Codex\Hooks">
+        <name>getParser</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::getParser()</full_name>
+        <docblock line="118">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="118" description="" type="\Codex\Hooks\Phpdoc\PhpdocParser">
+            <type>\Codex\Hooks\Phpdoc\PhpdocParser</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="130" package="Codex\Hooks">
+        <name>setParser</name>
+        <full_name>\Codex\Hooks\Phpdoc\PhpdocDocument::setParser()</full_name>
+        <docblock line="130">
+          <description>Set the parser value</description>
+          <long-description></long-description>
+          <tag name="param" line="130" description="" type="\Codex\Hooks\Phpdoc\PhpdocParser" variable="$parser">
+            <type>\Codex\Hooks\Phpdoc\PhpdocParser</type>
+          </tag>
+          <tag name="return" line="130" description="" type="\Codex\Hooks\Phpdoc\PhpdocDocument">
+            <type>\Codex\Hooks\Phpdoc\PhpdocDocument</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$parser</name>
+          <default></default>
+          <type>\Codex\Hooks\Phpdoc\PhpdocParser</type>
+        </argument>
+      </method>
     </class>
     <parse_markers>
       <error line="30" code="PPC:ERR-50015">Argument $codex is missing from the Docblock of __construct</error>
@@ -458,9 +518,11 @@
       <error line="30" code="PPC:ERR-50015">Argument $container is missing from the Docblock of __construct</error>
       <error line="30" code="PPC:ERR-50008">No summary for method __construct()</error>
       <error line="42" code="PPC:ERR-50008">No summary for method render()</error>
+      <error line="96" code="PPC:ERR-50008">No summary for method getPathName()</error>
+      <error line="118" code="PPC:ERR-50008">No summary for method getParser()</error>
       <error line="28" code="PPC:ERR-50007">No summary for property $parser</error>
     </parse_markers>
-    <source>eJyNVdtu1DAQfd+vMKgiSZXuQiVetmy5lEsrUbSCvrGo8iaTxDSxI9spVKj/ztixc9stJaoarz1zZs6Z8eTV67qoZ4vDwxk5JGsqNREZ0QWQM5plwDjVkJL1+ZrUNLmhOag5Ghrby4sr8pklwBUQylOSiPpOsrzQhPFMyIpqJjjZNjwtEeEX0wXCMuVx0MqG+Xxx9uHLtw8kYyUg7GLGaQUKjTADkcLvzbkQN2qzLupUJCezWaP8wZmQgP+4ljTRamM3T6bn70XSVMD1zsFaip+QuP2Lsmwqy3UEyDVlHGS/+of1R8xf3SkN1WCJ+Tplrwx1/DOUWy4+M6/nGy+Mewbs7TFtdCEk6Y4H5XkPt+QKaGXt+jo4GP8zTCJy/PzFy3joa11KV0b3FFrXarlY6DKVJeS0nCeiWjijRcX0kXcY9ICtXVJSpSb8CPzWwFNF/Mbsz8xEscKYBxO4pZJsdsvtXtiVCuSxs17Ydy2FxvIh+YPaHqPUdr/ZYnIka3hi++/6OhFcadkkOrQByEFiXjHpq0QOTPOpmLieQMh2gUr5yhs3t4xsoJaEeRhn1wp0GFRQCXl3XTKUKIhJcPwpiE46M8wTr4B5Vl2Ao1OzGfY/MUjG8jAojArz2tKfG5sgmkJ9wXuCUEFrFPSnqAeqvFwOqXvSnmnPsOcVt7hxDz8Mae6uSddojWE5/CLD6uxYViBzeKu1ZNtGg3qEo6U3hUBR1608+N/lcr+/zMg4BRn60vRIN3DXXRlMu0pfhg49d+gjYbF/9aVIWcaws1Y+ESva0enwcB9KD5MD6onXCyEyWiroI7CMhKMoZzQpjN3GLpZLBAyf/jF538+NXeXsnsYtVESerBwqefascysoSoxOUTTozL0Brf9oZ+oypYAtNGDQVqFbETCZjAEedr4fCeE7gdb1PIVtkwc76f8P1EFbfVuxIJho3fuvWoSdCAPvUZe7dzhuAlOfndpHY3l8UfAzCLfYlqYwcR/oEesHqj8u2ckjFRiQGnZWm0nbSEMpu6UE3Uje+3e3bjqzP4G2H7NGlkSL9tOe+gnf2nTj3YHiLGI8H4/xyT1GtHA6X523FDhHwsAOMj81YvJ9RDtwQ8YMr4CsTruC+tmDGpizMIrHfhKyoPu13+8rZC418/wYz6OBMGj6TgJNE9lU23+SHVk+RHtPJv5Dqi6BN2Fk93qgK3GObHyPWkG7XO9nfwFiKvEa</source>
+    <source>eJyVVm1v2zYQ/u5fwRVBJQWKvQXoF2fOXpKuCdAUxpJv8xDQ0sniIpECSaUNivz3HSlKomQr3oQgpsW75+557nj0z79UeTVbnJ7OyClZU6mJyIjOgVzRLAPGqYaUrG/WpKLJE92BmqOhsb27fSCfWQJcAaE8JYmoXiTb5ZownglZUs0EJ9uapwUifGU6R1imWhy0smE+3159/HL/kWSsAIRdzDgtQaERZiBS+La5EeJJbdZ5lYrkYjarVbtxJSTgP64lTbTa2JcX4/1rkdQlcL23sZbiH0jc+9uiqEvLdQDINWUcZL96w/oPzF+9KA2lt8R8nbIPhjr+GcoNlzazVs9fW2Hc47G327TWuZCk2/bKcw3P5AFoae36OjiY9muYROT8x58+xL6vdSlcGd2Ta12p5WKhi1QWsKPFPBHlwhktSqbPWgevB2ztkoIqNeJH4JsGnirSvph9n5koVhjzYALPVJLNfrndB3alAnnurBf2s5JCY/mQ/Ellt1Fq+77eYnIkq3li++/xMRFcaVknOrQByEliPmLSV4mcmOZTMXE9gZDNApVqK2/c3DKygRoS5mGcPSrQYVBCKeTLY8FQoiAmwfmnILrozDBPPALmWXUBzi7Ny7D/ikEytguD3Kgwryz9ubEJojHUFzwnCBU0RkG/i3qgysulT70l3TLtGfa84gY37uH9kObsnl0iz6YaIYevxC/Pvm0Jcge/aS3ZttagjrC0BA+GswLhfxfh9XChkXOKabXF6ZGe4KU7NKhXmX4IHfrOoQ+kxQ7WdyJlGcPeWpHe1PZLGJ1d+haHoHqsHaCseMoQJ6OFgj4My0g4CHVFk9zYbexiuUTA8N13k/zr3NiVzu5d3EBF5IeVQyXv33duOUWd0SmKvAY9GND6D96MXcYUsJM8Bk0puhUBk8kQYNr5dSBE2w60quYpbOtdsJf+f4E6aVrAli0IRlr3/qsGYS+C5+0X1TZ7ZA4qrsID7WAqtdcF0VCotjx4L8Iz4pkSxX3II9YTfTAs3sWRWnj0/B5rMmlayhe1W0rQteS9f3cIx0P8E2h7u9WyIFo0d33ajvzGppv3DhSHE+O74VwfHWtEC8cD13lLgWMlDOxka4dITP4a0A7czDHTLCCry7a03ShCDcxeGMVDPwlZ0H077PcnZC418/w9HE+eMGj6uwSaJrIut2+SHVhO0T6QyT3DY0PlHfDadWQP8yBukEvboVbOyUz/R11cqzfavZ2oM5sKeu/6prvTnmlRw7hj8PjR0iXWX1ATfXU9bLvDDJTHoL/xRlRGHOzV3fE5SPiYtv6deVzhZvoc0bf5+XNMXWP1lrZ+Yu2Pqgl9hz/wjqtsWTjISYVt3NXo59yUuq+zfwG9FbNq</source>
   </file>
   <file path="Hooks/FactoryHook.php" generated-path="Hooks.FactoryHook.html" hash="35730f63eddbcd9dd0426f258b3bde8e" package="Default">
     <docblock line="0">

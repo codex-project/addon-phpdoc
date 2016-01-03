@@ -14,14 +14,6 @@
     </li>
 @stop
 
-@section('sidebar-menu')
-    {!! $project->getDocumentsMenu()->render() !!}
-@stop
-
-@section('header-actions')
-    @parent
-    @include('codex::partials/header-actions')
-@stop
 
 @section('content')
     <div id="codex-phpdoc">
@@ -33,10 +25,6 @@
         </div>
     </div>
 @stop
-
-@push('scripts')
-@endpush
-
 
 @push('init-scripts')
 <script src="{{ asset('vendor/codex/bower_components/jstree/dist/jstree.js') }}"></script>

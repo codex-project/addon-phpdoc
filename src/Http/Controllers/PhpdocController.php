@@ -23,15 +23,18 @@ class PhpdocController extends Controller
      * @param string $path
      * @return $this
      */
-    public function show($projectName, $ref = null)
+    public function show($projectSlug, $ref = null)
     {
-        $project = $this->codex->getProject($projectName);
+        if (!$this->codex->projects->has($projectSlug)) {
+            return abort(404, 'project does not exist');
+        }
+        $project = $this->codex->projects->get($projectSlug);
 
         if (is_null($ref)) {
             $ref = $project->getDefaultRef();
         }
-
         $project->setRef($ref);
+
         /** @var PhpdocDocument $document */
         $document = $project->getPhpdocDocument();
         $content = $document->render();

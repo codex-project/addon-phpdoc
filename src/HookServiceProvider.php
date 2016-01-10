@@ -3,7 +3,7 @@
 namespace Codex\Hooks\Phpdoc;
 
 use Codex\Core\Project;
-use Codex\Core\Traits\ProvidesCodex;
+use Codex\Core\Traits\CodexProviderTrait;
 use Codex\Hooks\Phpdoc\Hooks\FactoryHook;
 use Codex\Hooks\Phpdoc\Hooks\ProjectDocumentsMenuHook;
 use Sebwite\Support\ServiceProvider;
@@ -18,7 +18,7 @@ use Sebwite\Support\ServiceProvider;
  */
 class HookServiceProvider extends ServiceProvider
 {
-    use ProvidesCodex;
+    use CodexProviderTrait;
 
     protected $dir = __DIR__;
 
@@ -32,21 +32,26 @@ class HookServiceProvider extends ServiceProvider
         Providers\RouteServiceProvider::class
     ];
 
+    protected $bindings = [
+        'codex.hooks.phpdoc.document' => PhpdocDocument::class
+    ];
+
     /**
      * {@inheritdoc}
      */
     public function register()
     {
-        $app = parent::register();
-        $this->addRouteProjectNameExclusions(config('codex.hooks.phpdoc.route_prefix'));
-        $this->addCodexHook('factory:ready', FactoryHook::class);
-        $this->addCodexHook('project:documents-menu', ProjectDocumentsMenuHook::class);
 
-        Project::macro('getPhpdocDocument', function () {
+        $app = parent::register();
+        $this->codexRouteExclusion(config('codex.hooks.phpdoc.route_prefix'));
+        $this->codexHook('factory:ready', FactoryHook::class);
+        $this->codexHook('project:documents-menu', ProjectDocumentsMenuHook::class);
+
+        Project::extend('getPhpdocDocument', function () {
             /** @var Project $this */
-            return app()->make(PhpdocDocument::class, [
+            return app()->make('codex.hooks.phpdoc.document', [
                 'project' => $this,
-                'factory' => $this->getCodex()
+                'codex' => $this->getCodex()
             ]);
         });
     }

@@ -80,7 +80,7 @@ return [
                  |
                  */
 
-                'layout' => 'codex::layouts/default',
+                'layout' => 'codex::layouts.document',
 
                 /*
                  |---------------------------------------------------------------------

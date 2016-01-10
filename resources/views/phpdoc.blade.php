@@ -10,7 +10,7 @@
 @section('breadcrumb')
     @parent
     <li>
-        <a href="{{ route('codex.phpdoc', [ 'projectName' => $project->getName() ]) }}">Phpdoc</a>
+        <a href="{{ route('codex.hooks.phpdoc', [ 'projectName' => $project->getName() ]) }}">Phpdoc</a>
     </li>
 @stop
 

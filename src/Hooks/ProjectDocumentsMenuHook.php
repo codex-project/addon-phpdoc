@@ -7,7 +7,7 @@
 namespace Codex\Hooks\Phpdoc\Hooks;
 
 use Codex\Core\Contracts\Hook;
-use Codex\Core\Menus\Menu;
+use Codex\Core\Menu;
 use Codex\Core\Project;
 
 /**
@@ -33,7 +33,7 @@ class ProjectDocumentsMenuHook implements Hook
         }
         $node = $menu->add('phpdoc', $project->config('hooks.phpdoc.menu_name'));
         $node->setMeta('icon', $project->config('hooks.phpdoc.menu_icon'));
-        $node->setAttribute('href', route('codex.phpdoc', [
+        $node->setAttribute('href', route('codex.hooks.phpdoc', [
             'projectName' => $project->getName(),
             'ref'         => $project->getRef()
         ]));

@@ -360,7 +360,7 @@
     </parse_markers>
     <source>eJy9VMFu2zAMvfsreAjgNEjte7NmA1oMDbBDkW6nuTAUmYmF2ZIm0UGGof8+SnHsLm3RW3WRSJFPfI+0P322tU0SLVr0VkiEG1Phobgz5pcv7mtbGVncO7NXFTq/SJLOI6yapmuVFoTFV9PpSpAyunjorDWOxuhibTrCB3R7JfHkBeHhzLU4Bw15Su+O+XydyEZ4D6/C4YFQVy8wk78J8Mpns7jDDL7XysNIkw1hbaOwAjJANYI0mpxpGgZ14SUPSsMf0w3mVjWY9XAn1JUGUVUqCDAHRQHWIwWSAfLH+hvsUKMTZFzqGcjQWMM51pe9cODJMfXelcfdOkMoiSudjPVfQ/pKp+6IbHEzEPEpi3emwy1ulcZnxKBlnAY2Slf8sp+DFcSy68CXd3YgyRe1WuFEC1C82TaASYR3Q4pD6hh2b1T1P79u0ygJ207LoCNsWKVpD9JjXMTAY08jnzwZzlwJarq6immn+EW8fnqLfWjOqavGRTNOg4yj/JFkW2Hf4dq7L5c7Ptjpz9Q6JnFI4XoZZnardtNUhlHINsJjGaPTizmkw7DE0AnxB3C5HJyP87GIQbZnz4bl8HenHEuFouGpqKdlebtalyVkkOZZlodxy486ZvwbSXvZo/RDC56Sf305YlQ=</source>
   </file>
-  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="79187df0226fc5548d1112bdbc3d5c47" package="Default">
+  <file path="PhpdocDocument.php" generated-path="PhpdocDocument.html" hash="d4b07c02252554c804c804f038455b1b" package="Default">
     <docblock line="0">
       <description>Part of the Caffeinated PHP packages.</description>
       <long-description>MIT License and copyright information bundled with this package in the LICENSE file</long-description>
@@ -522,7 +522,7 @@
       <error line="117" code="PPC:ERR-50008">No summary for method getParser()</error>
       <error line="28" code="PPC:ERR-50007">No summary for property $parser</error>
     </parse_markers>
-    <source>eJyVVm1v2zYQ/u5fwRVBJQWKvQXoF2fOXpKuCdAUxpJv8xDQ0sniIokCSaUNivz3HSlSomQr3oQgpsW75+557nj0z7/UeT1bnJ7OyClZU6EIz4jKgVzRLANWUQUpWd+sSU2TJ7oDOUdDbXt3+0A+swQqCYRWKUl4/SLYLleEVRkXJVWMV2TbVGmBCF+ZyhGWSYeDVibM59urj1/uP5KMFYCwi1lFS5BohBnwFL5tbjh/kpt1Xqc8uZjNGuk2rrgA/FcpQRMlN+blxXj/midNCZXa21gL/g8k9v1tUTSl4ToArBRlFYh+9Yb1H5i/fJEKSm+J+VplHzR1/NOUWy4uM6fnr04Y+3jszTZtVM4F6ba98lzDM3kAWhq7vg4Wxn0Nk4ic//jTh9j3NS6FLaN9cqVquVwsVJGKAna0mCe8XFijRcnUmXPwesDULimolCN+BL4pqFJJ3IvZ95mOYoTRDybwTAXZ7JfbfmBXShDn1nphPmvBFZYPyZ/UZhulNu+bLSZHsqZKTP89Pia8kko0iQpNAHKS6I+Y2AZA/3YRk75u5ES3o0SlXOW1m11GJlBLQj+sYo8SVBiUUHLx8lgwlCiISXD+KYguOjPME4+AflZdzLNL/TLsv2KQjO3CINcqzGtDf65tgmgM9QXPCUIFrVHQ76IeqPJy6VN3pHuyjmHPK25x4x7eD6nP7tkl8myrEVbwlfjl2bctQezgN6UE2zYK5BGWQ4JeNKMP/rfbr4frjJRTzMrVpkd6gpfuzKBcZfohtOg7iz4IjA2s7njKMoattSK9qWmOMDq79C0OQfVYO0BV8ZAhTkYLCX0YlpFwEOqKJrm225jFcomA4bvvOvnXubYrrd27uIWKyA8ri0rev+/ccooyo1MUef15MKDxH7wZu4wpYCN5DNpSdCsCOpMhwLTz60AI1w20rucpbJtdsJf+f4E6aVvAlC0IRlr3/qsWYS+C5+0X1fR6pM8prsID7aArtdcF0VAoVx68FuEZ8XSJ4j7kEeuJPhgW7+JILTx6fo+1mbQt5YvaLQWoRlS9f3cIxzP8EyhzuTWiIIq3V33qJn5r0417C4qziVW74VgfHWtEC8fz1noLjlMlDMxgczMkJn8NaAd25OhhFpDVpSttN4lQA70XRvHQT0AWdN8O+/0JmU1NP38Px5MnDJr+LoCmiWjK7ZtkB5ZTtA9kcs/w2FBxB1VjO7KHeeA3yMV1qJFzMtP/URfb6q12bydqzaaC3tu+6a60Z1o0MO4YPH60tIn199NEX10P2+4wA+kx6C+8EZURB3Nzd3wOEj6mrX9lHle4nT5H9G1//RxTV1u9pa2fmPtNNaHv8PfdcZUNCws5qbCJuxr9mptS93X2L/JZs2A=</source>
+    <source>eJyVVm1v2zYQ/u5fwRVBJQWKvQXoF2fOXpKuCdAUxpJv8xDQ0sniIpECSaUNivz3HSlKomQr3oQgpsW75+557nj0z79UeTVbnJ7OyClZU6mJyIjOgVzRLAPGqYaUrG/WpKLJE92BmqOhsb27fSCfWQJcAaE8JYmoXiTb5ZownglZUs0EJ9uapwUifGU6R1imWhy0smE+3159/HL/kWSsAIRdzDgtQaERZiBS+La5EeJJbdZ5lYrkYjarVbtxJSTgP64lTbTa2JcX4/1rkdQlcL23sZbiH0jc+9uiqEvLdQDINWUcZL96w/oPzF+9KA2lt8R8nbIPhjr+GcoNlzazVs9fW2Hc47G327TWuZCk2/bKcw3P5AFoae36OjiY9muYROT8x58+xL6vdSlcGd2Ta12p5WKhi1QWsKPFPBHlwhktSqbPWgevB2ztkoIqNeJH4JsGnirSvph9n5koVhjzYALPVJLNfrndB3alAnnurBf2s5JCY/mQ/Ellt1Fq+77eYnIkq3li++/xMRFcaVknOrQByEliPmLiGgD9m0VM+rqRE9OOCpVqK2/c3DKygRoS5mGcPSrQYVBCKeTLY8FQoiAmwfmnILrozDBPPALmWXUxzy7Ny7D/ikEytguD3Kgwryz9ubEJojHUFzwnCBU0RkG/i3qgysulT70l3ZNtGfa84gY37uH9kObsnl0iz6YaIYevxC/Pvm0Jcge/aS3ZttagjrAcEvSiWX3wv9t+PVxnpJxiVm1teqQneOnODMpVph9Ch75z6IPA2MD6TqQsY9haK9Kb2uYIo7NL3+IQVI+1A1QVDxniZLRQ0IdhGQkHoa5okhu7jV0slwgYvvtukn+dG7vS2b2LG6iI/LByqOT9+84tpygzOkWR158HA1r/wZuxy5gCNpLHoClFtyJgMhkCTDu/DoRou4FW1TyFbb0L9tL/L1AnTQvYsgXBSOvef9Ug7EXwvP2i2l6PzDnFVXigHUyl9rogGgrVlgevRXhGPFOiuA95xHqiD4bFuzhSC4+e32NNJk1L+aJ2Swm6lrz37w7heIZ/Am0vt1oWRIvmqk/bid/YdOPegeJsYnw3HOujY41o4XjeOm8pcKqEgR1s88EkiclfA/KBGzxmpAVkddkWuJtHqITZC6N46CchC7pvh/3+hMwlaJ6/h0PKkwdNf5dA00TW5fZNygPLKfIHMrlneHiovANeu77sYR7EDXJp+9SKOpnp/6iOa/hGu7cTdWZTQe9d93QX2zMtahj3DR5CWrrE+ltqoruuh813mIHyGPTX3ojKiIO9vzs+Bwkf09a/OI8r3MygI/o2v4GOqWus3tLWT6z9ZTWh7/BX3nGVLQsHOamwjbsa/aabUvd19i/dZLWy</source>
   </file>
   <file path="Hooks/FactoryHook.php" generated-path="Hooks.FactoryHook.html" hash="35730f63eddbcd9dd0426f258b3bde8e" package="Default">
     <docblock line="0">
@@ -616,7 +616,7 @@
     </parse_markers>
     <source>eJyNUl2P0zAQfPevWKRKTaq2ASReKFdAvUp30vVUQd8oQq6zacwldmRvgNOp/x3b+bi0xwNW1WS9M7Ozm/3wscorlkwmDCaw5YZAZ0A5wopnGUrFCVPY3myh4uKBH9HOHdBjN7c7uJMClUXgKgWhq0cjjzmBVJk2JSepFRxqlRZO4bek3MlK2+k4VChzd7ta339dQyYLdLIJU7xE60DOgU7xz/5G6we73+ZVqkUTLBirbZdeaYPuT5HhgmwALC7TG1T1i8ut0T9RkBNrm995d+7nXXmZrtFPneP2PGuELK8p1wb67GBs1/gLdsjLgHueT6vShZGI4e3rN++mQ26gFO1425MTVfZ9klCRmgKPvJgLXSYtKCklzTrC4NuEmYqCWwttx9da1CUqsn4svlGQZVVguAqNsyfGfL0wF38mkHP/Gduou3SDMbyE/cuhwqhqXlpoEp5VfXAGIauVCLvRiEaXnCl4YzByhuo4EJ9YNwKZQfSqR86WObdrxQ9uw7zxaFyFNRnH8YDjj0GqjVr0d6f+baSce7hqys2WPE17lemgkNAqk8donPsFnDeAuaf88PvqCi7OFWdLi7RB4tFYOu5/agXov7U+Exl5qAkdz2DmBI0OkfDTnw+1XO7bWffjtvS9twpXy4GXI4bbKJ6eM3yJPrpkfMEsinv8987wiZ3YX3YPTsI=</source>
   </file>
-  <file path="HookServiceProvider.php" generated-path="HookServiceProvider.html" hash="234aac9b6ea7afdcb9e0dcfb56350b79" package="Default">
+  <file path="HookServiceProvider.php" generated-path="HookServiceProvider.html" hash="0a1fa71e7fa4187c45700927cc607498" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -701,9 +701,18 @@
           <long-description></long-description>
         </docblock>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Codex\Hooks\Phpdoc" line="52" package="Codex\Hooks\Phpdoc">
+        <name>extendProject</name>
+        <full_name>\Codex\Hooks\Phpdoc\HookServiceProvider::extendProject()</full_name>
+        <docblock line="52">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="52" code="PPC:ERR-50008">No summary for method extendProject()</error>
       <error line="23" code="PPC:ERR-50007">No summary for property $dir</error>
       <error line="25" code="PPC:ERR-50007">No summary for property $configFiles</error>
       <error line="27" code="PPC:ERR-50007">No summary for property $viewDirs</error>
@@ -711,7 +720,7 @@
       <error line="31" code="PPC:ERR-50007">No summary for property $providers</error>
       <error line="35" code="PPC:ERR-50007">No summary for property $bindings</error>
     </parse_markers>
-    <source>eJyNVE2P2jAQvedX+LBSAgLSVuoFuhQJuuoeVlot3DYrZJwhcQm2ZTssCPHf6zg24Wu39QFhz3tvxm/G+fFT5CIIGF6DEpgAGvMUtslvzlcqec5FyskgCErlA2MuIXmW/A8QPbg8n0lMtUrsicFsaArSnp0iT6Xd5gETzeWu2vwD6TJPOCnXwLR6AlY2tCks3qmGZFoKwaVOpiA3lIAvxVwkbrcD1EazHNAaU4ZUjUDCQUywio9wqXMukVtjvFwCZVhDaqOEi52kWa7r6HEXkRb69uXr984VozBJmKmwXrnWQvXjWBepLCDDRY/wdeww8Zrqrsc/Pc4s37RmhTPPv7bHgOKAFFgpVB1fXBzBVgNLFbo4D/ZBJXd0/KJnNmic0cZxSNFdSiW6R/P55PFlPr8OE86WNHugBSgDe0UhqTR7eVVmT9gyQ/R2zdtQeJ9Q6UjVToXofuj43U+Y5rqgG6rd/i/Xd9xyA99p74BKXnip4cKvft9abNE3JBeUpZRl54o3XOilbnxtqXUD/UTfSmGHtlpttB9RloOk2lAO7jCu6ygXZmjQsmREU86QhIwqDTJq2fA+OFZ0h4UwJQosbb4GOGggOqeqO7SlWyN+bUlRKqMb1V2Obl1LVsi5kLCk27D1gVw1nlG4rF+8SY7TXdhBJ18A58CndFF/BvreSNU1v6XR+ej70Iiettpq9OvHEYUZ6PNeGL2jnVEL7Y9U1xQ02mDpdeoqfTf8kqBLyZBxPGp1h2u8gpvOpU3G1zO+nSB3WzstNkvnGmNFG0R3aG5j37Trv19vJ74e3P9DcAj+AhgX5bk=</source>
+    <source>eJyNVE2P2jAQvedX+LBSAgLSVuoFuhQJuuoeVlot3DYrZJwhcQm2ZTssK8R/r+PYfATY1odInnlvPt5M/OOnyEUQMLwGJTABNOYpbJPfnK9U8pyLlJNBEJTKO8ZcQvIs+R8getC0zySmWiXWYjAbmoK0tlPkaWh3ecBEc/lRXf6BdJknnJRrYFo9ASuPtCks3qmGZFoKwaVOpiA3lIAvxTQSt9sBaqNZDmiNKUOqRiDhIMZZ+Ue41DmXyJ0xXi6BMqwhtV7CxYekWa5r7+EWkRb69uXr984FozBJmKmwPrnWQvXjWBepLCDDRY/wdeww8Zrqrsc/Pc4s34xmhTPPv5THgOKAFFgpVJkbjSPYamCpQg17sAuqcAfFGzOzTqOMNopDiu5SKtE9ms8njy/z+aWbcLak2QMtQBnYKwpJFbOXV2X2hC0zRG+XvA2F9wmVjlTdVIjuh47f/YRp2gV9pNrr/3L9xC038JP2CqjkhZcaGnr1+1Zii74SckFZSll2HvGKCr3Ura8ttR6g3+hrKezSVqeNdiPKcpBUG8reGeO6jnJhlgYtS0Y05QxJyKjSIKOWde+CQ0V3WAhTosDS5jsCB0eIzqnqDm3pVohfW1KUysSN6ilH19qSFXIuJCzpNmzdCFetZxQu6z/eJMfpR9hBJy+AU+BTuqifgb4XUnXNtzRxbr0PN4PWf4ajeQn2wVVJG9imrs7R79e4KMxAnw/XFHgIFrXQ7kB1U0ajDZY+Tl2hH68/EnQpGTIjjFrd4Rqv4Ooo0mPG1zO+XUknn10/m6VzibFBj4ju0HRjHwnXuD9vJ5ruD/rtg79Z+f1q</source>
   </file>
   <package name="Codex" full_name="Codex">
     <package name="Core" full_name="Codex\Core"/>

@@ -46,6 +46,11 @@ class HookServiceProvider extends ServiceProvider
         $this->codexRouteExclusion(config('codex.hooks.phpdoc.route_prefix'));
         $this->codexHook('factory:ready', FactoryHook::class);
         $this->codexHook('project:documents-menu', ProjectDocumentsMenuHook::class);
+        $this->extendProject();
+    }
+
+    public function extendProject()
+    {
 
         Project::extend('getPhpdocDocument', function () {
             /** @var Project $this */

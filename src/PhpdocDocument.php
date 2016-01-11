@@ -75,7 +75,7 @@ class PhpdocDocument extends Document
      */
     public function url()
     {
-        return route('codex.phpdoc', [
+        return route('codex.hooks.phpdoc', [
             'projectName' => $this->project->getName(),
             'ref'         => $this->project->getRef()
         ]);

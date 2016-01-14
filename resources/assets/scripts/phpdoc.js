@@ -1,17 +1,17 @@
 (function(){
 
-    var app = packadic.Application.instance;
+    var app = codex.Application.instance;
 
-    var util = packadic.util;
+    var util = codex.util;
 
     var trim         = util.trim,
-        def          = packadic.def,
-        defined      = packadic.defined,
-        cre          = packadic.cre,
+        def          = codex.def,
+        defined      = codex.defined,
+        cre          = codex.cre,
         ucfirst      = util.ucfirst,
-        kindOf       = packadic.kindOf,
+        kindOf       = codex.kindOf,
         makeString   = util.makeString,
-        ConfigObject = packadic.ConfigObject;
+        ConfigObject = codex.ConfigObject;
 
     function PhpdocMenuTree(phpdoc, $el) {
         this.phpdoc = phpdoc;

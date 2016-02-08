@@ -30,7 +30,7 @@ class PhpdocDocument extends Document
     public function __construct(Codex $codex, Project $project, Filesystem $files, Container $container)
     {
         ini_set('memory_limit', '2G');
-        $path     = $project->path($project->config('hooks.phpdoc.path'));
+        $path = $project->config('hooks.phpdoc.path');
         $pathName = 'phpdoc';
         parent::__construct($codex, $project, $files, $container, $path, $pathName);
         $this->setParser(new PhpdocParser);
@@ -41,22 +41,22 @@ class PhpdocDocument extends Document
     public function render()
     {
 
-        $key          = md5($this->getPath());
+        $key = md5($this->getPath());
         $lastModified = $this->getFiles()->lastModified($this->getPath());
 
         $generate = false;
-        if ($lastModifiedCache = \Cache::get("{$key}.lastmodified", false) !== false && \Cache::has($key)) {
-            if ($lastModified !== $lastModified) {
+        if ( $lastModifiedCache = \Cache::get("{$key}.lastmodified", false) !== false && \Cache::has($key) ) {
+            if ( $lastModified !== $lastModified ) {
                 $generate = true;
             }
         } else {
             $generate = true;
         }
-        if (config('app.debug')) {
+        if ( config('app.debug') ) {
             $generate = true;
         }
         $rendered = '';
-        if ($generate === true) {
+        if ( $generate === true ) {
             $rendered = $this->getParser()->parse($this->getFiles()->get($this->getPath()));
             \Cache::forever($key, $rendered);
             \Cache::forever("{$key}.lastmodified", $lastModified);
@@ -77,7 +77,7 @@ class PhpdocDocument extends Document
     {
         return route('codex.hooks.phpdoc', [
             'projectName' => $this->project->getName(),
-            'ref'         => $this->project->getRef()
+            'ref' => $this->project->getRef()
         ]);
     }
 

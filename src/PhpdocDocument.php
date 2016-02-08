@@ -9,8 +9,6 @@ namespace Codex\Hooks\Phpdoc;
 use Codex\Core\Contracts\Codex;
 use Codex\Core\Document;
 use Codex\Core\Project;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Filesystem\Filesystem;
 
 /**
  * This is the PhpdocDocument.
@@ -27,15 +25,14 @@ class PhpdocDocument extends Document
      */
     protected $parser;
 
-    public function __construct(Codex $codex, Project $project, Filesystem $files, Container $container)
+    public function __construct(Codex $codex, Project $project)
     {
         ini_set('memory_limit', '2G');
         $path = $project->config('hooks.phpdoc.path');
         $pathName = 'phpdoc';
-        parent::__construct($codex, $project, $files, $container, $path, $pathName);
+        parent::__construct($codex, $project, $path, $pathName);
         $this->setParser(new PhpdocParser);
         $this->mergeAttributes($project->config('hooks.phpdoc'));
-        $this->setPath($path);
     }
 
     public function render()

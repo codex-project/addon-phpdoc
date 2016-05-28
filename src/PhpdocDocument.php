@@ -4,11 +4,10 @@
  *
  * MIT License and copyright information bundled with this package in the LICENSE file
  */
-namespace Codex\Hooks\Phpdoc;
+namespace Codex\Addon\Phpdoc;
 
-use Codex\Core\Contracts\Codex;
-use Codex\Core\Document;
-use Codex\Core\Project;
+use Codex\Core\Documents\Document;
+use Codex\Core\Projects\Project;
 
 /**
  * This is the PhpdocDocument.
@@ -20,50 +19,25 @@ use Codex\Core\Project;
  */
 class PhpdocDocument extends Document
 {
-    /**
-     * @var \Codex\Hooks\Phpdoc\PhpdocParser2
-     */
-    protected $parser;
 
-    public function __construct(Codex $codex, Project $project)
+    protected $phpdoc;
+
+    public function __construct($codex, Project $project, $path, $pathName)
     {
-        ini_set('memory_limit', '2G');
-        $path = $project->config('hooks.phpdoc.path');
         $pathName = 'phpdoc';
         parent::__construct($codex, $project, $path, $pathName);
-        $this->setParser(new PhpdocParser);
-        $this->mergeAttributes($project->config('hooks.phpdoc'));
+        $this->mergeAttributes($project->config('phpdoc'));
+        $this->phpdoc = new ProjectPhpdoc($project);
+
     }
 
     public function render()
     {
-
-        $key = md5($this->getPath());
-        $lastModified = $this->getFiles()->lastModified($this->getPath());
-
-        $generate = false;
-        if ( $lastModifiedCache = \Cache::get("{$key}.lastmodified", false) !== false && \Cache::has($key) ) {
-            if ( $lastModified !== $lastModified ) {
-                $generate = true;
-            }
-        } else {
-            $generate = true;
-        }
-        if ( config('app.debug') ) {
-            $generate = true;
-        }
-        $rendered = '';
-        if ( $generate === true ) {
-            $rendered = $this->getParser()->parse($this->getFiles()->get($this->getPath()));
-            \Cache::forever($key, $rendered);
-            \Cache::forever("{$key}.lastmodified", $lastModified);
-        } else {
-            $rendered = \Cache::get($key, false);
-        }
-
-        return $rendered;
+        $entities = $this->phpdoc->collection();
+        $tree = $this->phpdoc->tree();
+        $data = compact('entities', 'tree');
+        return $data;
     }
-
 
     /**
      * Get the url to this document
@@ -72,9 +46,9 @@ class PhpdocDocument extends Document
      */
     public function url()
     {
-        return route('codex.hooks.phpdoc', [
-            'projectName' => $this->project->getName(),
-            'ref' => $this->project->getRef()
+        return route('codex-addons.phpdoc', [
+            'projectName' => $this->getProject()->getName(),
+            'ref'         => $this->getProject()->getRef(),
         ]);
     }
 
@@ -83,50 +57,7 @@ class PhpdocDocument extends Document
      */
     public function getBreadcrumb()
     {
-        return $this->project->getSidebarMenu()->getBreadcrumbToHref($this->url());
+        return $this->getProject()->getSidebarMenu()->getBreadcrumbToHref($this->url());
     }
 
-    /**
-     * @return string
-     */
-    public function getPathName()
-    {
-        return $this->pathName;
-    }
-
-    /**
-     * Set the pathName value
-     *
-     * @param string $pathName
-     *
-     * @return Document
-     */
-    public function setPathName($pathName)
-    {
-        $this->pathName = $pathName;
-
-        return $this;
-    }
-
-    /**
-     * @return PhpdocParser
-     */
-    public function getParser()
-    {
-        return $this->parser;
-    }
-
-    /**
-     * Set the parser value
-     *
-     * @param PhpdocParser $parser
-     *
-     * @return PhpdocDocument
-     */
-    public function setParser($parser)
-    {
-        $this->parser = $parser;
-
-        return $this;
-    }
 }

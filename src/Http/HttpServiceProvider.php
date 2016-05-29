@@ -40,7 +40,7 @@ class HttpServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         $router->group([
-            'prefix'    => config('codex.base_route') . '/api/v1/' . config('codex-addon.phpdoc.route_prefix'),
+            'prefix'    => config('codex.base_route') . '/api/v1/' . config('codex-phpdoc.route_prefix'),
             'namespace' => $this->namespace,
             'as'        => 'codex.phpdoc.api.v1.',
         ], function ($router) {

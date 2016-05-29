@@ -85,7 +85,7 @@ return [
              |
              */
 
-            'view' => 'codex-phpdoc::phpdoc',
+            'view' => 'codex-phpdoc::document',
 
             /*
              |---------------------------------------------------------------------

@@ -27,30 +27,14 @@ class PhpdocDocument extends Document
         $pathName = 'phpdoc';
         parent::__construct($codex, $project, $path, $pathName);
         $this->mergeAttributes($project->config('phpdoc'));
-        $this->phpdoc = new ProjectPhpdoc($project);
-
+        //$this->phpdoc = $codex->getContainer()->make('codex.phpdoc');
     }
 
     public function render()
     {
-        $entities = $this->phpdoc->collection();
-        $tree = $this->phpdoc->tree();
-        $data = compact('entities', 'tree');
-        return $data;
+        return '<div id="codex-phpdoc"></div>';
     }
 
-    /**
-     * Get the url to this document
-     *
-     * @return string
-     */
-    public function url()
-    {
-        return route('codex-addons.phpdoc', [
-            'projectName' => $this->getProject()->getName(),
-            'ref'         => $this->getProject()->getRef(),
-        ]);
-    }
 
     /**
      * getBreadcrumb

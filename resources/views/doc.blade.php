@@ -1,7 +1,14 @@
 <!-- HEADER-->
 <header>
     <i class="phpdoc-type-{{ $type }}"></i>
-    <h3 class="fs22"><span class="phpdoc-type-{{ $type }}">{{ $full_name }}</span></h3>
+    <h3 class="fs22">
+        <span class="phpdoc-type-{{ $type }}">{{ $full_name }}</span>
+
+        @if(strlen($extends) > 0)
+            <a class="pull-right pl-md color-orange-800 fs-13" >{{$extends}}</a>
+            <small class="pull-right pl-md">extends</small>
+        @endif
+    </h3>
 </header>
 
 <!-- DESC-->
@@ -95,14 +102,14 @@
                                         @endif
                                         <tr>
                                             <th width='150'>{{ $tag['name'] }}</th>
-                                            <td>{{ $tag['description'] }}</td>
+                                            <td>{{ isset($tag['description']) ? $tag['description'] : '' }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
 
                                 {{--Method examples--}}
-                                @if(isset($method['tags']['example']))
+                                @if(isset($method['tags']['example']['description']))
                                     <h4>Example</h4>
                                     <pre class="language-php"><code class="language-php">{!! trim($method['tags']['example']['description']) !!}</code></pre>
                                 @endif
@@ -163,7 +170,7 @@
             </table>
         </div>
         <div id="phpdoc-source" role="tabpanel" class="tab-pane">
-            <pre class="language-php"><code class="language-php">{!! $source !!}</code></pre>
+            <pre class="language-php"><code class="language-php">{{ $source }}</code></pre>
         </div>
     </div>
 </div>

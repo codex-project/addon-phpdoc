@@ -37,7 +37,7 @@ class ProjectPhpdoc
         $this->project = $project;
 
         $this->cachePath = path_join(
-            config('codex-addon.phpdoc.cache_path'),
+            config('codex-phpdoc.cache_path'),
             $this->project->getName(),
             $this->project->getRef()
         );
@@ -125,12 +125,14 @@ class ProjectPhpdoc
                 $segment = array_shift($segments);
                 $last    = count($segments) === 0;
                 if ( !$last ) {
+                    is_array($tree2) && krsort($tree2);
                     $tree2 =& $tree2[ $segment ];
                 } else {
-                    //$tree2[$segment] = $item;
+
                     if ( !is_array($tree2) ) {
                         $tree2 = [ ];
                     }
+
                     if ( $only === null ) {
                         $tree2[] = $item;
                     } elseif ( is_array($only) ) {
@@ -138,9 +140,9 @@ class ProjectPhpdoc
                     } elseif ( $only === true ) {
                         $tree2[] = $item[ 'name' ];
                     }
-                    ksort($tree2);
                 }
             }
+
         }
 
         return $tree;

@@ -14,7 +14,7 @@ class PhpdocServiceProvider extends ServiceProvider
 
     protected $scanDirs = true;
 
-    protected $configFiles = [ 'codex-addon.phpdoc' ];
+    protected $configFiles = [ 'codex-phpdoc' ];
 
     protected $viewDirs = [ 'views' => 'codex-phpdoc' ];
 
@@ -28,15 +28,16 @@ class PhpdocServiceProvider extends ServiceProvider
         'codex.phpdoc' => Factory::class
     ];
     protected $bindings = [
-        'codex.phpdoc.project' => ProjectPhpdoc::class
+        'codex.phpdoc.project' => ProjectPhpdoc::class,
+        'codex.phpdoc.document' => PhpdocDocument::class
     ];
 
     public function register()
     {
         $app = parent::register();
 
-        $this->codexIgnoreRoute(config('codex-addon.phpdoc.route_prefix'));
-        $this->codexProjectConfig('codex-addon.phpdoc.default_project_config');
+        $this->codexIgnoreRoute(config('codex-phpdoc.route_prefix'));
+        $this->codexProjectConfig('codex-phpdoc.default_project_config');
 
         $this->addMenuItem();
         $this->addCustomDocument();
@@ -67,7 +68,7 @@ class PhpdocServiceProvider extends ServiceProvider
                 if ( !$pfs->exists($path) ) {
                     throw CodexException::documentNotFound('phpdoc');
                 }
-                return [ 'path' => $path, 'binding' => 'codex-addon.phpdoc.document' ];
+                return [ 'path' => $path, 'binding' => 'codex.phpdoc.document' ];
             });
         });
     }

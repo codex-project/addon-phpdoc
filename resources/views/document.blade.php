@@ -8,8 +8,7 @@
     @parent
 @stop
 
-@section('bodyClass', 'docs language-php sidebar-closed')
-@section('articleClass', 'content-compact')
+@section('bodyClass', 'docs language-php sidebar-closed content-compact')
 
 @section('content')
 

@@ -2,14 +2,16 @@
 <header>
     <i class="phpdoc-type-{{ $type }}"></i>
     <h3 class="fs22">
-        <span class="phpdoc-type-{{ $type }}">{{ $full_name }}</span>
+        <span class="phpdoc-type-{{ $type }}">{{ str_replace_first('\\', '', $full_name) }}</span>
 
         @if(strlen($extends) > 0)
-            <a class="pull-right pl-md color-orange-800 fs-13" >{{$extends}}</a>
-            <small class="pull-right pl-md">extends</small>
+            <small class="pl-md fs-13">extends</small>
+
+            <a class="pl-md color-orange-800 fs-13" >{{ str_replace_first('\\', '', $extends) }}</a>
         @endif
     </h3>
 </header>
+
 
 <!-- DESC-->
 <div class="phpdoc-content-description">

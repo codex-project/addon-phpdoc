@@ -12,7 +12,7 @@ class PhpdocServiceProvider extends ServiceProvider
 {
     use CodexProviderTrait;
 
-    protected $scanDirs = true;
+    protected $dir = __DIR__;
 
     protected $configFiles = [ 'codex-phpdoc' ];
 

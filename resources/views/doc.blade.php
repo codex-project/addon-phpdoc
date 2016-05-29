@@ -5,9 +5,9 @@
         <span class="phpdoc-type-{{ $type }}">{{ str_replace_first('\\', '', $full_name) }}</span>
 
         @if(strlen($extends) > 0)
-            <small class="pl-md fs-13">extends</small>
-
-            <a class="pl-md color-orange-800 fs-13" >{{ str_replace_first('\\', '', $extends) }}</a>
+            <small class="pl-xs fs-13">extends</small>
+            @include('codex-phpdoc::partials.type', ['type' => $extends, 'class' => 'fs-13'])
+            {{--<a class="pl-md color-orange-800 fs-13" >{{ str_replace_first('\\', '', $extends) }}</a>--}}
         @endif
     </h3>
 </header>

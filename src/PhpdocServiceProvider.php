@@ -45,7 +45,6 @@ class PhpdocServiceProvider extends ServiceProvider
         return $app;
     }
 
-
     protected function addMenuItem()
     {
         $this->codexHook('projects:active', function (Projects $projects, Project $project) {

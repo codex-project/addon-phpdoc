@@ -18,7 +18,7 @@ class PhpdocServiceProvider extends ServiceProvider
 
     protected $viewDirs = [ 'views' => 'codex-phpdoc' ];
 
-    protected $assetDirs = [ 'assets/phpdoc' => 'codex-phpdoc' ];
+    protected $assetDirs = [ 'assets' => 'codex-phpdoc' ];
 
     protected $providers = [
         Http\HttpServiceProvider::class,

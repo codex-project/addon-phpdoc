@@ -16,7 +16,7 @@ use Codex\Core\Documents\Document;
  * @author         CLI
  * @copyright      Copyright (c) 2015, CLI. All rights reserved
  *
- * @Filter("phpdoc", config="config")
+ * @Filter("phpdoc", config="config", priority=150)
  */
 class PhpdocFilter
 {
@@ -40,5 +40,17 @@ class PhpdocFilter
         if($document->getProject()->config('phpdoc.enabled', false) !== true){
             return;
         }
+        $pathName = $document->getProject()->config('phpdoc.document_slug', 'phpdoc');
+        $url = $document->getProject()->url($pathName, $document->getProject()->getRef());
+        $content = $document->getContent();
+
+        $matches = [];
+        preg_match_all('/"#phpdoc:(.*?)"/', $content, $matches);
+        foreach($matches[0] as $i => $match){
+            $class = $matches[1][$i];
+            $content = str_replace($match, "{$url}#!/{$class}", $content);
+        }
+
+        $document->setContent($content);
     }
 }

@@ -27,6 +27,8 @@ class PhpdocDocument extends Document
         $pathName = 'phpdoc';
         parent::__construct($codex, $project, $path, $pathName);
         $this->mergeAttributes($project->config('phpdoc'));
+        $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', ['codex']);
+        $codex->theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc');
         //$this->phpdoc = $codex->getContainer()->make('codex.phpdoc');
     }
 

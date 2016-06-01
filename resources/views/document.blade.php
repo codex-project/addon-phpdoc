@@ -20,14 +20,6 @@
     {!! $content !!}
 @stop
 
-@push('stylesheets')
-<link rel="stylesheet" type="text/css" href="{{ asset('vendor/codex-phpdoc/styles/phpdoc.css') }}">
-@endpush
-
-@push('javascripts')
-<script src="{{ asset('vendor/codex-phpdoc/scripts/phpdoc.js') }}"></script>
-@endpush
-
 @push('scripts')
 <script>
     $(function() {

@@ -74,9 +74,10 @@ class PhpdocFilter
         $this->content  = $document->getContent();
         $pathName       = $document->getProject()->config('phpdoc.document_slug', 'phpdoc');
         $this->url      = $document->getProject()->url($pathName, $document->getProject()->getRef());
+
+        $this->replaceAttributedLinks();
         $this->replaceLinks();
-        $this->replaceClassPopoverLinks();
-        $this->replaceMethodPopoverLinks();
+
         $theme = $this->codex->theme;
         $theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc.css');
         $theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc.js', [ 'codex' ]);
@@ -97,67 +98,63 @@ JS
         }
     }
 
-    protected function replaceMethodPopoverLinks()
+    protected function replaceAttributedLinks()
     {
-        $matches = $this->matches('/"#phpdoc:popover:(.*?)::(.*?)"/');
+        $matches = $this->matches('/"#phpdoc:(.*?)(?:::|)(.*?)"/');
         foreach ( $matches[ 0 ] as $i => $match ) {
-            $class  = $matches[ 1 ][ $i ];
-            $method = $matches[ 2 ][ $i ];
-            $data   = $this->elements->where('full_name', $fullName = Str::ensureLeft($class, '\\'))->first();
-            if ( !$data ) {
-                continue;
+            $full = $matches[2][$i];
+            $split = explode('::', $full);
+            $method = isset($split[1]) ? array_pop($split) : null;
+            $attrs = explode(':', $split[0]);
+            $class = array_pop($attrs);
+            if(count($attrs) > 0){
+                $call = 'handle' . ucfirst(array_shift($attrs));
+                call_user_func_array([$this, $call], array_merge([$match, $class, $method], $attrs));
             }
+            $a = 'a';
+        }
+    }
+
+    protected function handlePopover($match, $class, $method = null)
+    {
+        /** @var Element $class */
+        $data = $this->elements->where('full_name', $fullName = Str::ensureLeft($class, '\\'))->first();
+        if ( !$data ) {
+            return;
+        }
+        // title
+        $type = isset($method) ? 'method':'class';
+        $title = "<span class=\"popover-phpdoc-type\">{$type}</span>" . view('codex-phpdoc::partials.type', [ 'type' => Str::ensureLeft($class, '\\'), 'phpdoc' => $this->phpdoc, 'typeFullName' => true ])->render();
+        $title = str_replace('"', '\'', $title);
+        if($method) {
             $data = new Collection($data[ 'methods' ]);
             $data = $data->where('name', $method)->first();
             if ( !$data ) {
-                continue;
+                return;
             }
-            $content = view('codex-phpdoc::partials.method', [ 'method' => $data, 'phpdoc' => $this->phpdoc ])->render();
-            $content .= <<<HTML
-<div class="popover-phpdoc-description">
-{$data['description']}
-</div>
-HTML;
-
-            $content = str_replace('"', '\'', $content);
-            $this->replace($match, "{$class}", 'phpdoc-popover-link', [
-                'data-content' => $content,
-            ]);
-        }
-    }
-
-    protected function replaceClassPopoverLinks()
-    {
-        $matches = $this->matches('/"#phpdoc:popover:(.*?)"/');
-        foreach ( $matches[ 0 ] as $i => $match ) {
-            $class = $matches[ 1 ][ $i ];
-            /** @var Element $class */
-            $data = $this->elements->where('full_name', $fullName = Str::ensureLeft($class, '\\'))->first();
-            if ( !$data ) {
-                continue;
-            }
-
-            $title = view('codex-phpdoc::partials.type', [ 'type' => $fullName, 'phpdoc' => $this->phpdoc, 'typeFullName' => true ])->render();
-            $title = str_replace('"', '\'', $title);
-
-            $extends = '';
+            $title = trim($title) . '&nbsp;::&nbsp;' . $method;
+            $content = view('codex-phpdoc::partials.method', [ 'method' => $data, 'phpdoc' => $this->phpdoc, 'class' => 'fs-12' ])->render();
+        } else {
             if ( strlen($data[ 'extends' ]) > 0 ) {
-                $extends = '<small class="pl-xs fs-13">extends</small>' . view('codex-phpdoc::partials.type', [ 'type' => $extends, 'class' => 'fs-13' ])->render();
+                $title .= '&nbsp;<small class="fs-13">extends</small>&nbsp;' . view('codex-phpdoc::partials.type', [ 'type' => $data[ 'extends' ], 'phpdoc' => $this->phpdoc, 'class' => 'fs-13' ])->render();
             }
+            $content = '';
+        }
 
-            $content = <<<HTML
-{$extends}
-<div class="popover-phpdoc-description">
+        $content .= <<<HTML
+<div class="popover-phpdoc-description fs-10">
 {$data['description']}
 </div>
 HTML;
+        $title = str_replace('"', '\'', $title);
+        $content = str_replace('"', '\'', $content);
+        $this->replace($match, $class, 'phpdoc-popover-link', [
+            'data-title'   => $title,
+            'data-content' => $content,
+        ]);
 
-            $content = str_replace('"', '\'', $content);
-            $this->replace($match, $title, 'phpdoc-popover-link', [
-                'data-content' => $content,
-            ]);
-        }
     }
+
 
     protected function matches($pattern)
     {
@@ -170,12 +167,12 @@ HTML;
     {
         $cssClass = $this->config->get('link_attributes.class', '') . ' ' . $cssClass;
         $this->config->has('link_attributes.class') && $this->config->forget('link_attributes.class');
-        $attrs = array_merge([ 'class' => $cssClass, 'data-title' => $class ], $attrs);
+        $attrs = array_merge($this->config->get('link_attributes', [ ])->toArray(), [ 'class' => $cssClass, 'data-title' => $class ], $attrs);
         $attr  = '';
         foreach ( $attrs as $k => $v ) {
             $attr .= " {$k}=\"{$v}\"";
         }
-        $this->content = str_replace($match, "\"{$this->url}#!/{$class}\"{$attr}", $this->content);
+        $this->content = str_replace($match, "\"{$this->phpdoc->url($class)}\" {$attr}", $this->content);
     }
 
     protected function addAssets()

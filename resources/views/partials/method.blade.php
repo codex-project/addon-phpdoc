@@ -2,7 +2,7 @@
     {{-- Method name --}}
     @spaceless
     <div class="tab-pane-header">
-        <span class="phpdoc-visibility-{{ $method['visibility'] }}">{{ $method['visibility'] }}</span>
+        <span class="phpdoc-visibility-{{ $method['visibility'] }} {{ isset($class) ? $class : '' }}">{{ $method['visibility'] }}</span>
         {{ $method['name'] }}<strong>(</strong>
         @foreach($method['arguments'] as $argument)
             @if(!$loop->first)

@@ -1379,7 +1379,7 @@
   padding: 12px 15px;
   font-family: "Source Code Pro", monospace;
   font-size: 12px;
-  border-bottom: 1px solid #C5D0DC;
+  border-bottom: 1px solid #c5d0dc;
   margin: 0;
 }
 
@@ -1428,10 +1428,8 @@
   text-decoration: none !important;
 }
 
-body.docs a.phpdoc-class-link {
-  text-decoration: none;
-}
-
+body.docs a.phpdoc-link,
+body.docs a.phpdoc-class-link,
 body.docs a.phpdoc-popover-link {
   text-decoration: none;
 }
@@ -1442,6 +1440,8 @@ body.docs .popover.popover-phpdoc {
 
 body.docs .popover.popover-phpdoc > .popover-title {
   font-weight: normal;
+  padding: 15px 14px 12px 14px;
+  font-size: 13px;
 }
 
 body.docs .popover.popover-phpdoc > .popover-content {
@@ -1450,6 +1450,15 @@ body.docs .popover.popover-phpdoc > .popover-content {
 
 body.docs .popover.popover-phpdoc .popover-phpdoc-description {
   font-style: italic;
+  margin-top: 10px;
+}
+
+body.docs .popover.popover-phpdoc .popover-phpdoc-type {
+  font-size: 10px;
+  position: absolute;
+  top: 1px;
+  right: 6px;
+  color: #ADA1A1;
 }
 
 body.docs .tooltip.tooltip-phpdoc > .tooltip-inner {

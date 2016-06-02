@@ -7,10 +7,10 @@ namespace Codex\Addon\Phpdoc;
 
 
 use Codex\Addon\Phpdoc\Elements\Element;
-use Codex\Core\Addons\Annotations\Filter;
-use Codex\Core\Contracts\Codex;
-use Codex\Core\Documents\Document;
-use Codex\Core\Support\Collection;
+use Codex\Addons\Annotations\Filter;
+use Codex\Contracts\Codex;
+use Codex\Documents\Document;
+use Codex\Support\Collection;
 use Sebwite\Support\Str;
 
 /**
@@ -24,10 +24,10 @@ use Sebwite\Support\Str;
  */
 class PhpdocFilter
 {
-    /** @var \Codex\Core\Codex */
+    /** @var \Codex\Codex */
     protected $codex;
 
-    /** @var \Codex\Core\Support\Collection */
+    /** @var \Codex\Support\Collection */
     public $config = [
         'tooltips'        => true,
         'classes'         => true,
@@ -46,7 +46,7 @@ class PhpdocFilter
     /** @var string */
     protected $content;
 
-    /** @var \Codex\Core\Support\Collection */
+    /** @var \Codex\Support\Collection */
     protected $elements;
 
     /** @var  ProjectPhpdoc */
@@ -55,7 +55,7 @@ class PhpdocFilter
     /**
      * PhpdocFilter constructor.
      *
-     * @param \Codex\Core\Contracts\Codex $codex
+     * @param \Codex\Contracts\Codex      $codex
      * @param \Codex\Addon\Phpdoc\Factory $phpdoc
      */
     public function __construct(Codex $codex, Factory $phpdoc)

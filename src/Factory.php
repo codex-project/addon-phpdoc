@@ -1,14 +1,14 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Core\Projects\Project;
+use Codex\Projects\Project;
 
 class Factory
 {
     /**
      * make method
      *
-     * @param \Codex\Core\Projects\Project $project
+     * @param \Codex\Projects\Project $project
      *
      * @return ProjectPhpdoc
      */

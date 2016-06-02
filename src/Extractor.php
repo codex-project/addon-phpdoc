@@ -18,7 +18,7 @@ class Extractor
     /** @var PhpdocXmlElement */
     protected $doc;
 
-    /** @var \Codex\Core\Projects\Project  */
+    /** @var \Codex\Projects\Project  */
     protected $project;
 
     /** @var \Sebwite\Filesystem\Filesystem  */

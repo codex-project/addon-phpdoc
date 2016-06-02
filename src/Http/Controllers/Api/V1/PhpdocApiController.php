@@ -2,8 +2,7 @@
 namespace Codex\Addon\Phpdoc\Http\Controllers\Api\V1;
 
 use Codex\Addon\Phpdoc\Factory;
-use Codex\Addon\Phpdoc\ProjectPhpdoc;
-use Codex\Core\Http\Controllers\API\V1\ApiController;
+use Codex\Http\ApiController;
 
 class PhpdocApiController extends ApiController
 {

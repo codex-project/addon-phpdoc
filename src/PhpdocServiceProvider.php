@@ -1,11 +1,11 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Core\Documents\Documents;
-use Codex\Core\Exception\CodexException;
-use Codex\Core\Projects\Project;
-use Codex\Core\Projects\Projects;
-use Codex\Core\Traits\CodexProviderTrait;
+use Codex\Documents\Documents;
+use Codex\Exception\CodexException;
+use Codex\Projects\Project;
+use Codex\Projects\Projects;
+use Codex\Traits\CodexProviderTrait;
 use Sebwite\Support\ServiceProvider;
 
 class PhpdocServiceProvider extends ServiceProvider

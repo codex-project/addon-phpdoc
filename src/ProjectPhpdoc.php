@@ -3,8 +3,8 @@ namespace Codex\Addon\Phpdoc;
 
 use Codex\Addon\Phpdoc\Elements\Element;
 use Codex\Addon\Phpdoc\Tree\Node;
-use Codex\Core\Projects\Project;
-use Codex\Core\Support\Collection;
+use Codex\Projects\Project;
+use Codex\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 use Sebwite\Filesystem\Filesystem;
 
@@ -16,7 +16,7 @@ class ProjectPhpdoc
 
     protected $elements = [ ];
 
-    /** @var \Codex\Core\Projects\Project */
+    /** @var \Codex\Projects\Project */
     private $project;
 
     /** @var \Sebwite\Filesystem\Filesystem */
@@ -111,7 +111,7 @@ class ProjectPhpdoc
      *
      * @param bool $full
      *
-     * @return \Codex\Core\Support\Collection
+     * @return \Codex\Support\Collection
      */
     public function getElements($full = false)
     {

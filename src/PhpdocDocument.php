@@ -6,8 +6,8 @@
  */
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Core\Documents\Document;
-use Codex\Core\Projects\Project;
+use Codex\Documents\Document;
+use Codex\Projects\Project;
 
 /**
  * This is the PhpdocDocument.

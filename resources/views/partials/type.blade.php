@@ -1,7 +1,7 @@
 @if(starts_with($type, '\\'))
-    @set($name, last(explode('\\', $type)))
+    @set($name, isset($typeFullName) && $typeFullName === true ? str_replace_first('\\', '', $type): last(explode('\\', $type)))
     @if($phpdoc->hasElement($type))
-        <a class="type-link local {{ isset($class) ? $class : '' }}" {!! isset($attributes) ? $attributes : '' !!} href="#!/{{ $type }}" title="{{ str_replace_first('\\', '', $type) }}">{{ $name }}</a>
+        <a class="type-link local {{ isset($class) ? $class : '' }}" {!! isset($attributes) ? $attributes : '' !!} href="{{ $phpdoc->url($type) }}" title="{{ str_replace_first('\\', '', $type) }}">{{ $name }}</a>
     @else
         <a class="type-link {{ isset($class) ? $class : '' }}" {!! isset($attributes) ? $attributes : '' !!} title="{{ str_replace_first('\\', '', $type) }}">{{ $name }}</a>
     @endif

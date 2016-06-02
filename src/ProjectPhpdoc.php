@@ -4,6 +4,7 @@ namespace Codex\Addon\Phpdoc;
 use Codex\Addon\Phpdoc\Elements\Element;
 use Codex\Addon\Phpdoc\Tree\Node;
 use Codex\Core\Projects\Project;
+use Codex\Core\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 use Sebwite\Filesystem\Filesystem;
 
@@ -57,6 +58,15 @@ class ProjectPhpdoc
         }
     }
 
+    public function url($full_name = null)
+    {
+        $url = $this->project->url($this->project->config('phpdoc.document_slug', 'phpdoc'), $this->project->getRef());
+        if($full_name){
+            $url .= "#!/{$full_name}";
+        }
+        return $url;
+    }
+
     protected function getLastModified()
     {
         return (int)$this->project->getFiles()->lastModified(
@@ -65,9 +75,14 @@ class ProjectPhpdoc
     }
 
 
+    /**
+     * getManifest method
+     * @return Collection
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
     public function getManifest()
     {
-        return collect($this->fs->getRequire($this->getCacheFilePath('manifest.php')));
+        return new Collection($this->fs->getRequire($this->getCacheFilePath('manifest.php')));
     }
 
     public function getInfo()
@@ -91,6 +106,13 @@ class ProjectPhpdoc
         return $this->elements[ $full_name ];
     }
 
+    /**
+     * getElements method
+     *
+     * @param bool $full
+     *
+     * @return \Codex\Core\Support\Collection
+     */
     public function getElements($full = false)
     {
         return

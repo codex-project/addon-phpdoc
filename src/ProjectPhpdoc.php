@@ -17,13 +17,14 @@ class ProjectPhpdoc
     protected $elements = [ ];
 
     /** @var \Codex\Projects\Project */
-    private $project;
+    protected $project;
 
     /** @var \Sebwite\Filesystem\Filesystem */
-    private $fs;
+    protected $fs;
 
     /** @var \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store */
-    private $cache;
+    protected $cache;
+
 
 
     /**

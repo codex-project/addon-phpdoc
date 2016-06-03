@@ -8,7 +8,6 @@ namespace Codex\Addon\Phpdoc;
 
 use Codex\Addon\Phpdoc\Elements\Element;
 use Codex\Addons\Annotations\Filter;
-use Codex\Contracts\Codex;
 use Codex\Documents\Document;
 use Codex\Support\Collection;
 use Sebwite\Support\Str;
@@ -25,7 +24,7 @@ use Sebwite\Support\Str;
 class PhpdocFilter
 {
     /** @var \Codex\Codex */
-    protected $codex;
+    public $codex;
 
     /** @var \Codex\Support\Collection */
     public $config = [
@@ -58,10 +57,9 @@ class PhpdocFilter
      * @param \Codex\Contracts\Codex      $codex
      * @param \Codex\Addon\Phpdoc\Factory $phpdoc
      */
-    public function __construct(Codex $codex, Factory $phpdoc)
+    public function __construct(Factory $phpdoc)
     {
         $this->factory = $phpdoc;
-        $this->codex   = $codex;
     }
 
     public function handle(Document $document)
@@ -102,14 +100,14 @@ JS
     {
         $matches = $this->matches('/"#phpdoc:(.*?)(?:::|)(.*?)"/');
         foreach ( $matches[ 0 ] as $i => $match ) {
-            $full = $matches[2][$i];
-            $split = explode('::', $full);
-            $method = isset($split[1]) ? array_pop($split) : null;
-            $attrs = explode(':', $split[0]);
-            $class = array_pop($attrs);
-            if(count($attrs) > 0){
+            $full   = $matches[ 2 ][ $i ];
+            $split  = explode('::', $full);
+            $method = isset($split[ 1 ]) ? array_pop($split) : null;
+            $attrs  = explode(':', $split[ 0 ]);
+            $class  = array_pop($attrs);
+            if ( count($attrs) > 0 ) {
                 $call = 'handle' . ucfirst(array_shift($attrs));
-                call_user_func_array([$this, $call], array_merge([$match, $class, $method], $attrs));
+                call_user_func_array([ $this, $call ], array_merge([ $match, $class, $method ], $attrs));
             }
             $a = 'a';
         }
@@ -123,16 +121,16 @@ JS
             return;
         }
         // title
-        $type = isset($method) ? 'method':'class';
+        $type  = isset($method) ? 'method' : 'class';
         $title = "<span class=\"popover-phpdoc-type\">{$type}</span>" . view('codex-phpdoc::partials.type', [ 'type' => Str::ensureLeft($class, '\\'), 'phpdoc' => $this->phpdoc, 'typeFullName' => true ])->render();
         $title = str_replace('"', '\'', $title);
-        if($method) {
+        if ( $method ) {
             $data = new Collection($data[ 'methods' ]);
             $data = $data->where('name', $method)->first();
             if ( !$data ) {
                 return;
             }
-            $title = trim($title) . '&nbsp;::&nbsp;' . $method;
+            $title   = trim($title) . '&nbsp;::&nbsp;' . $method;
             $content = view('codex-phpdoc::partials.method', [ 'method' => $data, 'phpdoc' => $this->phpdoc, 'class' => 'fs-12' ])->render();
         } else {
             if ( strlen($data[ 'extends' ]) > 0 ) {
@@ -146,13 +144,12 @@ JS
 {$data['description']}
 </div>
 HTML;
-        $title = str_replace('"', '\'', $title);
+        $title   = str_replace('"', '\'', $title);
         $content = str_replace('"', '\'', $content);
         $this->replace($match, $class, 'phpdoc-popover-link', [
             'data-title'   => $title,
             'data-content' => $content,
         ]);
-
     }
 
 

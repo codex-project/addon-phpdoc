@@ -65,10 +65,13 @@
 
                             <div class="tab-pane-content">
                                 {{--Method description--}}
-                                <p>{{ $method['description'] }}</p>
-                                @if(isset($method['long-description']))
-                                    <p>{!! $method['long-description'] !!}</p>
-                                @endif
+                                <h4>Description</h4>
+                                <div class="block">
+                                    <p>{{ $method['description'] }}</p>
+                                    @if(isset($method['long-description']))
+                                        <p>{!! $method['long-description'] !!}</p>
+                                    @endif
+                                </div>
 
                                 {{--Method tags--}}
                                 <table class="table table-hover table-bordered table-phpdoc-tags">
@@ -79,7 +82,15 @@
                                         @endif
                                         <tr>
                                             <th width='150'>{{ $tag['name'] }}</th>
-                                            <td>{{ isset($tag['description']) ? $tag['description'] : '' }}</td>
+                                            <td>
+                                                @if(isset($tag['description']))
+                                                    @if($tag['name'] === 'link')
+                                                        <a href="{{ $tag['description'] }}" target="_blank">{{ $tag['description'] }}</a>
+                                                    @else
+                                                        {{ $tag['description'] }}
+                                                    @endif
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -88,23 +99,37 @@
                                 {{--Method examples--}}
                                 @if(isset($method['tags']['example']['description']))
                                     <h4>Example</h4>
-                                    <pre class="language-php"><code class="language-php">{!! trim($method['tags']['example']['description']) !!}</code></pre>
+                                    <div class="block">
+                                        <pre class="language-php"><code class="language-php">{!! trim($method['tags']['example']['description']) !!}</code></pre>
+                                    </div>
                                 @endif
 
                                 {{--Method arguments--}}
                                 @if(count($method['arguments']) > 0)
                                     <h4>Arguments</h4>
-                                    @foreach($method['arguments'] as $argument)
-                                        <div>
-                                            <span>
-                                                @include('codex-phpdoc::partials.type', ['type' => $argument['type']])
-                                            </span>
-                                            <span class="color-cyan-900">{{ $argument['name'] }}</span>
-                                        </div>
-                                        @if(isset($argument['description']))
-                                            {!! $argument['description'] !!}
+                                    <div class="block">
+                                        @foreach($method['arguments'] as $argument)
+                                            <div class="argument">
+                                                @include('codex-phpdoc::partials.argument', ['argument' => $argument])
+                                            </div>
+                                            @if(isset($argument['description']))
+                                                {!! $argument['description'] !!}
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                                {{--Method return--}}
+                                @if(isset($method['tags']['return']))
+                                    <h4>Returns</h4>
+                                    <div class="block">
+                                        @if(isset($method['tags']['return']['type']))
+                                            @include('codex-phpdoc::partials.type', ['type' => $method['tags']['return']['type'], 'typeFullName' => true])
                                         @endif
-                                    @endforeach
+                                        @if(isset($method['tags']['return']['description']))
+                                            <p>{!! $method['tags']['return']['description'] !!}</p>
+                                        @endif
+                                    </div>
                                 @endif
                             </div>
 

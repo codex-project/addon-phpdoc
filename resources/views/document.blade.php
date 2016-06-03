@@ -8,7 +8,6 @@
     @parent
 @stop
 
-@section('bodyClass', 'docs language-php sidebar-closed content-compact')
 
 @section('content')
 
@@ -20,12 +19,3 @@
     {!! $content !!}
 @stop
 
-@push('scripts')
-<script>
-    $(function() {
-        $('#codex-phpdoc').phpdoc({
-            project: 'codex'
-        });
-    });
-</script>
-@endpush

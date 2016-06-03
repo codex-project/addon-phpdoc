@@ -29,13 +29,12 @@ class PhpdocDocument extends Document
         $this->mergeAttributes($project->config('phpdoc'));
         $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex' ]);
         $codex->theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc');
+        $codex->theme->addBodyClass('sidebar-closed content-compact');
         $codex->theme->addScript('phpdoc', <<<JS
-    $(function() {
-        $('#codex-phpdoc').phpdoc({
-            project: '{$project->getName()}',
-            ref: '{$project->getRef()}'
-        });
-    });
+codex.phpdoc.init('#codex-phpdoc', {
+    project: '{$project->getName()}',
+    ref: '{$project->getRef()}'
+});
 JS
         );
         //$this->phpdoc = $codex->getContainer()->make('codex.phpdoc');

@@ -2,6 +2,7 @@
 namespace Codex\Addon\Phpdoc\Http\Controllers\Api\V1;
 
 use Codex\Addon\Phpdoc\Factory;
+use Codex\Addon\Phpdoc\Popover;
 use Codex\Http\ApiController;
 
 class PhpdocApiController extends ApiController
@@ -80,6 +81,15 @@ class PhpdocApiController extends ApiController
         return $this->response([
             'doc' => view('codex-phpdoc::doc', $entity->toArray())->with('phpdoc', $phpdoc)->render()
         ]);
+    }
+
+    public function getPopover($projectSlug, $ref = null)
+    {
+        $phpdoc = $this->getDoc($projectSlug, $ref);
+        $name = (string) request()->get('name');
+        $segments = explode('::', $name);
+        $popover = Popover::make($phpdoc)->generate($segments[0], isset($segments[1]) ? $segments[1] : null);
+        return isset($popover) ? $this->response($popover) : $this->error("Could not find '{$name}' ");
     }
 
 }

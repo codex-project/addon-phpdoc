@@ -115,40 +115,10 @@ JS
 
     protected function handlePopover($match, $class, $method = null)
     {
-        /** @var Element $class */
-        $data = $this->elements->where('full_name', $fullName = Str::ensureLeft($class, '\\'))->first();
-        if ( !$data ) {
-            return;
-        }
-        // title
-        $type  = isset($method) ? 'method' : 'class';
-        $title = "<span class=\"popover-phpdoc-type\">{$type}</span>" . view('codex-phpdoc::partials.type', [ 'type' => Str::ensureLeft($class, '\\'), 'phpdoc' => $this->phpdoc, 'typeFullName' => true ])->render();
-        $title = str_replace('"', '\'', $title);
-        if ( $method ) {
-            $data = new Collection($data[ 'methods' ]);
-            $data = $data->where('name', $method)->first();
-            if ( !$data ) {
-                return;
-            }
-            $title   = trim($title) . '&nbsp;::&nbsp;' . $method;
-            $content = view('codex-phpdoc::partials.method', [ 'method' => $data, 'phpdoc' => $this->phpdoc, 'class' => 'fs-12' ])->render();
-        } else {
-            if ( strlen($data[ 'extends' ]) > 0 ) {
-                $title .= '&nbsp;<small class="fs-13">extends</small>&nbsp;' . view('codex-phpdoc::partials.type', [ 'type' => $data[ 'extends' ], 'phpdoc' => $this->phpdoc, 'class' => 'fs-13' ])->render();
-            }
-            $content = '';
-        }
-
-        $content .= <<<HTML
-<div class="popover-phpdoc-description fs-10">
-{$data['description']}
-</div>
-HTML;
-        $title   = str_replace('"', '\'', $title);
-        $content = str_replace('"', '\'', $content);
+        $popover = Popover::make($this->phpdoc)->generate($class, $method);
         $this->replace($match, $class, 'phpdoc-popover-link', [
-            'data-title'   => $title,
-            'data-content' => $content,
+            'data-title'   => $popover['title'],
+            'data-content' => $popover['content'],
         ]);
     }
 

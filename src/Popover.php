@@ -20,7 +20,7 @@ class Popover
      *
      * @param $phpdoc
      */
-    public function __construct(PhpdocInterface $phpdoc)
+    public function __construct(ProjectPhpdoc $phpdoc)
     {
         $this->phpdoc   = $phpdoc;
         $this->project  = $phpdoc->getProject();
@@ -28,7 +28,7 @@ class Popover
     }
 
 
-    public static function make(PhpdocInterface $phpdoc)
+    public static function make(ProjectPhpdoc $phpdoc)
     {
         return app(static::class, compact('phpdoc'));
     }

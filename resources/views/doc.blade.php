@@ -113,7 +113,7 @@
                                                 @include('codex-phpdoc::partials.argument', ['argument' => $argument])
                                             </div>
                                             @if(isset($argument['description']))
-                                                {!! $argument['description'] !!}
+                                                <div class="block">{!! $argument['description'] !!}</div>
                                             @endif
                                         @endforeach
                                     </div>

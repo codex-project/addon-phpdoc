@@ -33,7 +33,8 @@ class PhpdocDocument extends Document
         $codex->theme->addScript('phpdoc', <<<JS
 codex.phpdoc.init('#codex-phpdoc', {
     project: '{$project->getName()}',
-    ref: '{$project->getRef()}'
+    ref: '{$project->getRef()}',
+    defaultClass: '{$project->config('phpdoc.default_class', null)}'
 });
 JS
         );

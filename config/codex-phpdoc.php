@@ -37,32 +37,24 @@ return [
          |
          */
         'phpdoc' => [
+
+
             'enabled'       => false,
+
+
             'document_slug' => 'phpdoc',
 
             /*
              |---------------------------------------------------------------------
-             | Menu name
+             | Title
              |---------------------------------------------------------------------
              |
-             | The name that will be displayed for the menu item
+             | The name that will be displayed
              |
              */
 
             'title' => 'Api Documentation',
 
-            'menu_name' => 'API Documentation',
-
-            /*
-             |---------------------------------------------------------------------
-             | Menu icon class
-             |---------------------------------------------------------------------
-             |
-             | The menu icon class will be added to the icon tag. Uses font-awesome
-             |
-             */
-
-            'menu_icon' => 'fa fa-code',
 
             /*
              |---------------------------------------------------------------------

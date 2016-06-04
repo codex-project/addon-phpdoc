@@ -16,4 +16,14 @@ class Factory
     {
         return app('codex.phpdoc.project', compact('project'));
     }
+
+    public function project(Project $project)
+    {
+        return app('codex.phpdoc.project', compact('project'));
+    }
+
+    public function file($path)
+    {
+        return app('codex.phpdoc.file', compact('path'));
+    }
 }

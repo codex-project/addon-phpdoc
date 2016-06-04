@@ -10,14 +10,12 @@ use Sebwite\Filesystem\Filesystem;
 
 class ProjectPhpdoc
 {
-
+    /** @var  Project */
+    protected $project;
 
     protected $cachePath;
 
     protected $elements = [ ];
-
-    /** @var \Codex\Projects\Project */
-    protected $project;
 
     /** @var \Sebwite\Filesystem\Filesystem */
     protected $fs;
@@ -25,6 +23,7 @@ class ProjectPhpdoc
     /** @var \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store */
     protected $cache;
 
+    protected $extractor;
 
 
     /**
@@ -35,19 +34,22 @@ class ProjectPhpdoc
      */
     public function __construct(Filesystem $fs, Repository $cache, Project $project)
     {
-        $this->fs      = $fs;
-        $this->project = $project;
-
-        $this->cachePath = path_join(
-            config('codex-phpdoc.cache_path'),
-            $this->project->getName(),
-            $this->project->getRef()
-        );
-
-        $this->extractor = new Extractor($this);
+        $this->fs        = $fs;
         $this->cache     = $cache;
-        #   $this->checkUpdate();
+        $this->extractor = new Extractor($this);
+        $this->getExtractor()->setRawResolver(function(Extractor $extractor){
+            return $this->project->getFiles()->get(
+                $this->project->refPath($this->project->config('phpdoc.path'))
+            );
+        });
+        $this->project = $project;
+        $this->setCachePath(path_join(
+            config('codex-phpdoc.cache_path'),
+            $project->getName(),
+            $project->getRef()
+        ));
     }
+
 
     public function checkUpdate($forceUpdate = false)
     {
@@ -68,13 +70,12 @@ class ProjectPhpdoc
         return $url;
     }
 
-    protected function getLastModified()
+    public function getLastModified()
     {
         return (int)$this->project->getFiles()->lastModified(
             $this->project->refPath($this->project->config('phpdoc.path'))
         );
     }
-
 
     /**
      * getManifest method
@@ -141,7 +142,7 @@ class ProjectPhpdoc
             }
             $done[]   = $item[ 'full_name' ];
             $segments = explode('\\', $item[ 'full_name' ]);
-            if($segments[0] === '') {
+            if ( $segments[ 0 ] === '' ) {
                 array_shift($segments);
             }
             while ( count($segments) ) {
@@ -165,7 +166,6 @@ class ProjectPhpdoc
                     }
                 }
             }
-
         }
 
         return $tree;
@@ -215,6 +215,43 @@ class ProjectPhpdoc
     }
 
     /**
+     * @return Filesystem
+     */
+    public function getFs()
+    {
+        return $this->fs;
+    }
+
+    /**
+     * @return \Codex\Addon\Phpdoc\Extractor
+     */
+    public function getExtractor()
+    {
+        return $this->extractor;
+    }
+
+    /**
+     * Set the cachePath value
+     *
+     * @param mixed $cachePath
+     */
+    public function setCachePath($cachePath)
+    {
+        $this->cachePath = $cachePath;
+    }
+
+    /**
+     * Set the extractor value
+     *
+     * @param \Codex\Addon\Phpdoc\Extractor $extractor
+     */
+    public function setExtractor($extractor)
+    {
+        $this->extractor = $extractor;
+    }
+
+
+    /**
      * @return Project
      */
     public function getProject()
@@ -223,12 +260,15 @@ class ProjectPhpdoc
     }
 
     /**
-     * @return Filesystem
+     * Set the project value
+     *
+     * @param Project $project
      */
-    public function getFs()
+    public function setProject($project)
     {
-        return $this->fs;
+        $this->project = $project;
     }
+
 
 
 }

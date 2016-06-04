@@ -13,13 +13,11 @@ use Codex\Addon\Phpdoc\Elements\PhpdocXmlElement;
 class Extractor
 {
     /** @var \Codex\Addon\Phpdoc\ProjectPhpdoc */
-    protected $factory;
+    protected $phpdoc;
 
     /** @var PhpdocXmlElement */
     protected $doc;
 
-    /** @var \Codex\Projects\Project  */
-    protected $project;
 
     /** @var \Sebwite\Filesystem\Filesystem  */
     protected $fs;
@@ -34,11 +32,13 @@ class Extractor
 
     protected $itemHandlers = [ 'handleCreateItem', 'handleManifestItem' ];
 
-    public function __construct(ProjectPhpdoc $factory)
+    protected $rawResolver;
+
+    public function __construct(ProjectPhpdoc $phpdoc)
     {
-        $this->factory = $factory;
-        $this->project = $factory->getProject();
-        $this->fs      = $factory->getFs();
+        $this->phpdoc      = $phpdoc;
+        $this->fs          = $phpdoc->getFs();
+        $this->rawResolver = function(){};
     }
 
 
@@ -52,12 +52,9 @@ class Extractor
 
     protected function init()
     {
-        $this->fs->isDirectory($this->factory->getCachePath()) && $this->fs->deleteDirectory($this->factory->getCachePath());
-        $this->fs->ensureDirectory($this->factory->getCachePath());
-
-        $this->raw = $this->project->getFiles()->get(
-            $this->project->refPath($this->project->config('phpdoc.path'))
-        );
+        $this->fs->isDirectory($this->phpdoc->getCachePath()) && $this->fs->deleteDirectory($this->phpdoc->getCachePath());
+        $this->fs->ensureDirectory($this->phpdoc->getCachePath());
+        $this->raw = call_user_func_array($this->rawResolver, [$this]);
         $this->doc = PhpdocXmlElement::create($this->raw);
     }
 
@@ -73,8 +70,6 @@ class Extractor
             }
         }
     }
-
-    ## item handlers
 
     protected function handleCreateItem(PhpdocXmlElement $file, $type)
     {
@@ -95,8 +90,6 @@ class Extractor
         ];
     }
 
-    ## php array file creators
-
     protected function createInfoFile()
     {
         $info                 = $this->doc->getAttributes();
@@ -109,10 +102,54 @@ class Extractor
     {
         $this->writeCacheFile('manifest.php', Util::exportArray($this->manifest));
     }
+
     protected function writeCacheFile($fileName, $content)
     {
-        $this->factory->getFs()->put($this->factory->getCacheFilePath($fileName), $content);
+        $this->phpdoc->getFs()->put($this->phpdoc->getCacheFilePath($fileName), $content);
     }
+
+    /**
+     * Set the rawResolver value
+     *
+     * @param \Closure $rawResolver
+     */
+    public function setRawResolver($rawResolver)
+    {
+        $this->rawResolver = $rawResolver;
+    }
+
+    /**
+     * @return ProjectPhpdoc
+     */
+    public function getPhpdoc()
+    {
+        return $this->phpdoc;
+    }
+
+    /**
+     * @return \Sebwite\Filesystem\Filesystem
+     */
+    public function getFs()
+    {
+        return $this->fs;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRaw()
+    {
+        return $this->raw;
+    }
+
+    /**
+     * @return array
+     */
+    public function getManifest()
+    {
+        return $this->manifest;
+    }
+
 
 
 }

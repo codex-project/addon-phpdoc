@@ -39,23 +39,9 @@ class PhpdocServiceProvider extends ServiceProvider
         $this->codexIgnoreRoute(config('codex-phpdoc.route_prefix'));
         $this->codexProjectConfig('codex-phpdoc.default_project_config');
 
-        $this->addMenuItem();
         $this->addCustomDocument();
 
         return $app;
-    }
-
-    protected function addMenuItem()
-    {
-        $this->codexHook('projects:active', function (Projects $projects, Project $project) {
-            if ( $project->config('phpdoc.enabled') !== true ) {
-                return;
-            }
-            $menu = $project->getCodex()->menus->get('sidebar');
-            $node = $menu->add('phpdoc', $project->config('phpdoc.menu_name'));
-            $node->setMeta('icon', $project->config('phpdoc.menu_icon'));
-            $node->setAttribute('href', $project->url($project->config('phpdoc.document_slug'), $project->getRef()));
-        });
     }
 
     protected function addCustomDocument()

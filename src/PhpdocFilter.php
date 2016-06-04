@@ -68,7 +68,7 @@ class PhpdocFilter
             return;
         }
         $this->phpdoc   = $this->factory->make($document->getProject());
-        $this->elements = new Collection($this->phpdoc->getElements(true)->toArray());
+        $this->elements = new Collection($this->phpdoc->getElements()->toArray());
         $this->content  = $document->getContent();
         $pathName       = $document->getProject()->config('phpdoc.document_slug', 'phpdoc');
         $this->url      = $document->getProject()->url($pathName, $document->getProject()->getRef());

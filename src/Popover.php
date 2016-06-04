@@ -24,7 +24,7 @@ class Popover
     {
         $this->phpdoc   = $phpdoc;
         $this->project  = $phpdoc->getProject();
-        $this->elements = new Collection($phpdoc->getElements(true)->toArray());
+        $this->elements = new Collection($phpdoc->getElements()->toArray());
     }
 
 
@@ -36,7 +36,8 @@ class Popover
     public function generate($class, $method = null)
     {
         /** @var Element $class */
-        $data = $this->elements->where('full_name', $fullName = Str::ensureLeft($class, '\\'))->first();
+        //$data = $this->elements->where('full_name', $fullName = )->first();
+        $data = $this->phpdoc->getElement($fullName = Str::ensureLeft($class, '\\'))->toArray();
         if ( !$data ) {
             return;
         }

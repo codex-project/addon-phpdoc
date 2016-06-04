@@ -16,6 +16,8 @@ return [
 
     'cache_path' => storage_path('codex/phpdoc'),
 
+    'debug' => false, // true, false, null (null takes the app.debug value)
+
     /*
     |--------------------------------------------------------------------------
     | Default Project Configuration

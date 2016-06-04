@@ -23,7 +23,7 @@ class PhpdocApiController extends ApiController
     protected function getDoc($projectSlug, $ref = null)
     {
         $doc = $this->factory->make($this->resolveProject($projectSlug, $ref));
-        $doc->checkUpdate(true);
+        $doc->checkUpdate(config('codex-phpdoc.debug', config('app.debug')) === true);
         return $doc;
     }
 
@@ -39,8 +39,6 @@ class PhpdocApiController extends ApiController
 
     public function getList($projectSlug, $ref = null)
     {
-        #\Kint::dump($el = $this->getDoc($projectSlug, $ref)->getElement('Codex\\Core\\Codex'));
-        #\Kint::dump($el->toArray());
         return $this->response($this->getDoc($projectSlug, $ref)->getElements($this->isFull())->toArray());
     }
 

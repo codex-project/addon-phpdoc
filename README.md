@@ -1,42 +1,27 @@
-Codex Phpdoc Hook
-=====================
+Codex Phpdoc Addon
+==================
 
-[![Documentation](https://img.shields.io/badge/documentation-codex--project.ninja-orange.svg?style=flat-square)](https://codex-project.ninja/codex/master/addons/phpdoc)
-[![Source](http://img.shields.io/badge/source-addon--phpdoc-blue.svg?style=flat-square)](https://github.com/codex-project/addon-phpdoc)
+[![GitHub Version](https://img.shields.io/github/tag/codex-project/addon-phpdoc.svg?style=flat-square&label=version)](http://badge.fury.io/gh/codex-project%2Faddon-phpdoc)
+[![Total Downloads](https://img.shields.io/packagist/dt/codex/addon-phpdoc.svg?style=flat-square)](https://packagist.org/packages/codex/addon-phpdoc)
+[![Documentation](https://img.shields.io/badge/goto-documentation-orange.svg?style=flat-square)](https://github.com/codex-project/addon-phpdoc)
+[![Source](http://img.shields.io/badge/source-codex--addon--phpdoc-blue.svg?style=flat-square)](https://github.com/codex-project/addon-phpdoc)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
-The Phpdoc Hook provides Codex the means to parse the phpdoc generated xml file and display it in a user-friendly way.
+Go to the [main Codex repository](https://github.com/codex-project/codex).
 
-Installation
-------------
-1. Add to composer
 
-		composer require codex/addon-phpdoc
+The Phpdoc Addon provides Codex the means to parse the phpdoc generated xml file and display it in a user-friendly way.
 
-2. Add service provider
 
-		Codex\Addon\Phpdoc\PhpdocServiceProvider::class
+The package follows the FIG standards PSR-1, PSR-2, and PSR-4 to ensure a high level of interoperability between shared PHP code.
 
-3. Publish and configure the configuration file
 
-		php artisan vendor:publish --provider=Codex\Hooks\Phpdoc\HookServiceProvider --tag=config
+Documentation
+-------------
 
-4. Publish the asset files
+Check out the [official documentation](http://codex-project.ninja).
 
-        php artisan vendor:publish --provider=Codex\Hooks\Phpdoc\HookServiceProvider --tag=public
-   
-5. (optional) Add to composer.json `post-update-cmd` to auto-update public assets on new version 
-```json
-{
-    "scripts": {
-        "post-update-cmd": [
-            "php artisan vendor:publish --provider=Codex\\Addon\\Phpdoc\\PhpdocServiceProvider --tag=public --force"
-        ]
-    }
-}
-```
-5. (optional) Publish the view files        
 
-        php artisan vendor:publish --provider=Codex\Hooks\Phpdoc\HookServiceProvider --tag=views
-
-6. (recommended) Check the [documentation](http://codex-project.ninja/codex/master/addons/phpdoc) for more!
+License
+-------
+Copyright (c) 2015 Robin Radic, [MIT License](LICENSE.md)

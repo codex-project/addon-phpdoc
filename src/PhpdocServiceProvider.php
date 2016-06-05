@@ -37,6 +37,10 @@ class PhpdocServiceProvider extends ServiceProvider
 
         $this->codexIgnoreRoute(config('codex-phpdoc.route_prefix'));
         $this->codexProjectConfig('codex-phpdoc.default_project_config');
+        $this->codexView('phpdoc', [
+            'document' => 'codex-phpdoc::document',
+            'entity'   => 'codex-phpdoc::entity',
+        ]);
 
         $this->addCustomDocument();
 

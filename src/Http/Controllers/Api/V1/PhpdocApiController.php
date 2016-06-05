@@ -77,7 +77,7 @@ class PhpdocApiController extends ApiController
         $entity = $phpdoc->getElement($entity);
 
         return $this->response([
-            'doc' => view('codex-phpdoc::doc', $entity->toArray())->with('phpdoc', $phpdoc)->render()
+            'doc' => view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render()
         ]);
     }
 

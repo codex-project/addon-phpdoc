@@ -1,10 +1,11 @@
 {
     "name": "codex/addon-phpdoc",
     "type": "codex-addon",
-    "description": "addon",
-    "authors": [
-        {"name": "Robin Radic", "email": "robin@radic.nl", "homepage": "http://radic.nl", "role": "Developer"}
-    ],
+    "description": "The Phpdoc addon provides Codex the means to parse the phpdoc generated xml file and integrate documenation in a user-friendly way.",
+    "keywords": ["laravel", "documentation", "docs", "markdown", "codex", "phpdoc"],
+    "homepage": "http://codex-project.ninja",
+    "authors": [{"name": "Robin Radic", "email": "robin@radic.nl"}],
+    "license": "MIT",
     "require": {
         "codex/composer-plugin": "~1.0",
         "codex/core": "1.0.*"

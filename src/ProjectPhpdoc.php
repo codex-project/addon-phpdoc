@@ -48,6 +48,7 @@ class ProjectPhpdoc
             $project->getName(),
             $project->getRef()
         ));
+        $this->checkUpdate();
     }
 
 

@@ -408,13 +408,41 @@ var codex;
                 console.log('phpdoc open', name);
                 codex.startLoader(this.$content);
                 this.$('.type-link').tooltip('hide');
+                codex.debug.profile('doc-request');
                 this.api.doc(name).then(function (doc) {
+                    codex.debug.profileEnd();
                     codex.stopLoader(_this.$content);
+                    codex.debug.profile('doc-html');
                     _this.$content.html(doc);
-                    _this.$('.type-link, .visibility-icon').tooltip({ viewport: 'body', container: 'body' });
-                    Prism.highlightAll();
-                    _this.openTreeTo(name);
-                    _this.scrollToBegin();
+                    codex.debug.profileEnd();
+                    async.parallel([
+                        function (cb) {
+                            codex.debug.profile('tooltips');
+                            _this.$('.type-link, .visibility-icon').tooltip({ viewport: 'body', container: 'body' });
+                            cb();
+                            codex.debug.profileEnd();
+                        },
+                        function (cb) {
+                            codex.debug.profile('highlight');
+                            Prism.highlightAll();
+                            cb();
+                            codex.debug.profileEnd();
+                        },
+                        function (cb) {
+                            codex.debug.profile('tree');
+                            _this.openTreeTo(name);
+                            cb();
+                            codex.debug.profileEnd();
+                        },
+                        function (cb) {
+                            codex.debug.profile('scroll');
+                            _this.scrollToBegin();
+                            cb();
+                            codex.debug.profileEnd();
+                        }
+                    ], function () {
+                        console.log('cb done', arguments);
+                    });
                 }).otherwise(function (e) {
                     console.error(e);
                 });
@@ -453,7 +481,7 @@ var codex;
                 codex.debug.log('search for', fullName, 'in', items);
                 var found = false;
                 items.forEach(function (item) {
-                    if (typeof item.data.fullName !== "undefined" && item.data.fullName == fullName) {
+                    if (typeof item.data.fullName !== "undefined" && _.endsWith(item.data.fullName, fullName)) {
                         codex.debug.log('search for', fullName, 'found', item);
                         found = item;
                         return false;

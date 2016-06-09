@@ -23,7 +23,7 @@
             <tbody>
             @if(strlen($file_description) > 0)
                 <tr>
-                    <th width="150">file description</th>
+                    <th width="150">File Description</th>
                     <td>Part of the Codex Project packages.</td>
                 </tr>
             @endif
@@ -112,7 +112,7 @@
                                             <div class="argument">
                                                 @include('codex-phpdoc::partials.argument', ['argument' => $argument])
                                             </div>
-                                            @if(isset($argument['description']))
+                                            @if(isset($argument['description']) && strlen($argument['description']) > 0)
                                                 <div class="block">{!! $argument['description'] !!}</div>
                                             @endif
                                         @endforeach

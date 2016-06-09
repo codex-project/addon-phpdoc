@@ -3,8 +3,9 @@ namespace Codex\Addon\Phpdoc\Http\Controllers\Api\V1;
 
 use Codex\Addon\Phpdoc\Factory;
 use Codex\Addon\Phpdoc\Popover;
+use Codex\Contracts\Codex;
 use Codex\Http\ApiController;
-
+use Illuminate\Contracts\View\Factory as ViewFactory;
 class PhpdocApiController extends ApiController
 {
     protected $factory;
@@ -14,9 +15,9 @@ class PhpdocApiController extends ApiController
      *
      * @param $factory
      */
-    public function __construct(Factory $factory)
+    public function __construct(Codex $codex, ViewFactory $view, Factory $factory)
     {
-        parent::__construct();
+        parent::__construct($codex, $view);
         $this->factory = $factory;
     }
 

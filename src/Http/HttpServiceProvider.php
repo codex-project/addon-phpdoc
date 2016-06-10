@@ -14,7 +14,7 @@ class HttpServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Codex\Addon\Phpdoc\Http\Controllers\API\V1';
+    protected $namespace = 'Codex\Addon\Phpdoc\Http\Controllers\Api\V1';
 
     /**
      * Define your route model bindings, pattern filters, etc.

@@ -4,8 +4,9 @@ namespace Codex\Addon\Phpdoc\Http\Controllers\Api\V1;
 use Codex\Addon\Phpdoc\Factory;
 use Codex\Addon\Phpdoc\Popover;
 use Codex\Contracts\Codex;
-use Codex\Http\ApiController;
+use Codex\Http\Controllers\Api\V1\ApiController;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+
 class PhpdocApiController extends ApiController
 {
     protected $factory;
@@ -46,9 +47,9 @@ class PhpdocApiController extends ApiController
     public function getEntity($projectSlug, $ref = null)
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
-        $entity = (string) request()->get('entity');
+        $entity = (string)request()->get('entity');
 
-        if(!$phpdoc->hasElement($entity)){
+        if ( !$phpdoc->hasElement($entity) ) {
             return $this->error('Entity does not exist');
         }
         $entity = $phpdoc->getElement($entity)->toArray();
@@ -59,8 +60,8 @@ class PhpdocApiController extends ApiController
     public function getSource($projectSlug, $ref = null)
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
-        $entity = (string) request()->get('entity');
-        if(!$phpdoc->hasElement($entity)){
+        $entity = (string)request()->get('entity');
+        if ( !$phpdoc->hasElement($entity) ) {
             return $this->error('Entity does not exist');
         }
         $entity = $phpdoc->getElement($entity);
@@ -71,23 +72,23 @@ class PhpdocApiController extends ApiController
     public function getDocPage($projectSlug, $ref = null)
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
-        $entity = (string) request()->get('entity');
-        if(!$phpdoc->hasElement($entity)){
+        $entity = (string)request()->get('entity');
+        if ( !$phpdoc->hasElement($entity) ) {
             return $this->error('Entity does not exist');
         }
         $entity = $phpdoc->getElement($entity);
 
         return $this->response([
-            'doc' => view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render()
+            'doc' => view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render(),
         ]);
     }
 
     public function getPopover($projectSlug, $ref = null)
     {
-        $phpdoc = $this->getDoc($projectSlug, $ref);
-        $name = (string) request()->get('name');
+        $phpdoc   = $this->getDoc($projectSlug, $ref);
+        $name     = (string)request()->get('name');
         $segments = explode('::', $name);
-        $popover = Popover::make($phpdoc)->generate($segments[0], isset($segments[1]) ? $segments[1] : null);
+        $popover  = Popover::make($phpdoc)->generate($segments[ 0 ], isset($segments[ 1 ]) ? $segments[ 1 ] : null);
         return isset($popover) ? $this->response($popover) : $this->error("Could not find '{$name}' ");
     }
 

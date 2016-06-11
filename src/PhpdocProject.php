@@ -8,7 +8,7 @@ use Codex\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 use Sebwite\Filesystem\Filesystem;
 
-class ProjectPhpdoc
+class PhpdocProject
 {
     /** @var  Project */
     protected $project;

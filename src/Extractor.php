@@ -34,7 +34,7 @@ class Extractor
 
     protected $rawResolver;
 
-    public function __construct(ProjectPhpdoc $phpdoc)
+    public function __construct(PhpdocProject $phpdoc)
     {
         $this->phpdoc      = $phpdoc;
         $this->fs          = $phpdoc->getFs();

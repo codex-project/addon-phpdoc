@@ -27,7 +27,7 @@ class PhpdocServiceProvider extends ServiceProvider
     ];
 
     protected $bindings = [
-        'codex.phpdoc.project'  => ProjectPhpdoc::class,
+        'codex.phpdoc.project'  => PhpdocProject::class,
         'codex.phpdoc.document' => PhpdocDocument::class,
     ];
 

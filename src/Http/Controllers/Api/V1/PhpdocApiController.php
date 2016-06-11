@@ -5,32 +5,26 @@ use Codex\Addon\Phpdoc\Factory;
 use Codex\Addon\Phpdoc\Popover;
 use Codex\Contracts\Codex;
 use Codex\Http\Controllers\Api\V1\ApiController;
-use Codex\Projects\Project;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Illuminate\Http\Response;
 
 class PhpdocApiController extends ApiController
 {
-    protected $factory;
 
     /**
      * PhpdocApiController constructor.
      *
      * @param $factory
      */
-    public function __construct(Codex $codex, ViewFactory $view, Factory $factory)
+    public function __construct(Codex $codex, ViewFactory $view)
     {
         parent::__construct($codex, $view);
-        $this->factory = $factory;
     }
 
     protected function getDoc($projectSlug, $ref = null)
     {
         $project = $this->resolveProject($projectSlug, $ref);
-        $doc     = $this->factory->make($project);
-        $doc->checkUpdate(config('codex-phpdoc.debug', config('app.debug')) === true);
-
-        return $doc;
+        $project->phpdoc->checkUpdate(config('codex-phpdoc.debug', config('app.debug')) === true);
+        return $project->phpdoc;
     }
 
     protected function isFull()
@@ -54,7 +48,8 @@ class PhpdocApiController extends ApiController
 
         $entity = (string)request()->get('entity');
 
-        if ( ! $phpdoc->hasElement($entity) ) {
+        if ( !$phpdoc->hasElement($entity) )
+        {
             return $this->error('Entity does not exist');
         }
         $entity = $phpdoc->getElement($entity)->toArray();
@@ -66,7 +61,8 @@ class PhpdocApiController extends ApiController
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
         $entity = (string)request()->get('entity');
-        if ( ! $phpdoc->hasElement($entity) ) {
+        if ( !$phpdoc->hasElement($entity) )
+        {
             return $this->error('Entity does not exist');
         }
         $entity = $phpdoc->getElement($entity);
@@ -78,7 +74,8 @@ class PhpdocApiController extends ApiController
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
         $entity = (string)request()->get('entity');
-        if ( ! $phpdoc->hasElement($entity) ) {
+        if ( !$phpdoc->hasElement($entity) )
+        {
             return $this->error('Entity does not exist');
         }
         $entity = $phpdoc->getElement($entity);

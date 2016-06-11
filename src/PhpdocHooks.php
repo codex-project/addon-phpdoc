@@ -39,7 +39,7 @@ class PhpdocHooks
      */
     public function projectConstructed(Project $project)
     {
-        $project->extend('phpdoc', ProjectPhpdoc::class);
+        $project->extend('phpdoc', PhpdocProject::class);
     }
 
     /**

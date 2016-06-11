@@ -95,7 +95,7 @@ class PhpdocXmlElement extends SimpleXMLElement
         return json_decode(json_encode($this), true);
     }
 
-    public function toJson($opts = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+    public function toJson($opts = 0)
     {
         return json_encode($this, $opts);
     }

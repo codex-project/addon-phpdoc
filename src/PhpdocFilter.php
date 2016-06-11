@@ -9,8 +9,8 @@ namespace Codex\Addon\Phpdoc;
 use Codex\Addon\Phpdoc\Elements\Element;
 use Codex\Addons\Annotations\Filter;
 use Codex\Documents\Document;
+use Codex\Projects\Project;
 use Codex\Support\Collection;
-use Sebwite\Support\Str;
 
 /**
  * This is the class PhpdocFilter.
@@ -23,6 +23,12 @@ use Sebwite\Support\Str;
  */
 class PhpdocFilter
 {
+    /** @var Project */
+    public $project;
+
+    /** @var Document */
+    public $document;
+
     /** @var \Codex\Codex */
     public $codex;
 
@@ -36,9 +42,6 @@ class PhpdocFilter
         ],
     ];
 
-    /** @var \Codex\Addon\Phpdoc\Factory */
-    protected $factory;
-
     /** @var string */
     protected $url;
 
@@ -48,30 +51,16 @@ class PhpdocFilter
     /** @var \Codex\Support\Collection */
     protected $elements;
 
-    /** @var  ProjectPhpdoc */
-    protected $phpdoc;
-
-    /**
-     * PhpdocFilter constructor.
-     *
-     * @param \Codex\Contracts\Codex      $codex
-     * @param \Codex\Addon\Phpdoc\Factory $phpdoc
-     */
-    public function __construct(Factory $phpdoc)
-    {
-        $this->factory = $phpdoc;
-    }
-
     public function handle(Document $document)
     {
-        if ( $document->getProject()->config('phpdoc.enabled', false) !== true ) {
+        $project = $document->getProject();
+        if ( $project->hasEnabledAddon('phpdoc') !== true ) {
             return;
         }
-        $this->phpdoc   = $this->factory->make($document->getProject());
-        $this->elements = new Collection($this->phpdoc->getElements()->toArray());
+        $this->elements = new Collection($project->phpdoc->getElements()->toArray());
         $this->content  = $document->getContent();
-        $pathName       = $document->getProject()->config('phpdoc.document_slug', 'phpdoc');
-        $this->url      = $document->getProject()->url($pathName, $document->getProject()->getRef());
+        $pathName       = $project->config('phpdoc.document_slug', 'phpdoc');
+        $this->url      = $project->url($pathName, $project->getRef());
 
         $this->replaceAttributedLinks();
         $this->replaceLinks();
@@ -115,10 +104,10 @@ JS
 
     protected function handlePopover($match, $class, $method = null)
     {
-        $popover = Popover::make($this->phpdoc)->generate($class, $method);
+        $popover = Popover::make($this->project)->generate($class, $method);
         $this->replace($match, $class, 'phpdoc-popover-link', [
-            'data-title'   => $popover['title'],
-            'data-content' => $popover['content'],
+            'data-title'   => $popover[ 'title' ],
+            'data-content' => $popover[ 'content' ],
         ]);
     }
 
@@ -139,7 +128,7 @@ JS
         foreach ( $attrs as $k => $v ) {
             $attr .= " {$k}=\"{$v}\"";
         }
-        $this->content = str_replace($match, "\"{$this->phpdoc->url($class)}\" {$attr}", $this->content);
+        $this->content = str_replace($match, "\"{$this->project->phpdoc->url($class)}\" {$attr}", $this->content);
     }
 
     protected function addAssets()

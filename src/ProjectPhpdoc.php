@@ -29,43 +29,52 @@ class ProjectPhpdoc
     /**
      * Factory constructor.
      *
-     * @param \Illuminate\Contracts\Cache\Store $cache
-     * @param \Sebwite\Filesystem\Filesystem    $fs
+     * @param \Codex\Projects\Project                                                  $parent
+     * @param \Sebwite\Filesystem\Filesystem                                           $fs
+     * @param \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store $cache
      */
-    public function __construct(Filesystem $fs, Repository $cache, Project $project)
+    public function __construct(Project $parent, Filesystem $fs, Repository $cache)
     {
         $this->fs        = $fs;
         $this->cache     = $cache;
         $this->extractor = new Extractor($this);
-        $this->getExtractor()->setRawResolver(function(Extractor $extractor){
+        $this->getExtractor()->setRawResolver(function (Extractor $extractor) {
             return $this->project->getFiles()->get(
                 $this->project->refPath($this->project->config('phpdoc.path'))
             );
         });
-        $this->project = $project;
+        $this->project = $parent;
         $this->setCachePath(path_join(
             config('codex-phpdoc.cache_path'),
-            $project->getName(),
-            $project->getRef()
+            $parent->getName(),
+            $parent->getRef()
         ));
         $this->checkUpdate();
     }
 
+    public function getCacheKey()
+    {
+        return "codex.phpdoc.project.{$this->project->getName()}.{$this->project->getRef()}";
+    }
 
+    public function clearCache()
+    {
+        file_cleanDirectory($this->getCachePath());
+        $this->cache->forget($this->getCacheKey());
+    }
     public function checkUpdate($forceUpdate = false)
     {
-        $cacheKey           = "codex.phpdoc.project.{$this->project->getName()}.{$this->project->getRef()}";
-        $cachedLastModified = (int)$this->cache->get($cacheKey, 0);
+        $cachedLastModified = (int)$this->cache->get($this->getCacheKey(), 0);
         if ( $forceUpdate === true || $cachedLastModified !== $this->getLastModified() ) {
             $this->extractor->run();
-            $this->cache->forever($cacheKey, $this->getLastModified());
+            $this->cache->forever($this->getCacheKey(), $this->getLastModified());
         }
     }
 
     public function url($full_name = null)
     {
         $url = $this->project->url($this->project->config('phpdoc.document_slug', 'phpdoc'), $this->project->getRef());
-        if($full_name){
+        if ( $full_name ) {
             $url .= "#!/{$full_name}";
         }
         return $url;
@@ -102,8 +111,12 @@ class ProjectPhpdoc
      */
     public function getElement($full_name)
     {
-        if ( !array_key_exists($full_name, $this->elements) ) {
-            $file                         = $this->fs->get($this->getCacheFilePath(Util::toFileName($full_name, '.xml')));
+        if ( ! array_key_exists($full_name, $this->elements) ) {
+            $filePath = $this->getCacheFilePath(Util::toFileName($full_name, '.xml'));
+            if($this->fs->exists($filePath) === false){
+                return null;
+            }
+            $file                         = $this->fs->get($filePath);
             $this->elements[ $full_name ] = Element::create($file);
         }
         return $this->elements[ $full_name ];
@@ -149,12 +162,12 @@ class ProjectPhpdoc
             while ( count($segments) ) {
                 $segment = array_shift($segments);
                 $last    = count($segments) === 0;
-                if ( !$last ) {
+                if ( ! $last ) {
                     is_array($tree2) && krsort($tree2);
                     $tree2 =& $tree2[ $segment ];
                 } else {
 
-                    if ( !is_array($tree2) ) {
+                    if ( ! is_array($tree2) ) {
                         $tree2 = [ ];
                     }
 
@@ -269,7 +282,6 @@ class ProjectPhpdoc
     {
         $this->project = $project;
     }
-
 
 
 }

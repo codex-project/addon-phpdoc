@@ -1,8 +1,6 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Documents\Documents;
-use Codex\Exception\CodexException;
 use Codex\Traits\CodexProviderTrait;
 use Sebwite\Support\ServiceProvider;
 
@@ -22,8 +20,10 @@ class PhpdocServiceProvider extends ServiceProvider
         Http\HttpServiceProvider::class,
     ];
 
-    protected $shared = [
-        'codex.phpdoc' => Factory::class,
+
+    protected $commands = [
+        Console\ClearCacheCommand::class,
+        Console\CreateCacheCommand::class,
     ];
 
     protected $bindings = [
@@ -41,28 +41,7 @@ class PhpdocServiceProvider extends ServiceProvider
             'document' => 'codex-phpdoc::document',
             'entity'   => 'codex-phpdoc::entity',
         ]);
-
-        $this->addCustomDocument();
-
         return $app;
-    }
-
-    protected function addCustomDocument()
-    {
-        $this->codexHook('documents:constructed', function (Documents $documents)
-        {
-            $project = $documents->getProject();
-            $documents->addCustomDocument($project->config('phpdoc.document_slug', 'phpdoc'), function (Documents $documents) use ($project)
-            {
-                $path = $project->refPath($project->config('phpdoc.path'));
-                $pfs  = $project->getFiles();
-                if ( !$pfs->exists($path) )
-                {
-                    throw CodexException::documentNotFound('phpdoc');
-                }
-                return [ 'path' => $path, 'binding' => 'codex.phpdoc.document' ];
-            });
-        });
     }
 
 

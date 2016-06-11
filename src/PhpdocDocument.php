@@ -38,7 +38,7 @@ codex.phpdoc.init('#codex-phpdoc', {
 });
 JS
         );
-        //$this->phpdoc = $codex->getContainer()->make('codex.phpdoc');
+        
     }
 
     public function render()

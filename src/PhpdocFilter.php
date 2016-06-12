@@ -19,7 +19,7 @@ use Codex\Support\Collection;
  * @author         CLI
  * @copyright      Copyright (c) 2015, CLI. All rights reserved
  *
- * @Filter("phpdoc", config="config", priority=150)
+ * @Filter("phpdoc", config="config", priority=150, after={"markdown"})
  */
 class PhpdocFilter
 {

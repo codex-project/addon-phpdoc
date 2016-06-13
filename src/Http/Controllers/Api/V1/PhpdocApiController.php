@@ -17,13 +17,15 @@ class PhpdocApiController extends ApiController
      */
     public function __construct(Codex $codex, ViewFactory $view)
     {
+        config()->set('debugbar.enabled', false);
+
         parent::__construct($codex, $view);
     }
 
     protected function getDoc($projectSlug, $ref = null)
     {
         $project = $this->resolveProject($projectSlug, $ref);
-        $project->phpdoc->checkUpdate(config('codex-phpdoc.debug', config('app.debug')) === true);
+        $project->phpdoc->checkUpdate(config('codex-phpdoc.debug') === true);
         return $project->phpdoc;
     }
 

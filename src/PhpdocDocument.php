@@ -25,6 +25,8 @@ class PhpdocDocument extends Document
     public function __construct($codex, Project $project, $path, $pathName)
     {
         $pathName = 'phpdoc';
+        config()->set('debugbar.enabled', false);
+        app()->bound('debugbar') && app('debugbar')->disable();
         parent::__construct($codex, $project, $path, $pathName);
         $this->mergeAttributes($project->config('phpdoc'));
         $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex' ]);

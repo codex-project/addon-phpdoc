@@ -7,7 +7,7 @@ namespace Codex\Addon\Phpdoc;
 
 
 use Codex\Addon\Phpdoc\Elements\Element;
-use Codex\Addons\Annotations\Filter;
+use Codex\Addons\Annotations\Processor;
 use Codex\Documents\Document;
 use Codex\Projects\Project;
 use Codex\Support\Collection;
@@ -19,7 +19,7 @@ use Codex\Support\Collection;
  * @author         CLI
  * @copyright      Copyright (c) 2015, CLI. All rights reserved
  *
- * @Filter("phpdoc", config="config", priority=150, after={"parser"})
+ * @Processor("phpdoc", config="config", priority=150, after={"parser"})
  */
 class PhpdocFilter
 {

@@ -21,7 +21,7 @@ use Codex\Support\Collection;
  *
  * @Processor("phpdoc", config="config", priority=150, after={"parser"})
  */
-class PhpdocFilter
+class PhpdocProcesssor
 {
     /** @var Project */
     public $project;

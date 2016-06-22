@@ -8,6 +8,7 @@ namespace Codex\Addon\Phpdoc;
 
 use Codex\Documents\Document;
 use Codex\Projects\Project;
+use Illuminate\Contracts\Cache\Repository;
 
 /**
  * This is the PhpdocDocument.
@@ -22,12 +23,12 @@ class PhpdocDocument extends Document
 
     protected $phpdoc;
 
-    public function __construct($codex, Project $project, $path, $pathName)
+    public function __construct($codex, Project $project, Repository $cache, $path, $pathName)
     {
         $pathName = 'phpdoc';
         config()->set('debugbar.enabled', false);
         app()->bound('debugbar') && app('debugbar')->disable();
-        parent::__construct($codex, $project, $path, $pathName);
+        parent::__construct($codex, $project, $cache, $path, $pathName);
         $this->mergeAttributes($project->config('phpdoc'));
         $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex' ]);
         $codex->theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc');

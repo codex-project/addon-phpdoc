@@ -33,32 +33,58 @@ class PhpdocLink
     /** @var string|null */
     protected $method;
 
+    /** @var Phpdoc */
+    protected $phpdoc;
+
+    /**
+     * PhpdocLink constructor.
+     *
+     * @param \Codex\Addon\Phpdoc\Phpdoc $phpdoc
+     */
+    public function __construct(\Codex\Addon\Phpdoc\Phpdoc $phpdoc)
+    {
+        $this->phpdoc = $phpdoc;
+    }
+
+
     // link action: 'phpdoc' => 'Codex\Addon\Phpdoc\PhpdocLink@handle'
     public function handle(Action $action)
     {
+        $this->phpdoc->addAssets();
+        $project   = $action->getProject();
+        $pathName  = $project->config('phpdoc.document_slug', 'phpdoc');
+        $this->url = $project->url($pathName, $project->getRef());
+
+        $el = $action->getElement();
+        if ( $action->param(0) === 'popover' )
+        {
+            $popover = Popover::make($action->getProject())->generate($action->param(1), $action->param(2));
+            $el->setAttribute('class', $el->getAttribute('class') . ' phpdoc-popover-link');
+            $el->setAttribute('href', $project->phpdoc->url($action->param(1)));
+            $el->setAttribute('target', '_blank');
+            $el->setAttribute('data-title', $popover[ 'title' ]);
+            $el->setAttribute('data-content', $popover[ 'content' ]);
+        } else {
+            $el->setAttribute('class', $el->getAttribute('class') . ' phpdoc-link');
+            $el->setAttribute('href', $project->phpdoc->url($action->param(0)));
+            $el->setAttribute('target', '_blank');
+            $el->setAttribute('data-title', $action->param(0));
+        }
+
         return;
         $project = $action->getProcessor()->project;
         if ( $project->hasEnabledAddon('phpdoc') !== true )
         {
             return;
         }
-        $this->elements = new Collection($project->phpdoc->getElements()->toArray());
-        $pathName       = $project->config('phpdoc.document_slug', 'phpdoc');
-        $this->url      = $project->url($pathName, $project->getRef());
+        $this->elements  = new Collection($project->phpdoc->getElements()->toArray());
+        $pathName        = $project->config('phpdoc.document_slug', 'phpdoc');
+        $this->url       = $project->url($pathName, $project->getRef());
         $this->class     = urldecode($action->param(0));
         $this->action    = $action;
         $this->hasMethod = $action->hasParameter(1);
         $this->method    = $action->param(1);
 
-        $theme = $project->getCodex()->theme;
-        $theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc.css');
-        $theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc.js', [ 'codex' ]);
-        $theme->addScript('phpdoc', <<<JS
-$(function(){
-    $.phpdoc.initLinks();
-})
-JS
-        );
         $a = 'a';
     }
 
@@ -93,11 +119,6 @@ JS
 
     protected function handlePopover($match, $class, $method = null)
     {
-        $popover = Popover::make($this->project)->generate($class, $method);
-        $this->replace($match, $class, 'phpdoc-popover-link', [
-            'data-title'   => $popover[ 'title' ],
-            'data-content' => $popover[ 'content' ],
-        ]);
     }
 
 

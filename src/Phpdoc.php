@@ -27,5 +27,21 @@ class Phpdoc extends Extendable
     }
 
 
+    public function addAssets()
+    {
+        $theme = $this->getCodex()->theme;
+        if($theme->stylesheets()->has('phpdoc', false) === true){
+            return;
+        }
+        $theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc.css');
+        $theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc.js', [ 'codex' ]);
+        $theme->addScript('phpdoc', <<<JS
+$(function(){
+    $.phpdoc.initLinks();
+})
+JS
+        );
+    }
+
 
 }

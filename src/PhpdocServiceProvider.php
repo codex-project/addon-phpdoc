@@ -36,6 +36,10 @@ class PhpdocServiceProvider extends ServiceProvider
     {
         $app = parent::register();
 
+        config([
+            'codex.links.phpdoc' => PhpdocLink::class . '@handle'
+        ]);
+
         // This will disable `phpdoc` as project name so we can bind our own
         $this->codexIgnoreRoute(config('codex-phpdoc.route_prefix'));
 

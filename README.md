@@ -4,8 +4,8 @@ Codex Phpdoc Addon
 [![GitHub Version](https://img.shields.io/github/tag/codex-project/addon-phpdoc.svg?style=flat-square&label=version)](http://badge.fury.io/gh/codex-project%2Faddon-phpdoc)
 [![Total Downloads](https://img.shields.io/packagist/dt/codex/addon-phpdoc.svg?style=flat-square)](https://packagist.org/packages/codex/addon-phpdoc)
 [![Documentation](https://img.shields.io/badge/goto-documentation-orange.svg?style=flat-square)](https://github.com/codex-project/addon-phpdoc)
-[![Source](http://img.shields.io/badge/source-codex--addon--phpdoc-blue.svg?style=flat-square)](https://github.com/codex-project/addon-phpdoc)
-[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
+[![Source](https://img.shields.io/badge/source-codex--addon--phpdoc-blue.svg?style=flat-square)](https://github.com/codex-project/addon-phpdoc)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
 Go to the [main Codex repository](https://github.com/codex-project/codex).
 

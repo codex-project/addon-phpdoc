@@ -27,10 +27,10 @@ ls
 # - tests
 # - composer.json
 # - etc..
-cachedir=".phpdoc"
-phpdoc -t $cachedir -d src -d tests --template=xml
-mv .phpdoc/structure.xml docs/structure.xml
-rm -rf .phpdoc
+
+phpdoc -t phpdoc -d src -d tests --template=xml
+mv phpdoc/structure.xml docs/structure.xml
+rm -rf phpdoc
 ```
 
 Once you've moved the `structure.xml` file into the documentation directory, you're good to go.

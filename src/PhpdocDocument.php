@@ -46,7 +46,12 @@ JS
 
     public function render()
     {
-        return '<div id="codex-phpdoc"></div>';
+
+        $this->hookPoint('document:render');
+        $this->runProcessor('prismjs');
+        $content = '<div id="codex-phpdoc"></div>';
+        $this->hookPoint('document:rendered');
+        return $content;
     }
 
 

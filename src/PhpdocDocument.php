@@ -63,4 +63,10 @@ JS
         return $this->getProject()->getSidebarMenu()->getBreadcrumbToHref($this->url());
     }
 
+    public function getLastModified()
+    {
+        return parent::getLastModified();
+    }
+
+
 }

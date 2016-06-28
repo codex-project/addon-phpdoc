@@ -50,7 +50,7 @@ class PhpdocApiController extends ApiController
 
         $entity = (string)request()->get('entity');
 
-        if ( !$phpdoc->hasElement($entity) )
+        if ( ! $phpdoc->hasElement($entity) )
         {
             return $this->error('Entity does not exist');
         }
@@ -63,7 +63,7 @@ class PhpdocApiController extends ApiController
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
         $entity = (string)request()->get('entity');
-        if ( !$phpdoc->hasElement($entity) )
+        if ( ! $phpdoc->hasElement($entity) )
         {
             return $this->error('Entity does not exist');
         }
@@ -72,18 +72,40 @@ class PhpdocApiController extends ApiController
         return $this->response($entity);
     }
 
+    protected function getCacheKey($projectSlug, $ref, $entity, $suffix = '')
+    {
+        $entity = md5($entity);
+        return "phpdoc.{$projectSlug}.{$ref}.{$entity}{$suffix}";
+    }
+
     public function getDocPage($projectSlug, $ref = null)
     {
         $phpdoc = $this->getDoc($projectSlug, $ref);
         $entity = (string)request()->get('entity');
-        if ( !$phpdoc->hasElement($entity) )
+
+        if ( ! $phpdoc->hasElement($entity) )
         {
             return $this->error('Entity does not exist');
         }
-        $entity = $phpdoc->getElement($entity);
+
+
+        $cache        = app('cache.store');
+        $key = $this->getCacheKey($projectSlug, $ref, $entity, '.doc.');
+        $lastModified = (int) $cache->get($key . '.lastModified', 0);
+        if ( $lastModified !== (int) $phpdoc->getLastModified() )
+        {
+            $entity = $phpdoc->getElement($entity);
+            $doc    = view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render();
+            $cache->forever($key, $doc);
+            $cache->forever($key . '.lastModified', (int) $phpdoc->getLastModified());
+        }
+        else
+        {
+            $doc = $cache->get($key);
+        }
 
         return $this->response([
-            'doc' => view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render(),
+            'doc' => $doc,
         ]);
     }
 

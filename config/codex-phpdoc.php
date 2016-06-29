@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -14,9 +15,19 @@ return [
 
     'route_prefix' => 'phpdoc',
 
+    'cache' => [
+        'extract_path' => storage_path('codex/phpdoc'),
+        'store' => 'file'
+    ],
+
+    // @deprecated
     'cache_path' => storage_path('codex/phpdoc'),
 
     'debug' => false, // true, false, null (null takes the app.debug value)
+
+    'links' => [
+        'phpdoc' => 'Codex\Addon\Phpdoc\PhpdocLink@handle'
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -71,7 +82,8 @@ return [
 
             'xml_path' => 'structure.xml',
 
-            'path' => 'structure.xml', // deprecated
+            // @deprecated
+            'path' => 'structure.xml',
 
 
             /*

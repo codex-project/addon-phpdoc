@@ -89,25 +89,21 @@ class PhpdocApiController extends ApiController
         }
 
 
-        $cache        = app('cache.store');
-        $key = $this->getCacheKey($projectSlug, $ref, $entity, '.doc.');
-        $lastModified = (int) $cache->get($key . '.lastModified', 0);
-        if ( $lastModified !== (int) $phpdoc->getLastModified() )
-        {
-            $entity = $phpdoc->getElement($entity);
-            $doc    = view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render();
-            $cache->forever($key, $doc);
-            $cache->forever($key . '.lastModified', (int) $phpdoc->getLastModified());
-        }
-        else
-        {
-            $doc = $cache->get($key);
-        }
+        $doc = $this->codex->getCachedLastModified(
+            $this->getCacheKey($projectSlug, $ref, $entity, '.doc'),
+            $phpdoc->getLastModified(),
+            function () use ($entity, $phpdoc)
+            {
+                $entity = $phpdoc->getElement($entity);
+                return view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render();
+            }
+        );
 
         return $this->response([
             'doc' => $doc,
         ]);
     }
+
 
     public function getPopover($projectSlug, $ref = null)
     {

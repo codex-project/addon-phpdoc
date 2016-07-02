@@ -1,7 +1,7 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Contracts\Codex;
+use Codex\Codex;
 use Codex\Contracts\Documents\Documents;
 use Codex\Contracts\Projects\Projects;
 use Codex\Exception\CodexException;

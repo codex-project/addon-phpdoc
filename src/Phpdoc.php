@@ -10,7 +10,7 @@
  */
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Contracts\Codex;
+use Codex\Codex;
 use Codex\Projects\Project;
 use Codex\Support\Extendable;
 use Illuminate\Contracts\Cache\Factory as Cache;

@@ -3,7 +3,7 @@ namespace Codex\Addon\Phpdoc\Http\Controllers\Api\V1;
 
 use Codex\Addon\Phpdoc\Factory;
 use Codex\Addon\Phpdoc\Popover;
-use Codex\Contracts\Codex;
+use Codex\Codex;
 use Codex\Http\Controllers\Api\V1\ApiController;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 

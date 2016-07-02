@@ -24,7 +24,7 @@ class Phpdoc extends Extendable
     /**
      * Phpdoc constructor.
      *
-     * @param \Codex\Contracts\Codex|\Codex\Codex $parent
+     * @param \Codex\Codex $parent
      * @param \Illuminate\Contracts\Cache\Factory $cache
      */
     public function __construct(Codex $parent, Cache $cache)

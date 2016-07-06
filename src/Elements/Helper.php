@@ -3,7 +3,7 @@ namespace Codex\Addon\Phpdoc\Elements;
 
 class Helper
 {
-    public static function docBlockTags(AbstractXmlElement $docblock)
+    public static function docBlockTags(PhpdocXmlElement $docblock)
     {
         $tags = [ ];
         if ( !isset($docblock->tag) ) {
@@ -17,7 +17,7 @@ class Helper
         return $tags;
     }
 
-    public static function docBlockTagsCollection(AbstractXmlElement $docblock)
+    public static function docBlockTagsCollection(PhpdocXmlElement $docblock)
     {
         $tags = [ ];
         if ( !isset($docblock->tag) ) {

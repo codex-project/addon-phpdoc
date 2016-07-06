@@ -1,6 +1,8 @@
 <?php
 namespace Codex\Addon\Phpdoc\Elements;
 
+use Codex\Support\Collection;
+
 /**
  * This is the class Element.
  *
@@ -15,7 +17,7 @@ namespace Codex\Addon\Phpdoc\Elements;
  * @property Element $parse_markers
  * @property string  $source
  */
-class Element extends AbstractXmlElement
+class Element extends PhpdocXmlElement
 {
 
     public function getType()
@@ -91,5 +93,24 @@ class Element extends AbstractXmlElement
             $methods [] = Method::create($p->asXML());
         }
         return collect($methods);
+    }
+
+    public function isExtending()
+    {
+        return $this->obj()->extends !== '';
+    }
+
+    public function getExtendsElement()
+    {
+        return $this->extends;
+    }
+
+    /**
+     * collect method
+     * @return Collection
+     */
+    public function collect()
+    {
+        return Collection::make($this->toArray());
     }
 }

@@ -41,16 +41,16 @@ codex.phpdoc.init('#codex-phpdoc', {
 });
 JS
         );
-        
     }
 
     public function render()
     {
 
         $this->hookPoint('document:render');
-        $this->setAttribute('processors.prismjs.plugins', [
-
+        $prismPlugins = array_replace($this->attr('processors.prismjs.plugins', [ ]), [
+            'line-numbers', 'autolinker'
         ]);
+        $this->setAttribute('processors.prismjs.plugins', $prismPlugins);
         $this->runProcessor('prismjs');
         $content = '<div id="codex-phpdoc"></div>';
         $this->hookPoint('document:rendered');

@@ -61,6 +61,15 @@ class Popover
             $content = '';
         }
 
+        if($data['extends']){
+
+            $this->handleExtends($content, $data);
+        }
+
+        if($data['implements']){
+            $this->handleImplements($content, $data);
+        }
+
         $content .= <<<HTML
 <div class="popover-phpdoc-description fs-10">
 {$data['description']}
@@ -70,4 +79,23 @@ HTML;
         $content = str_replace('"', '\'', $content);
         return compact('title', 'content');
     }
+
+    protected function handleImplements(&$content, $data)
+    {
+        foreach($data['implements'] as $className){
+            $class = $this->phpdoc->getElement($className);
+        }
+    }
+
+    protected function handleExtends(&$content, $data)
+    {
+        $extended = $this->phpdoc->getElement($data['extends']);
+        if($extended === null){
+            return;
+        }
+        $class = $extended->toArray();
+        $name = $class['name'];
+    }
+
+
 }

@@ -3,7 +3,7 @@ namespace Codex\Addon\Phpdoc\Elements;
 
 use Sebwite\Support\Str;
 
-class Argument extends AbstractXmlElement
+class Argument extends PhpdocXmlElement
 {
 
     /**

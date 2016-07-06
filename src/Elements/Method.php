@@ -1,8 +1,15 @@
 <?php
 namespace Codex\Addon\Phpdoc\Elements;
 
-
-class Method extends AbstractXmlElement
+/**
+ * This is the class Method.
+ *
+ * @package        Codex\Addon
+ * @author         CLI
+ * @copyright      Copyright (c) 2015, CLI. All rights reserved
+ *
+ */
+class Method extends PhpdocXmlElement
 {
     public function hasParameters()
     {
@@ -59,11 +66,18 @@ class Method extends AbstractXmlElement
             'long-description' => (string)$this->docblock[ 'long-description' ],
             'name'             => (string)$this->name,
             'full_name'        => (string)$this->full_name,
+            'class_name' => $this->getClassFullName(),
             'default'          => (string)$this->default === 'true',
             'arguments'        => $this->getArguments()->toArray(),
             'tags'             => Helper::docBlockTags($this->docblock),
         ];
 
         return $arr;
+    }
+
+    public function getClassFullName()
+    {
+        $fullName = (string) $this->full_name;
+        return head(explode('::', $fullName));
     }
 }

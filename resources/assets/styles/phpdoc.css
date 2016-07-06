@@ -819,6 +819,7 @@
 .jstree-codex ul.jstree-container-ul,
 .jstree-codex ul.jstree-children {
   padding-left: 4px;
+  margin-top: 0;
 }
 
 .jstree-codex li.jstree-node {
@@ -946,6 +947,35 @@
   color: black;
 }
 
+.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li.seperator > span {
+  display: block;
+  font-weight: bold;
+  padding: 4px 10px;
+  text-decoration: none;
+  border: 1px solid #c5d0dc;
+  margin: 0 -1px 0 0;
+  color: darkgray;
+  text-align: center;
+}
+
+.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs i.phpdoc-inherited-method-icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  float: right;
+  margin-right: -5px;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #FFC107;
+}
+
+.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs i.phpdoc-inherited-method-icon:before {
+  content: "";
+}
+
 .phpdoc-content #phpdoc-methods > .tabbable > .tab-content {
   padding: 0;
 }
@@ -980,12 +1010,12 @@
 .phpdoc-content #phpdoc-methods .argument {
   border-top: 1px dashed #f1f1f1;
   border-bottom: 1px dashed #f1f1f1;
-  border-left: 2px solid #E6E4E4;
+  border-left: 2px solid #e6e4e4;
   padding: 3px 0 3px 5px;
 }
 
 .phpdoc-content #phpdoc-methods .argument + .block {
-  border-left: 2px solid #E6E4E4;
+  border-left: 2px solid #e6e4e4;
   padding-left: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;

@@ -89,15 +89,40 @@ class PhpdocApiController extends ApiController
         }
 
 
-        $doc = $this->codex->getCachedLastModified(
-            $this->getCacheKey($projectSlug, $ref, $entity, '.doc'),
-            $phpdoc->getLastModified(),
-            function () use ($entity, $phpdoc)
-            {
-                $entity = $phpdoc->getElement($entity);
-                return view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render();
-            }
-        );
+        // t
+        $entity = $phpdoc->getElement($entity);
+        $e = $entity->collect();
+
+        $methods = $e->get('methods')->filter(function($item) use ($e) {
+            return $item['class_name'] === $e['full_name'];
+        });
+        $inheritedMethods = $e->get('methods')->filter(function($item) use ($e) {
+            return $item['class_name'] !== $e['full_name'];
+        });
+
+        $methods = $methods->sortBy('visibility')->reverse()->toArray();
+        $inheritedMethods = $inheritedMethods->sortBy('visibility')->reverse()->toArray();
+
+        $e->set('methods', $methods);
+        $e->set('inherited_methods', $inheritedMethods);
+
+        $doc =  view($this->codex->view('phpdoc.entity'), $e->toArray())->with('phpdoc', $phpdoc)->render();
+        /// tt
+
+//        $doc = $this->codex->getCachedLastModified(
+//            $this->getCacheKey($projectSlug, $ref, $entity, '.doc'),
+//            $phpdoc->getLastModified(),
+//            function () use ($entity, $phpdoc)
+//            {
+//                $entity = $phpdoc->getElement($entity);
+//                $e = $entity->collect();
+//
+//                $methods = $e->get('methods')->reject(function($item) use ($e) {
+//                    return $item['class_name'] === $e['full_name'];
+//                });
+//                return view($this->codex->view('phpdoc.entity'), $entity->toArray())->with('phpdoc', $phpdoc)->render();
+//            }
+//        );
 
         return $this->response([
             'doc' => $doc,

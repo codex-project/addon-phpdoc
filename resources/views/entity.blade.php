@@ -37,7 +37,7 @@
         </table>
     @endif
 </div><!-- TABS: METHODS, PROPERTIES, SOURCE-->
-<div class="tabbable">
+<div class="tabbable" id="phpdoc-tabs">
     <ul role="tablist" class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#phpdoc-methods" aria-controls="phpdoc-methods" role="tab" data-toggle="tab">Methods</a></li>
         <li role="presentation"><a href="#phpdoc-properties" aria-controls="phpdoc-properties" role="tab" data-toggle="tab">Properties</a></li>
@@ -54,6 +54,18 @@
                             <a href="#method-{{ $method['name'] }}" aria-controls="method-{{ $method['name'] }}" role="tab" data-toggle="tab">
                                 <i class="pr-xs phpdoc-visibility-{{ $method['visibility'] }}"></i>
                                 {{ $method['name'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                    <li role="presentation" class="seperator">
+                        <span>Inherited</span>
+                    </li>
+                    @foreach($inherited_methods as $i => $method)
+                        <li role="presentation" class="{{ $i === 0 ? 'active' : '' }}">
+                            <a href="#method-{{ $method['name'] }}" aria-controls="method-{{ $method['name'] }}" role="tab" data-toggle="tab">
+                                <i class="pr-xs phpdoc-visibility-{{ $method['visibility'] }}"></i>
+                                {{ $method['name'] }}
+                                <i class="phpdoc-inherited-method-icon" rel="tooltip" title="Inherited from: <br> {{ str_replace_first('\\', '', $method['class_name']) }}"></i>
                             </a>
                         </li>
                     @endforeach
@@ -172,8 +184,10 @@
                 </tbody>
             </table>
         </div>
+
+        {{--SOURCE--}}
         <div id="phpdoc-source" role="tabpanel" class="tab-pane">
-            <pre class="language-php"><code class="language-php">{{ $source }}</code></pre>
+            <pre class="language-php line-numbers"><code class="language-php">{{ $source }}</code></pre>
         </div>
     </div>
 </div>

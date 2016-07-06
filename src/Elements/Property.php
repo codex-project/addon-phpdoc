@@ -4,7 +4,7 @@ namespace Codex\Addon\Phpdoc\Elements;
 
 use Sebwite\Support\Str;
 
-class Property extends AbstractXmlElement
+class Property extends PhpdocXmlElement
 {
 
     /**

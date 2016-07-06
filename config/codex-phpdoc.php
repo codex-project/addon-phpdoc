@@ -23,7 +23,7 @@ return [
     // @deprecated
     'cache_path' => storage_path('codex/phpdoc'),
 
-    'debug' => false, // true, false, null (null takes the app.debug value)
+    'debug' => true, // true, false, null (null takes the app.debug value)
 
     'links' => [
         'phpdoc' => 'Codex\Addon\Phpdoc\PhpdocLink@handle'

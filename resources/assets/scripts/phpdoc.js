@@ -403,13 +403,25 @@ var codex;
             PhpdocWidget.prototype.scrollToBegin = function () {
                 $('html, body').animate({ scrollTop: this.$content.offset().top }, 800);
             };
+            PhpdocWidget.prototype.gotoSourceLine = function (nr) {
+                var lines = $('.line-numbers-rows span');
+                var line = $(lines[nr]);
+                $('html, body').animate({ scrollTop: line.offset().top - line.height() }, 800);
+            };
+            PhpdocWidget.prototype.openTab = function (name) {
+                var tabs = this.$('#phpdoc-tabs > ul.nav-tabs > li');
+                var panels = this.$('#phpdoc-tabs > .tab-content > .tab-pane');
+                $().add(tabs).add(panels).removeClass('active');
+                tabs.find('[aria-controls="phpdoc-' + name + '"]').parent().addClass('active');
+                panels.find('#phpdoc-' + name).addClass('active');
+            };
             PhpdocWidget.prototype.open = function (name) {
                 var _this = this;
                 console.log('phpdoc open', name);
                 codex.startLoader(this.$content);
                 this.$('.type-link').tooltip('hide');
                 codex.debug.profile('doc-request');
-                this.api.doc(name).then(function (doc) {
+                return this.api.doc(name).then(function (doc) {
                     codex.debug.profileEnd();
                     codex.stopLoader(_this.$content);
                     codex.debug.profile('doc-html');
@@ -437,6 +449,16 @@ var codex;
                         function (cb) {
                             codex.debug.profile('scroll');
                             _this.scrollToBegin();
+                            cb();
+                            codex.debug.profileEnd();
+                        },
+                        function (cb) {
+                            codex.debug.profile('inherit-method');
+                            _this.$('.phpdoc-inherited-method-icon').on('click', function (e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                console.log('go to entity');
+                            });
                             cb();
                             codex.debug.profileEnd();
                         }

@@ -378,6 +378,9 @@ var codex;
                     _this._bindTreeListener();
                 });
             };
+            PhpdocWidget.prototype._destroy = function () {
+                codex.debug.log('destroy');
+            };
             PhpdocWidget.prototype._createTree = function () {
                 this._traverseTree(this.data.tree, this.$treeRoot, 0);
                 this.$tree.jstree(this.options.jstree);
@@ -404,16 +407,13 @@ var codex;
                 $('html, body').animate({ scrollTop: this.$content.offset().top }, 800);
             };
             PhpdocWidget.prototype.gotoSourceLine = function (nr) {
+                this.openTab('source');
                 var lines = $('.line-numbers-rows span');
                 var line = $(lines[nr]);
                 $('html, body').animate({ scrollTop: line.offset().top - line.height() }, 800);
             };
             PhpdocWidget.prototype.openTab = function (name) {
-                var tabs = this.$('#phpdoc-tabs > ul.nav-tabs > li');
-                var panels = this.$('#phpdoc-tabs > .tab-content > .tab-pane');
-                $().add(tabs).add(panels).removeClass('active');
-                tabs.find('[aria-controls="phpdoc-' + name + '"]').parent().addClass('active');
-                panels.find('#phpdoc-' + name).addClass('active');
+                $('#phpdoc-tabs a[href="#phpdoc-' + name + '"]').tab('show');
             };
             PhpdocWidget.prototype.open = function (name) {
                 var _this = this;
@@ -521,9 +521,6 @@ var codex;
                     this.tree.select_node(node);
                     this.ignoreTreeSelect = false;
                 }
-            };
-            PhpdocWidget.prototype._destroy = function () {
-                codex.debug.log('destroy');
             };
             PhpdocWidget = __decorate([
                 codex.util.widget('phpdoc')

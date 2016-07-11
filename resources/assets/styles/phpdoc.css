@@ -816,60 +816,73 @@
   }
 }
 
-.jstree-codex ul.jstree-container-ul,
-.jstree-codex ul.jstree-children {
+body.addon-phpdoc .jstree-codex ul.jstree-container-ul,
+body.addon-phpdoc .jstree-codex ul.jstree-children {
   padding-left: 4px;
   margin-top: 0;
 }
 
-.jstree-codex li.jstree-node {
+body.addon-phpdoc .jstree-codex li.jstree-node {
   margin-left: 12px;
 }
 
-.jstree-codex i.jstree-icon.jstree-ocl:empty {
+body.addon-phpdoc .jstree-codex i.jstree-icon.jstree-ocl:empty {
   width: 16px;
 }
 
-.jstree-codex .jstree-anchor {
+body.addon-phpdoc .jstree-codex .jstree-anchor {
   font-size: 12px;
 }
 
-.jstree-codex .jstree-anchor .jstree-icon {
+body.addon-phpdoc .jstree-codex .jstree-anchor .jstree-icon {
   font-size: 15px;
 }
 
-.phpdoc .type-link {
+body.addon-phpdoc .phpdoc .type-link {
   font-family: 'Source Code Pro', monospace, sans-serif;
   color: brown;
   padding: 0;
   text-decoration: none;
 }
 
-.phpdoc .type-link:hover {
+body.addon-phpdoc .phpdoc .type-link:hover {
   cursor: default;
   text-decoration: none;
   color: #d65f5f;
 }
 
-.phpdoc .type-link.local {
+body.addon-phpdoc .phpdoc .type-link.local {
   color: #3dba73;
 }
 
-.phpdoc .type-link.local:hover {
+body.addon-phpdoc .phpdoc .type-link.local:hover {
   color: #246d44;
   cursor: pointer;
 }
 
-.phpdoc .simple-type {
+body.addon-phpdoc .phpdoc .simple-type {
   color: #ef6c00;
   font-family: 'Source Code Pro', sans-serif;
 }
 
-.phpdoc .tooltip-inner {
+body.addon-phpdoc .phpdoc .tooltip-inner {
   max-width: none;
 }
 
-.phpdoc-tree {
+body.addon-phpdoc .phpdoc-settings-dropdown {
+  float: right;
+}
+
+body.addon-phpdoc .phpdoc-settings-dropdown > a > i.fa {
+  font-size: 40px;
+}
+
+body.addon-phpdoc .phpdoc-settings-dropdown > a > span.caret {
+  margin-top: 14px;
+  margin-left: -7px;
+}
+
+body.addon-phpdoc .phpdoc-tree {
   float: left;
   padding-top: 10px;
   width: 20%;
@@ -877,77 +890,77 @@
   overflow: hidden;
 }
 
-.phpdoc-content {
+body.addon-phpdoc .phpdoc-content {
   width: 80%;
   float: left;
   font-size: 14px;
 }
 
-.phpdoc-content > header {
+body.addon-phpdoc .phpdoc-content > header {
   border-bottom: 1px solid #f0f2f1;
   margin-bottom: 20px;
   padding-left: 20px;
 }
 
-.phpdoc-content > header > i {
+body.addon-phpdoc .phpdoc-content > header > i {
   line-height: 28px !important;
   font-size: 24px !important;
   padding-right: 20px;
   float: left;
 }
 
-.phpdoc-content > header > h3 {
+body.addon-phpdoc .phpdoc-content > header > h3 {
   font-weight: 200;
   margin-top: 15px !important;
   margin-bottom: 17px;
   font-size: 22px !important;
 }
 
-.phpdoc-content > .phpdoc-content-description {
+body.addon-phpdoc .phpdoc-content > .phpdoc-content-description {
   padding-left: 20px;
 }
 
-.phpdoc-content .table-phpdoc-tags th, .phpdoc-content .table-phpdoc-tags td {
+body.addon-phpdoc .phpdoc-content .table-phpdoc-tags th, body.addon-phpdoc .phpdoc-content .table-phpdoc-tags td {
   padding: 3px;
   font-size: 12px;
 }
 
-.phpdoc-content > .tabbable {
+body.addon-phpdoc .phpdoc-content > .tabbable {
   margin-left: 20px;
 }
 
-.phpdoc-content > .tabbable > ul > li:first-child {
+body.addon-phpdoc .phpdoc-content > .tabbable > ul > li:first-child {
   margin-left: 10px;
 }
 
-.phpdoc-content > .tabbable > .tab-content {
+body.addon-phpdoc .phpdoc-content > .tabbable > .tab-content {
   padding: 0;
 }
 
-.phpdoc-content > .tabbable a {
+body.addon-phpdoc .phpdoc-content > .tabbable a {
   text-decoration: none;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs {
   margin-top: 0 !important;
   font-size: 14px;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li > a {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li > a {
   padding: 4px 10px;
   text-decoration: none;
   color: darkgray;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li > a i.fa {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li > a i.fa {
   margin-right: 10px;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li.active > a {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li.active > a {
   color: black;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li.seperator > span {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs li.seperator > span {
   display: block;
   font-weight: bold;
   padding: 4px 10px;
@@ -958,7 +971,7 @@
   text-align: center;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs i.phpdoc-inherited-method-icon {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs i.phpdoc-inherited-method-icon {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -969,18 +982,18 @@
   margin-right: -5px;
   margin-top: 3px;
   font-size: 12px;
-  color: #FFC107;
+  color: #ffc107;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs i.phpdoc-inherited-method-icon:before {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .nav-tabs i.phpdoc-inherited-method-icon:before {
   content: "";
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable > .tab-content {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable > .tab-content {
   padding: 0;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable .tab-pane .tab-pane-header {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable .tab-pane .tab-pane-header {
   padding: 12px 15px;
   font-family: "Source Code Pro", monospace;
   font-size: 12px;
@@ -988,55 +1001,55 @@
   margin: 0;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable .tab-pane .tab-pane-header small.visibility {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable .tab-pane .tab-pane-header small.visibility {
   margin-right: 15px;
 }
 
-.phpdoc-content #phpdoc-methods > .tabbable .tab-pane .tab-pane-content {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods > .tabbable .tab-pane .tab-pane-content {
   padding: 10px 20px 20px 20px;
 }
 
-.phpdoc-content #phpdoc-methods h4 {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods h4 {
   border-bottom: 2px solid #e2e2e2;
   padding-bottom: 7px;
   padding-left: 4px;
   margin: 10px 0;
 }
 
-.phpdoc-content #phpdoc-methods .block {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods .block {
   padding-left: 5px;
 }
 
-.phpdoc-content #phpdoc-methods .argument {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods .argument {
   border-top: 1px dashed #f1f1f1;
   border-bottom: 1px dashed #f1f1f1;
   border-left: 2px solid #e6e4e4;
   padding: 3px 0 3px 5px;
 }
 
-.phpdoc-content #phpdoc-methods .argument + .block {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods .argument + .block {
   border-left: 2px solid #e6e4e4;
   padding-left: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
-.phpdoc-content #phpdoc-methods .argument + .block > p {
+body.addon-phpdoc .phpdoc-content #phpdoc-methods .argument + .block > p {
   margin: 0;
   padding-top: 10px;
 }
 
-.phpdoc-content #phpdoc-properties > table td {
+body.addon-phpdoc .phpdoc-content #phpdoc-properties > table td {
   padding: 2px 10px;
 }
 
-.phpdoc-content #phpdoc-properties > table i.visibility-icon {
+body.addon-phpdoc .phpdoc-content #phpdoc-properties > table i.visibility-icon {
   width: 20px;
   text-align: center;
   font-size: 12px;
 }
 
-.phpdoc-class-link {
+body.addon-phpdoc .phpdoc-class-link {
   font-size: 11px;
   line-height: 11px;
   vertical-align: middle;

@@ -2,8 +2,6 @@
 namespace Codex\Addon\Phpdoc\Elements;
 
 
-use Sebwite\Support\Str;
-
 class Property extends PhpdocXmlElement
 {
 
@@ -22,6 +20,7 @@ class Property extends PhpdocXmlElement
             'description' => (string)$this->docblock->description,
             'name'        => (string)$this->name,
             'full_name'   => (string)$this->full_name,
+            'class_name'  => $this->getClassFullName(),
             'default'     => (string)$this->default === 'true',
             'tags'        => Helper::docBlockTags($this->docblock),
             'type'        => $this->resolveType(),
@@ -39,4 +38,9 @@ class Property extends PhpdocXmlElement
         return 'mixed';
     }
 
+    public function getClassFullName()
+    {
+        $fullName = (string)$this->full_name;
+        return head(explode('::', $fullName));
+    }
 }

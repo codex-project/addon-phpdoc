@@ -49,6 +49,8 @@ class Element extends PhpdocXmlElement
      */
     public function toArray()
     {
+
+
         $arr = [
             'hash'             => $this->attr('hash'),
             'file_description' => (string)$this->docblock->description,
@@ -93,6 +95,41 @@ class Element extends PhpdocXmlElement
             $methods [] = Method::create($p->asXML());
         }
         return collect($methods);
+    }
+
+    /**
+     * getOwnMethods method
+     * @return Collection|Method[]
+     */
+    public function getOwnMethods()
+    {
+        return $this->getMethods()->filter(function(Method $method){
+            return $method->getClassFullName() === (string) $this->obj()->full_name;
+        });
+    }
+
+    /** @return Collection|Method[] */
+    public function getInheritedMethods()
+    {
+        return $this->getMethods()->filter(function(Method $method){
+            return $method->getClassFullName() !== (string) $this->obj()->full_name;
+        });
+    }
+
+    /** @return Collection|Property[] */
+    public function getOwnProperties()
+    {
+        return $this->getProperties()->filter(function(Property $property){
+            return $property->getClassFullName() === (string) $this->obj()->full_name;
+        });
+    }
+
+    /** @return Collection|Property[] */
+    public function getInheritedProperties()
+    {
+        return $this->getProperties()->filter(function(Property $property){
+            return $property->getClassFullName() !== (string) $this->obj()->full_name;
+        });
     }
 
     public function isExtending()

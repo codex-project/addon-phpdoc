@@ -82,6 +82,9 @@ return [
 
             'xml_path' => 'structure.xml',
 
+            'doc_path' => '_phpdoc',
+            'doc_disabled_processors' => ['header', 'toc'], //'button',
+
             // @deprecated
             'path' => 'structure.xml',
 

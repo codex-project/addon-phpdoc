@@ -2,6 +2,7 @@
 namespace Codex\Addon\Phpdoc;
 
 use Codex\Addon\Phpdoc\Elements\Element;
+use Codex\Addon\Phpdoc\Elements\Method;
 use Codex\Projects\Project;
 use Codex\Support\Collection;
 use Sebwite\Support\Str;
@@ -37,11 +38,11 @@ class Popover
     public function generate($class, $method = null)
     {
         /** @var Element $class */
-        $data = $this->phpdoc->getElement($fullName = Str::ensureLeft($class, '\\'));
-        if ( !$data ) {
+        $el = $this->phpdoc->getElement($fullName = Str::ensureLeft($class, '\\'));
+        if ( !$el ) {
             return;
         }
-        $data = $data->toArray();
+        $data = $el->toArray();
         // title
         $type  = isset($method) ? 'method' : 'class';
         $title = "<span class=\"popover-phpdoc-type\">{$type}</span>" . view('codex-phpdoc::partials.type', [ 'type' => Str::ensureLeft($class, '\\'), 'phpdoc' => $this->phpdoc, 'typeFullName' => true ])->render();
@@ -61,18 +62,29 @@ class Popover
             $content = '';
         }
 
-        if($data['extends']){
+        if ( array_key_exists('extends', $data) ) {
 
             $this->handleExtends($content, $data);
         }
 
-        if($data['implements']){
+        if ( array_key_exists('implements', $data) && count($data[ 'implements' ]) > 0 ) {
             $this->handleImplements($content, $data);
+        }
+        $methods = '';
+        if ( $method === 1 ) {
+            $methods = '<h5>Methods:</h5>';
+            $methods .= view('codex-phpdoc::partials.method', [
+                'method' => $el->getOwnMethods()->toArray(),
+                'phpdoc' => $this->phpdoc,
+                'class'  => 'fs-10',
+            ])->render();
         }
 
         $content .= <<<HTML
 <div class="popover-phpdoc-description fs-10">
 {$data['description']}
+<br>
+{$methods}
 </div>
 HTML;
         $title   = str_replace('"', '\'', $title);
@@ -82,19 +94,19 @@ HTML;
 
     protected function handleImplements(&$content, $data)
     {
-        foreach($data['implements'] as $className){
+        foreach ( $data[ 'implements' ] as $className ) {
             $class = $this->phpdoc->getElement($className);
         }
     }
 
     protected function handleExtends(&$content, $data)
     {
-        $extended = $this->phpdoc->getElement($data['extends']);
-        if($extended === null){
+        $extended = $this->phpdoc->getElement($data[ 'extends' ]);
+        if ( $extended === null ) {
             return;
         }
         $class = $extended->toArray();
-        $name = $class['name'];
+        $name  = $class[ 'name' ];
     }
 
 

@@ -36,7 +36,16 @@
             </tbody>
         </table>
     @endif
-</div><!-- TABS: METHODS, PROPERTIES, SOURCE-->
+</div>
+
+<!-- DOCUMENT -->
+@if(isset($document))
+<article class="phpdoc-document">
+    {!! $document !!}
+</article>
+@endif
+
+<!-- TABS: METHODS, PROPERTIES, SOURCE-->
 <div class="tabbable" id="phpdoc-tabs">
     <ul role="tablist" class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#phpdoc-methods" aria-controls="phpdoc-methods" role="tab" data-toggle="tab">Methods</a></li>

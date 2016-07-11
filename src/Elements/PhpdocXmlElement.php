@@ -14,13 +14,12 @@ use SimpleXMLElement;
  * @package        Codex\Addon
  * @author         CLI
  * @copyright      Copyright (c) 2015, CLI. All rights reserved
- * @property string           name
- * @property string           full_name
- * @property string           extends
- * @property string[]         implements
- * @property boolean          default
- * @property PhpdocXmlElement docblock
- * @property PhpdocXmlElement docblock
+ * @property string           $name
+ * @property string           $full_name
+ * @property string           $extends
+ * @property string[]         $implements
+ * @property boolean          $default
+ * @property PhpdocXmlElement $docblock
  *
  *
  */

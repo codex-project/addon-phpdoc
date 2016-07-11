@@ -32,7 +32,7 @@ class PhpdocDocument extends Document
         $this->mergeAttributes($project->config('phpdoc'));
         $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex' ]);
         $codex->theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc');
-        $codex->theme->addBodyClass('sidebar-closed content-compact');
+        $codex->theme->addBodyClass('sidebar-closed content-compact addon-phpdoc');
         $codex->theme->addScript('phpdoc', <<<JS
 codex.phpdoc.init('#codex-phpdoc', {
     project: '{$project->getName()}',

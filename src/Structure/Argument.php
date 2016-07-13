@@ -26,9 +26,10 @@ class Argument extends AbstractStructure
     protected function transform($data)
     {
         $items = [
-            'byref' => (bool) $data['@attributes.by_reference']
+            'byref' => (bool) $data['@attributes.by_reference'],
+            'types' => explode('|', $this->createString($data['type']))
         ];
-        $this->copy(['name', 'type', 'default'], $data, $items);
+        $this->copy(['name', 'default'], $data, $items);
         //$data['default']
         return $items;
     }

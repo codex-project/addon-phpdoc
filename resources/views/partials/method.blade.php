@@ -1,4 +1,4 @@
-@if(is_string(head(array_keys($method))))
+@if(is_string(head(array_keys((array) $method))))
 @set($method, [$method])
 @endif
 @foreach($method as $m)

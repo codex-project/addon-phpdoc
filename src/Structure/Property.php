@@ -39,11 +39,12 @@ class Property extends AbstractStructure
 
         $items[ 'full_name' ]  = $data->get('full_name', $this->belongsTo[ 'full_name' ] . '::' . Str::removeLeft($data[ 'name' ], '$'));
         $items[ 'class_name' ] = head(explode('::', $items[ 'full_name' ]));
+        $items[ 'inherited' ]  = $this->belongsTo[ 'full_name' ] !== $items[ 'class_name' ];
         $items[ 'tags' ]       = $this->structures('docblock.tag', Tag::class, $data);
 
         $types = $data->get('docblock.tag.type', 'mixed');
-        if(!is_array($types)){
-            $types = [$types];
+        if ( !is_array($types) ) {
+            $types = [ $types ];
         }
         $items[ 'types' ] = $types;
 

@@ -65,17 +65,34 @@ abstract class AbstractStructure implements Arrayable, ArrayAccess, Serializable
         return Arr::has($this->items, $key);
     }
 
-    /**
-     * forget method
-     *
-     * @param array|string ...$keys
-     *
-     * @return static
-     */
+    /** @return static */
     public function forget($keys)
     {
-        Arr::forget($this->items, is_string($keys) ? func_get_args() : $keys);
+        $keys = is_string($keys) ? func_get_args() : $keys;
+        foreach ( $keys as $key )
+        {
+            $items = &$this->items;
+            $segments = explode('.', $key);
+            while ( count($segments) )
+            {
+                $segment = array_shift($segments);
+                $last    = count($segments) === 0;
+                if ( $last )
+                {
+                    unset($items[ $segment ]);
+                } else {
+                    $items    = &$items[ $segment ];
+                }
+            }
+
+        }
+
         return $this;
+    }
+
+    public function without($keys)
+    {
+        return $this->forget($keys);
     }
 
     protected function createString($str)
@@ -114,7 +131,9 @@ abstract class AbstractStructure implements Arrayable, ArrayAccess, Serializable
      */
     public function toArray()
     {
-        return (new Collection($this->items))->toArray();
+        return array_map(function ($value) {
+            return $value instanceof Arrayable ? $value->toArray() : $value;
+        }, $this->items);
     }
 
     /**
@@ -214,4 +233,28 @@ abstract class AbstractStructure implements Arrayable, ArrayAccess, Serializable
     {
         $this->items = unserialize($serialized);
     }
+
+    /**
+     * @return \Codex\Addon\Phpdoc\Structure\AbstractStructure
+     */
+    public function getBelongsTo()
+    {
+        return $this->belongsTo;
+    }
+
+    /**
+     * Set the belongsTo value
+     *
+     * @param \Codex\Addon\Phpdoc\Structure\AbstractStructure $belongsTo
+     *
+     * @return AbstractStructure
+     */
+    public function setBelongsTo($belongsTo)
+    {
+        $this->belongsTo = $belongsTo;
+
+        return $this;
+    }
+
+
 }

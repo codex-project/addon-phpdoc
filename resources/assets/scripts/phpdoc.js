@@ -15,6 +15,12 @@ var codex;
     (function (phpdoc) {
         var defined = codex.util.defined;
         var create = codex.util.create;
+        var PhpApi = (function () {
+            function PhpApi() {
+            }
+            return PhpApi;
+        }());
+        phpdoc.PhpApi = PhpApi;
         var PhpdocApi = (function (_super) {
             __extends(PhpdocApi, _super);
             function PhpdocApi(project, ref) {
@@ -300,6 +306,54 @@ var codex;
 (function (codex) {
     var phpdoc;
     (function (phpdoc) {
+        var PhpdocComponent = (function (_super) {
+            __extends(PhpdocComponent, _super);
+            function PhpdocComponent() {
+                _super.apply(this, arguments);
+            }
+            PhpdocComponent.template = '<div>PHPDOC</div>';
+            PhpdocComponent = __decorate([
+                codex.component('phpdoc')
+            ], PhpdocComponent);
+            return PhpdocComponent;
+        }(codex.Component));
+        phpdoc.PhpdocComponent = PhpdocComponent;
+        var PhpdocTreeComponent = (function (_super) {
+            __extends(PhpdocTreeComponent, _super);
+            function PhpdocTreeComponent() {
+                _super.apply(this, arguments);
+            }
+            PhpdocTreeComponent.prototype.ready = function () {
+                console.log('phpdoc-tree', this);
+            };
+            PhpdocTreeComponent.prototype.getEntities = function () {
+                this.$http.get(codex.config('apiUrl') + '/v1/phpdoc/codex/master/list', {
+                    full: false
+                }, {}).then(function (response) {
+                    if (response.data.success === true) {
+                        response.data.data.forEach(function (entity) {
+                            console.log(entity);
+                        });
+                    }
+                    console.log(response.data.success);
+                });
+            };
+            PhpdocTreeComponent.template = '<div>TREE</div>';
+            __decorate([
+                codex.lifecycleHook('ready')
+            ], PhpdocTreeComponent.prototype, "ready", null);
+            PhpdocTreeComponent = __decorate([
+                codex.component('phpdoc-tree')
+            ], PhpdocTreeComponent);
+            return PhpdocTreeComponent;
+        }(codex.Component));
+        phpdoc.PhpdocTreeComponent = PhpdocTreeComponent;
+    })(phpdoc = codex.phpdoc || (codex.phpdoc = {}));
+})(codex || (codex = {}));
+var codex;
+(function (codex) {
+    var phpdoc;
+    (function (phpdoc) {
         var PhpdocWidget = (function (_super) {
             __extends(PhpdocWidget, _super);
             function PhpdocWidget() {
@@ -537,7 +591,11 @@ var codex;
         phpdoc.helper = new phpdoc.PhpdocHelper;
         function init(selector, options) {
             if (options === void 0) { options = {}; }
-            $(function () { return $(selector).phpdoc(options); });
+            $(function () {
+                $(selector).phpdoc(options);
+                window['vm'] = new Vue;
+                window['vm'].$mount('html');
+            });
         }
         phpdoc.init = init;
     })(phpdoc = codex.phpdoc || (codex.phpdoc = {}));

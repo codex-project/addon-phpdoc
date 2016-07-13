@@ -11,7 +11,6 @@
 namespace Codex\Addon\Phpdoc\Structure;
 
 use Codex\Support\Collection;
-use Sebwite\Support\Str;
 
 class Method extends AbstractStructure
 {
@@ -43,19 +42,20 @@ class Method extends AbstractStructure
             'arguments' => [ ],
         ];
 
-        if($data['name'] = ''){
+        if ( $data[ 'name' ] = '' ) {
             $desc = $data->get('docblock.description', 'asdf ' . str_random(5));
-            if(is_array($desc)){
+            if ( is_array($desc) ) {
                 $desc = implode("\n", $desc);
             }
-            $data['name'] = camel_case(last(explode(' ', $desc)));
-
+            $data[ 'name' ] = camel_case(last(explode(' ', $desc)));
         }
 
         $items[ 'full_name' ]  = $data->get('full_name', $this->belongsTo[ 'class_name' ] . '::' . $data[ 'name' ]);
         $items[ 'class_name' ] = head(explode('::', $items[ 'full_name' ]));
+        $items[ 'inherited' ]  = $this->belongsTo[ 'full_name' ] !== $items[ 'class_name' ];
 
-        $this->items = $items;
+
+        $this->items          = $items;
         $items[ 'tags' ]      = $this->structures('docblock.tag', Tag::class, $data);
         $items[ 'arguments' ] = $this->structures('argument', Argument::class, $data);
 

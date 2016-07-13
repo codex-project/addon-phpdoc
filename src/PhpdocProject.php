@@ -1,7 +1,7 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Addon\Phpdoc\Elements\Element;
+use Codex\Addon\Phpdoc\Structure\File;
 use Codex\Addon\Phpdoc\Tree\Node;
 use Codex\Projects\Project;
 use Codex\Support\Collection;
@@ -15,7 +15,7 @@ class PhpdocProject
 
     protected $cachePath;
 
-    protected $elements = [ ];
+    protected $entities = [ ];
 
     /** @var \Sebwite\Filesystem\Filesystem */
     protected $fs;
@@ -23,7 +23,7 @@ class PhpdocProject
     /** @var \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store */
     protected $cache;
 
-    protected $extractor;
+    protected $compiler;
 
 
     /**
@@ -35,15 +35,10 @@ class PhpdocProject
      */
     public function __construct(Project $parent, Filesystem $fs, Repository $cache)
     {
-        $this->fs        = $fs;
-        $this->cache     = $cache;
-        $this->extractor = new Extractor($this);
-        $this->getExtractor()->setRawResolver(function (Extractor $extractor) {
-            return $this->project->getFiles()->get(
-                $this->project->refPath($this->project->config('phpdoc.path'))
-            );
-        });
-        $this->project = $parent;
+        $this->fs       = $fs;
+        $this->cache    = $cache;
+        $this->project  = $parent;
+        $this->compiler = new Compiler($fs);
         $this->setCachePath(path_join(
             config('codex-phpdoc.cache_path'),
             $parent->getName(),
@@ -59,32 +54,29 @@ class PhpdocProject
 
     public function clearCache()
     {
-        file_cleanDirectory($this->getCachePath());
         $this->cache->forget($this->getCacheKey());
     }
+
     public function checkUpdate($forceUpdate = false)
     {
         $cachedLastModified = (int)$this->cache->get($this->getCacheKey(), 0);
         if ( $forceUpdate === true || $cachedLastModified !== $this->getLastModified() ) {
-            $this->extractor->run();
+
+            $this->compiler->compile($this->getStructureXml(), $this->getCachePath());
             $this->cache->forever($this->getCacheKey(), $this->getLastModified());
         }
-    }
-
-    public function url($full_name = null)
-    {
-        $url = $this->project->url($this->project->config('phpdoc.document_slug', 'phpdoc'), $this->project->getRef());
-        if ( $full_name ) {
-            $url .= "#!/{$full_name}";
-        }
-        return $url;
     }
 
     public function getLastModified()
     {
         return (int)$this->project->getFiles()->lastModified(
-            $this->project->refPath($this->project->config('phpdoc.path'))
+            $this->project->refPath($this->project->config('phpdoc.xml_path'))
         );
+    }
+
+    public function getStructureXml()
+    {
+        return $this->project->getFiles()->get($this->project->refPath($this->project->config('phpdoc.xml_path')));
     }
 
     /**
@@ -97,29 +89,27 @@ class PhpdocProject
         return new Collection($this->fs->getRequire($this->getCacheFilePath('manifest.php')));
     }
 
-    public function getInfo()
-    {
-        return $this->fs->getRequire($this->getCacheFilePath('info.php'));
-    }
 
     /**
      * Returns a Class, Trait or Interface
      *
      * @param $full_name
      *
-     * @return Element
+     * @return File
      */
-    public function getElement($full_name)
+    public function getEntity($full_name)
     {
-        if ( ! array_key_exists($full_name, $this->elements) ) {
-            $filePath = $this->getCacheFilePath(Util::toFileName($full_name, '.xml'));
+        if ( ! array_key_exists($full_name, $this->entities) ) {
+            $filePath = $this->getCacheFilePath(Util::toFileName($full_name, '.dat'));
             if($this->fs->exists($filePath) === false){
                 return null;
             }
             $file                         = $this->fs->get($filePath);
-            $this->elements[ $full_name ] = Element::create($file);
+            /** @var File $file */
+            $file = $this->entities[ $full_name ] = unserialize($file);
+            $file->getEntity();
         }
-        return $this->elements[ $full_name ];
+        return $this->entities[ $full_name ];
     }
 
     /**
@@ -127,22 +117,31 @@ class PhpdocProject
      *
      * @param bool $full
      *
-     * @return \Codex\Support\Collection
+     * @return \Codex\Support\Collection|File[]
      */
-    public function getElements($full = false)
+    public function getEntities($full = false)
     {
         return
             $full ?
                 $this->getManifest()->transform(function ($item) {
-                    return $this->getElement($item[ 'full_name' ]);
+                    return $this->getEntity($item[ 'full_name' ]);
                 })
                 :
                 $this->getManifest();
     }
 
-    public function hasElement($full_name)
+    public function hasEntity($full_name)
     {
-        return $this->fs->exists($this->getCacheFilePath(Util::toFileName($full_name, '.xml')));
+        return $this->fs->exists($this->getCacheFilePath(Util::toFileName($full_name, '.dat')));
+    }
+
+    public function url($full_name = null)
+    {
+        $url = $this->project->url($this->project->config('phpdoc.document_slug', 'phpdoc'), $this->project->getRef());
+        if ( $full_name ) {
+            $url .= "#!/{$full_name}";
+        }
+        return $url;
     }
 
     public function makeTree($elements = [ ], $only = null)
@@ -187,12 +186,12 @@ class PhpdocProject
 
     public function tree($full = false)
     {
-        return $this->makeTree($this->getElements($full));
+        return $this->makeTree($this->getEntities($full));
     }
 
     public function nodeTree()
     {
-        $data = $this->makeTree($this->getElements());
+        $data = $this->makeTree($this->getEntities());
         $root = new Node(key($data), Node::TYPE_NAMESPACE);
         return $this->buildNodeTree($data, $root);
     }
@@ -239,9 +238,9 @@ class PhpdocProject
     /**
      * @return \Codex\Addon\Phpdoc\Extractor
      */
-    public function getExtractor()
+    public function getCompiler()
     {
-        return $this->extractor;
+        return $this->compiler;
     }
 
     /**
@@ -257,11 +256,11 @@ class PhpdocProject
     /**
      * Set the extractor value
      *
-     * @param \Codex\Addon\Phpdoc\Extractor $extractor
+     * @param \Codex\Addon\Phpdoc\Extractor $compiler
      */
-    public function setExtractor($extractor)
+    public function setCompiler($compiler)
     {
-        $this->extractor = $extractor;
+        $this->compiler = $compiler;
     }
 
 

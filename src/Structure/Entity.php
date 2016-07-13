@@ -38,9 +38,11 @@ class Entity extends AbstractStructure
     protected function transform($data)
     {
         $items = [
-            'final'     => (bool)$data[ '@attributes.final' ],
-            'abstract'  => (bool)$data[ '@attributes.abstract' ],
-            'namespace' => $data[ '@attributes.namespace' ],
+            'final'            => (bool)$data[ '@attributes.final' ],
+            'abstract'         => (bool)$data[ '@attributes.abstract' ],
+            'namespace'        => $data[ '@attributes.namespace' ],
+            'description'      => $this->createString($data[ 'docblock.description' ]),
+            'long-description' => $this->createString($data[ 'docblock.long-description' ]),
         ];
         $this->copy([ 'extends', 'implements', 'name', 'full_name' ], $data, $items);
 
@@ -56,6 +58,10 @@ class Entity extends AbstractStructure
         $items = array_merge($items, compact('methods', 'constants', 'properties', 'tags'));
 
         return $items;
+    }
+
+    public function mergeFile()
+    {
     }
 
 
@@ -79,19 +85,19 @@ class Entity extends AbstractStructure
         return $this[ 'namespace-alias' ];
     }
 
-    /** @return Collection */
+    /** @return Collection|Method[] */
     public function getMethods()
     {
         return $this[ 'methods' ];
     }
 
-    /** @return Collection */
+    /** @return Collection|Constant[] */
     public function getConstants()
     {
         return $this[ 'contants' ];
     }
 
-    /** @return Collection */
+    /** @return Collection|Property[] */
     public function getProperties()
     {
         return $this[ 'properties' ];
@@ -101,5 +107,31 @@ class Entity extends AbstractStructure
     public function getTags()
     {
         return $this[ 'tags' ];
+    }
+
+    #protected $children = ['methods', 'contants', 'properpties', 'tags'];
+
+    public function unserialize($serialized)
+    {
+        parent::unserialize($serialized);
+        foreach ( $this->getMethods() as $item ) {
+            $item->setBelongsTo($this);
+        }
+//        foreach ( $this->getConstants() as $item ) {
+//            $item->setBelongsTo($this);
+//        }
+        foreach ( $this->getProperties() as $item ) {
+            $item->setBelongsTo($this);
+        }
+        foreach ( $this->getTags() as $item ) {
+            $item->setBelongsTo($this);
+        }
+        return;
+        foreach ( [ $this->getMethods(), $this->getProperties(), $this->getConstants(), $this->getTags() ] as $collection ) {
+            /** @var Collection|AbstractStructure[] $collection */
+            foreach ( $collection as $item ) {
+                $item->setBelongsTo($this);
+            }
+        }
     }
 }

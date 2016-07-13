@@ -1,8 +1,8 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Addon\Phpdoc\Elements\Element;
-use Codex\Addon\Phpdoc\Elements\Method;
+use Codex\Addon\Phpdoc\Structure\Entity ;
+use Codex\Addon\Phpdoc\Structure\Method;
 use Codex\Projects\Project;
 use Codex\Support\Collection;
 use Sebwite\Support\Str;
@@ -12,7 +12,7 @@ class Popover
     /** @var \Codex\Projects\Project */
     protected $project;
 
-    /** @var \Codex\Addon\Phpdoc\ProjectPhpdoc */
+    /** @var \Codex\Addon\Phpdoc\PhpdocProject */
     protected $phpdoc;
 
     protected $elements;
@@ -26,7 +26,7 @@ class Popover
     {
         $this->project  = $project;
         $this->phpdoc   = $project->phpdoc;
-        $this->elements = new Collection($project->phpdoc->getElements()->toArray());
+        $this->elements = new Collection($project->phpdoc->getEntities()->toArray());
     }
 
 
@@ -37,18 +37,19 @@ class Popover
 
     public function generate($class, $method = null)
     {
-        /** @var Element $class */
-        $el = $this->phpdoc->getElement($fullName = Str::ensureLeft($class, '\\'));
-        if ( !$el ) {
+        /** @var Entity $class */
+        $file = $this->phpdoc->getEntity($fullName = Str::ensureLeft($class, '\\'));
+        if ( !$file ) {
             return;
         }
-        $data = $el->toArray();
+        $entity = $file->getEntity();
+        $data = $file->toArray();
         // title
         $type  = isset($method) ? 'method' : 'class';
         $title = "<span class=\"popover-phpdoc-type\">{$type}</span>" . view('codex-phpdoc::partials.type', [ 'type' => Str::ensureLeft($class, '\\'), 'phpdoc' => $this->phpdoc, 'typeFullName' => true ])->render();
         $title = str_replace('"', '\'', $title);
         if ( $method ) {
-            $data = new Collection($data[ 'methods' ]);
+            $data = new Collection($entity[ 'methods' ]);
             $data = $data->where('name', $method)->first();
             if ( !$data ) {
                 return;
@@ -74,7 +75,7 @@ class Popover
         if ( $method === 1 ) {
             $methods = '<h5>Methods:</h5>';
             $methods .= view('codex-phpdoc::partials.method', [
-                'method' => $el->getOwnMethods()->toArray(),
+                'method' => $entity->getMethods()->where('inherited', false)->toArray(),
                 'phpdoc' => $this->phpdoc,
                 'class'  => 'fs-10',
             ])->render();
@@ -82,7 +83,7 @@ class Popover
 
         $content .= <<<HTML
 <div class="popover-phpdoc-description fs-10">
-{$data['description']}
+{$entity['description']}
 <br>
 {$methods}
 </div>
@@ -95,13 +96,13 @@ HTML;
     protected function handleImplements(&$content, $data)
     {
         foreach ( $data[ 'implements' ] as $className ) {
-            $class = $this->phpdoc->getElement($className);
+            $class = $this->phpdoc->getEntity($className);
         }
     }
 
     protected function handleExtends(&$content, $data)
     {
-        $extended = $this->phpdoc->getElement($data[ 'extends' ]);
+        $extended = $this->phpdoc->getEntity($data[ 'extends' ]);
         if ( $extended === null ) {
             return;
         }

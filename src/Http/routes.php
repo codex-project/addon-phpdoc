@@ -9,3 +9,17 @@ Route::group([ 'prefix' => '{projectSlug}/{ref}' ], function () {
     Route::get('doc', [ 'as' => 'phpdoc.doc', 'uses' => 'PhpdocApiController@getDocPage' ]);
     Route::get('popover', [ 'as' => 'phpdoc.popover', 'uses' => 'PhpdocApiController@getPopover' ]);
 });
+
+
+Route::resource('entity', 'PhpdocApiRestController', [
+    'only' => 'index', 'show'
+]);
+
+/*
+ * /entity              index
+ *  - full
+ *  - tree
+ * /entity/{entity}     show
+ *  - fields
+ *
+ */

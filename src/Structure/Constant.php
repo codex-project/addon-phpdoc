@@ -31,7 +31,7 @@ class Constant extends AbstractStructure
             'full_name' => $data[ 'full_name' ],
             'value'     => $data[ 'value' ],
             'namespace' => $data[ '@attributes.namespace' ],
-            'line'      => (int)$data[ '@@attributes.line' ],
+            'line'      => (int)$data[ '@attributes.line' ],
         ];
     }
 }

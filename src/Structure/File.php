@@ -43,15 +43,15 @@ class File extends AbstractStructure
 
         $this->copy([ 'source', 'parse_markers' ], $data, $items);
 
-        $items[ 'namespace-alias' ] = [ ];
+        $items[ 'uses' ] = [ ];
         if ( $data->has('namespace-alias') ) {
-            $items[ 'namespace-alias' ] = is_string($data[ 'namespace-alias' ]) ? [ $data[ 'namespace-alias' ] ] : $data[ 'namespace-alias' ];
+            $items[ 'uses' ] = is_string($data[ 'namespace-alias' ]) ? [ $data[ 'namespace-alias' ] ] : $data[ 'namespace-alias' ];
         }
         $items = array_merge($items, [
             'path'                  => $data[ '@attributes.path' ],
             'hash'                  => $data[ '@attributes.hash' ],
-            'file_description'      => $data[ 'docblock.description' ],
-            'file_long-description' => $data[ 'docblock.long-description' ],
+            'file_description'      => $this->createString($data[ 'docblock.description' ]),
+            'file_long-description' => $this->createString($data[ 'docblock.long-description' ]),
 
         ]);
 
@@ -72,6 +72,21 @@ class File extends AbstractStructure
 
 
         return $items;
+    }
+
+    public function unserialize($serialized)
+    {
+        parent::unserialize($serialized);
+        $this->getEntity() !== null && $this->getEntity()->setBelongsTo($this);
+    }
+
+    /**
+     * getEntity method
+     * @return \Codex\Addon\Phpdoc\Structure\Entity
+     */
+    public function getEntity()
+    {
+        return $this['entity'];
     }
 
 

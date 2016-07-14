@@ -15,107 +15,34 @@ var codex;
     (function (phpdoc) {
         var defined = codex.util.defined;
         var create = codex.util.create;
-        var PhpApi = (function () {
-            function PhpApi() {
-            }
-            return PhpApi;
-        }());
-        phpdoc.PhpApi = PhpApi;
         var PhpdocApi = (function (_super) {
             __extends(PhpdocApi, _super);
-            function PhpdocApi(project, ref) {
-                if (project === void 0) { project = ''; }
-                if (ref === void 0) { ref = 'master'; }
-                _super.call(this, codex.config('apiUrl'));
-                this.ref = null;
-                this.entities = {};
-                this.sources = {};
-                this.docs = {};
-                this.popovers = {};
-                this.project = project;
-                this.ref = ref;
+            function PhpdocApi() {
+                _super.apply(this, arguments);
             }
-            PhpdocApi.prototype.setProject = function (project) {
-                this.project = project;
-                this.entities = {};
+            PhpdocApi.prototype.getEntities = function (project, ref, extras, fields) {
+                if (extras === void 0) { extras = false; }
+                return this.request('get', '/phpdoc/entities', {
+                    project: project,
+                    ref: ref,
+                    full: extras,
+                    fields: fields
+                });
             };
-            PhpdocApi.prototype.setRef = function (ref) {
-                this.ref = ref;
-                this.entities = {};
+            PhpdocApi.prototype.getTree = function (project, ref) {
+                return this.request('get', '/phpdoc/entities', {
+                    project: project,
+                    ref: ref,
+                    tree: true
+                });
             };
-            PhpdocApi.prototype.entitiy = function (name) {
-                var defer = create();
-                if (codex.config('debug') === false && defined(this.entities[name])) {
-                    defer.resolve(this.entities[name]);
-                }
-                else {
-                    _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'entity'].join('/'), { entity: name }).then(function (res) { return defer.resolve(phpdoc.Entity.make(res.data)); });
-                }
-                return defer.promise;
-            };
-            PhpdocApi.prototype.method = function (name) {
-                var defer = create();
-                if (codex.config('debug') === false && defined(this.entities[name])) {
-                    defer.resolve(this.entities[name]);
-                }
-                else {
-                    _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'entity'].join('/'), { entity: name }).then(function (res) { return defer.resolve(phpdoc.Entity.make(res.data)); });
-                }
-                return defer.promise;
-            };
-            PhpdocApi.prototype.list = function (full) {
-                if (full === void 0) { full = false; }
-                var defer = create();
-                _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'list'].join('/'), { full: full }).then(function (data) { return defer.resolve(data.data); });
-                return defer.promise;
-            };
-            PhpdocApi.prototype.tree = function (full) {
-                if (full === void 0) { full = false; }
-                var defer = create();
-                _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'tree'].join('/'), { full: full }).then(function (data) { return defer.resolve(data); });
-                return defer.promise;
-            };
-            PhpdocApi.prototype.source = function (name) {
-                var _this = this;
-                var defer = create();
-                if (codex.config('debug') === false && defined(this.sources[name])) {
-                    defer.resolve(this.sources[name]);
-                }
-                else {
-                    _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'source'].join('/'), { entity: name }).then(function (res) {
-                        _this.sources[name] = res.data.source;
-                        defer.resolve(res.data.source);
-                    });
-                }
-                return defer.promise;
-            };
-            PhpdocApi.prototype.doc = function (name) {
-                var _this = this;
-                var defer = create();
-                if (codex.config('debug') === false && defined(this.docs[name])) {
-                    defer.resolve(this.docs[name]);
-                }
-                else {
-                    _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'doc'].join('/'), { entity: name }).then(function (res) {
-                        _this.docs[name] = res.data.doc;
-                        defer.resolve(res.data.doc);
-                    });
-                }
-                return defer.promise;
-            };
-            PhpdocApi.prototype.popover = function (name) {
-                var _this = this;
-                var defer = create();
-                if (codex.config('debug') === false && defined(this.popovers[name])) {
-                    defer.resolve(this.popovers[name]);
-                }
-                else {
-                    _super.prototype.get.call(this, ['phpdoc', this.project, this.ref, 'popover'].join('/'), { name: name }).then(function (res) {
-                        _this.popovers[name] = res.data;
-                        defer.resolve(res.data);
-                    });
-                }
-                return defer.promise;
+            PhpdocApi.prototype.getEntity = function (project, ref, full_name, fields) {
+                return this.request('get', '/phpdoc/entity', {
+                    project: project,
+                    ref: ref,
+                    full_name: full_name,
+                    fields: fields
+                });
             };
             return PhpdocApi;
         }(codex.Api));
@@ -167,42 +94,14 @@ var codex;
                 this._tree = {};
             }
             PhpdocHelper.prototype.init = function (project, ref) {
-                var _this = this;
                 if (project === void 0) { project = ''; }
                 if (ref === void 0) { ref = 'master'; }
-                this._api = new phpdoc.PhpdocApi(project, ref);
                 this.defer = codex.util.create();
-                async.parallel([
-                    function (cb) { return _this.api.list().then(function (res) {
-                        _this._list = res;
-                        cb();
-                    }); },
-                    function (cb) { return _this.api.tree().then(function (res) {
-                        _this._tree = res.data;
-                        cb();
-                    }); }
-                ], function () {
-                    _this.defer.resolve();
-                });
                 return this;
             };
             PhpdocHelper.prototype.ready = function (cb) {
                 return this.defer.promise.then(cb);
             };
-            Object.defineProperty(PhpdocHelper.prototype, "project", {
-                get: function () {
-                    return this._api.project;
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(PhpdocHelper.prototype, "ref", {
-                get: function () {
-                    return this._api.ref;
-                },
-                enumerable: true,
-                configurable: true
-            });
             Object.defineProperty(PhpdocHelper.prototype, "list", {
                 get: function () {
                     return this._list;
@@ -576,9 +475,6 @@ var codex;
                     this.ignoreTreeSelect = false;
                 }
             };
-            PhpdocWidget = __decorate([
-                codex.util.widget('phpdoc')
-            ], PhpdocWidget);
             return PhpdocWidget;
         }(codex.util.Widget));
         phpdoc.PhpdocWidget = PhpdocWidget;
@@ -589,6 +485,7 @@ var codex;
     var phpdoc;
     (function (phpdoc) {
         phpdoc.helper = new phpdoc.PhpdocHelper;
+        codex.ready(function () { return phpdoc.api = new phpdoc.PhpdocApi; });
         function init(selector, options) {
             if (options === void 0) { options = {}; }
             $(function () {

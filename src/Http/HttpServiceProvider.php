@@ -40,11 +40,11 @@ class HttpServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         $router->group([
-            'prefix'    => config('codex.base_route') . '/api/v1/' . config('codex-phpdoc.route_prefix'),
+            'prefix'    => config('codex.base_route') . '/api/v1/phpdoc',
             'namespace' => $this->namespace,
-            'as'        => 'codex.phpdoc.api.v1.',
+            'as'        => 'codex.api.v1.phpdoc.',
         ], function ($router) {
-            require realpath(__DIR__ . '/routes.php');
+            require realpath(__DIR__ . '/routes.api.php');
         });
     }
 }

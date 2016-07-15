@@ -13,6 +13,16 @@ var codex;
 (function (codex) {
     var phpdoc;
     (function (phpdoc) {
+        codex.ready(function () {
+            console.log('ready');
+            phpdoc.api = new phpdoc.PhpdocApi;
+        });
+    })(phpdoc = codex.phpdoc || (codex.phpdoc = {}));
+})(codex || (codex = {}));
+var codex;
+(function (codex) {
+    var phpdoc;
+    (function (phpdoc) {
         var defined = codex.util.defined;
         var create = codex.util.create;
         var PhpdocApi = (function (_super) {
@@ -205,18 +215,56 @@ var codex;
 (function (codex) {
     var phpdoc;
     (function (phpdoc) {
+        var PhpdocApp = (function () {
+            function PhpdocApp() {
+                this.template = "\n        <phpdoc-header :title=\"title\"></phpdoc-header>\n        <div class=\"phpdoc\">\n        <phpdoc-tree></phpdoc-tree>\n        </div>\n        ";
+                var VM = Vue.extend({
+                    data: function () {
+                        return {
+                            title: 'Api Documentation'
+                        };
+                    }
+                });
+                this.vm = new VM;
+            }
+            PhpdocApp.prototype.mount = function () {
+                $('article.content').append(this.template);
+                this.vm.$mount('body');
+            };
+            return PhpdocApp;
+        }());
+        phpdoc.PhpdocApp = PhpdocApp;
         var PhpdocComponent = (function (_super) {
             __extends(PhpdocComponent, _super);
             function PhpdocComponent() {
                 _super.apply(this, arguments);
+                this.title = 'Api docs';
             }
-            PhpdocComponent.template = '<div>PHPDOC</div>';
+            PhpdocComponent.template = "<div>\n            <header v-bind:title=\"title\"></header>\n        </div>";
             PhpdocComponent = __decorate([
                 codex.component('phpdoc')
             ], PhpdocComponent);
             return PhpdocComponent;
         }(codex.Component));
         phpdoc.PhpdocComponent = PhpdocComponent;
+        var PhpdocHeaderComponent = (function (_super) {
+            __extends(PhpdocHeaderComponent, _super);
+            function PhpdocHeaderComponent() {
+                _super.apply(this, arguments);
+            }
+            PhpdocHeaderComponent.template = "\n            <header>\n                <dropdown class=\"phpdoc-settings-dropdown\">\n                    <a href=\"#\" data-toggle=\"dropdown\"><i class=\"fa fa-cog\"></i><span class=\"caret\"></span></a>\n                    <div class=\"dropdown-menu\" slot=\"dropdown-menu\">\n                    s\n                    </div>\n                </dropdown>\n\n                <small>{{ subtitle }} </small>\n                <h1>{{ title }}</h1>\n            </header>";
+            __decorate([
+                codex.prop({ type: String })
+            ], PhpdocHeaderComponent.prototype, "title", void 0);
+            __decorate([
+                codex.prop({ type: String })
+            ], PhpdocHeaderComponent.prototype, "subtitle", void 0);
+            PhpdocHeaderComponent = __decorate([
+                codex.component('phpdoc-header')
+            ], PhpdocHeaderComponent);
+            return PhpdocHeaderComponent;
+        }(codex.Component));
+        phpdoc.PhpdocHeaderComponent = PhpdocHeaderComponent;
         var PhpdocTreeComponent = (function (_super) {
             __extends(PhpdocTreeComponent, _super);
             function PhpdocTreeComponent() {
@@ -225,19 +273,7 @@ var codex;
             PhpdocTreeComponent.prototype.ready = function () {
                 console.log('phpdoc-tree', this);
             };
-            PhpdocTreeComponent.prototype.getEntities = function () {
-                this.$http.get(codex.config('apiUrl') + '/v1/phpdoc/codex/master/list', {
-                    full: false
-                }, {}).then(function (response) {
-                    if (response.data.success === true) {
-                        response.data.data.forEach(function (entity) {
-                            console.log(entity);
-                        });
-                    }
-                    console.log(response.data.success);
-                });
-            };
-            PhpdocTreeComponent.template = '<div>TREE</div>';
+            PhpdocTreeComponent.template = '<div class="phpdoc-tree">TREE</div>';
             __decorate([
                 codex.lifecycleHook('ready')
             ], PhpdocTreeComponent.prototype, "ready", null);
@@ -485,13 +521,11 @@ var codex;
     var phpdoc;
     (function (phpdoc) {
         phpdoc.helper = new phpdoc.PhpdocHelper;
-        codex.ready(function () { return phpdoc.api = new phpdoc.PhpdocApi; });
         function init(selector, options) {
             if (options === void 0) { options = {}; }
             $(function () {
-                $(selector).phpdoc(options);
-                window['vm'] = new Vue;
-                window['vm'].$mount('html');
+                var vm = window['vm'] = new phpdoc.PhpdocApp;
+                vm.mount();
             });
         }
         phpdoc.init = init;

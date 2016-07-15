@@ -52,7 +52,7 @@ JS
         ]);
         $this->setAttribute('processors.prismjs.plugins', $prismPlugins);
         $this->runProcessor('prismjs');
-        $content = '<div id="codex-phpdoc"></div>';
+        $content = '';
         $this->hookPoint('document:rendered');
         return $content;
     }

@@ -10,18 +10,5 @@
 
 
 @section('content')
-
-    <header>
-        <div class="phpdoc-settings-dropdown">
-            <a href="#"><i class="fa fa-cog"></i><span class="caret"></span></a>
-        </div>
-        <small>{{ $document->attr('subtitle', '') }} </small>
-        <h1>{{ $document->attr('title') }}</h1>
-    </header>
-    <div id="app">
-    <phpdoc-tree></phpdoc-tree>
-    <phpdoc>
-
-    </phpdoc>
-    </div>
+    {!! $content !!}
 @stop

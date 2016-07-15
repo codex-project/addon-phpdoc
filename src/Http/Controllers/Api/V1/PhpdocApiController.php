@@ -36,14 +36,14 @@ class PhpdocApiController extends ApiController
         if ( $project instanceof Response ) {
             return $project;
         }
-        $project->phpdoc->checkUpdate(true);
+        $project->phpdoc->checkUpdate();
         return $project->phpdoc;
     }
 
     public function getEntities()
     {
-        $full   = request('full', false) == true;
-        $tree   = request('tree', false) == true;
+        $full   = request('full', false) === 'true';
+        $tree   = request('tree', false) === 'true';
         $phpdoc = $this->getDoc();
         if ( $phpdoc instanceof Response ) {
             return $phpdoc;
@@ -57,7 +57,7 @@ class PhpdocApiController extends ApiController
     public function getEntity()
     {
         $entity = request('entity');
-        $fields = request('fields', false) == true;
+        $fields = request('fields', '');
         $phpdoc = $this->getDoc();
         if ( $phpdoc instanceof Response ) {
             return $phpdoc;

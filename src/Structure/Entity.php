@@ -70,10 +70,6 @@ class Entity extends AbstractStructure
         return [ 'class', 'trait', 'interface' ];
     }
 
-    public function getSourceCode()
-    {
-        return gzuncompress(base64_decode($this[ 'source' ]));
-    }
 
     public function getType()
     {

@@ -79,20 +79,6 @@
                         </li>
                     @endforeach
                 </ul>
-                <div class="tab-content">
-                    @foreach($methods as $method)
-                        <div id="method-{{ $method['name'] }}" role="tabpanel" class="tab-pane {{ $loop->first ? 'active' : '' }}">
-                            @include('codex-phpdoc::partials.method', compact('method'))
-
-                            <div class="tab-pane-content">
-                                {{--Method description--}}
-                                <h4>Description</h4>
-                                <div class="block">
-                                    <p>{{ $method['description'] }}</p>
-                                    @if(isset($method['long-description']))
-                                        <p>{!! $method['long-description'] !!}</p>
-                                    @endif
-                                </div>
 
                                 {{--Method tags--}}
                                 <table class="table table-hover table-bordered table-phpdoc-tags">

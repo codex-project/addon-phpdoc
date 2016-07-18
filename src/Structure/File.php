@@ -40,10 +40,12 @@ class File extends AbstractStructure
     {
 
         // FILE level items
+        $items = [
+            'uses'          => [ ],
+            'source'        => gzuncompress(base64_decode($data[ 'source' ])),
+            'parse_markers' => $data[ 'parse_markers' ],
+        ];
 
-        $this->copy([ 'source', 'parse_markers' ], $data, $items);
-
-        $items[ 'uses' ] = [ ];
         if ( $data->has('namespace-alias') ) {
             $items[ 'uses' ] = is_string($data[ 'namespace-alias' ]) ? [ $data[ 'namespace-alias' ] ] : $data[ 'namespace-alias' ];
         }
@@ -86,8 +88,7 @@ class File extends AbstractStructure
      */
     public function getEntity()
     {
-        return $this['entity'];
+        return $this[ 'entity' ];
     }
-
 
 }

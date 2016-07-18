@@ -869,15 +869,37 @@ body.addon-phpdoc .phpdoc .tooltip-inner {
   max-width: none;
 }
 
-body.addon-phpdoc .phpdoc-settings-dropdown {
+body.addon-phpdoc .phpdoc-settings {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-height: 100px;
+  border-bottom: 1px solid #f0f2f1;
+}
+
+body.addon-phpdoc .phpdoc-settings:before, body.addon-phpdoc .phpdoc-settings:after {
+  content: " ";
+  display: table;
+}
+
+body.addon-phpdoc .phpdoc-settings:after {
+  clear: both;
+}
+
+body.addon-phpdoc .phpdoc-settings form {
+  margin: 1em 0 1em 0;
+}
+
+body.addon-phpdoc .phpdoc-settings-toggle {
   float: right;
 }
 
-body.addon-phpdoc .phpdoc-settings-dropdown > a > i.fa {
+body.addon-phpdoc .phpdoc-settings-toggle > a > i.fa {
   font-size: 40px;
 }
 
-body.addon-phpdoc .phpdoc-settings-dropdown > a > span.caret {
+body.addon-phpdoc .phpdoc-settings-toggle > a > span.caret {
   margin-top: 14px;
   margin-left: -7px;
 }

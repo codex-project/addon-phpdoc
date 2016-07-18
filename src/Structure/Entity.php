@@ -38,8 +38,8 @@ class Entity extends AbstractStructure
     protected function transform($data)
     {
         $items = [
-            'final'            => (bool)$data[ '@attributes.final' ],
-            'abstract'         => (bool)$data[ '@attributes.abstract' ],
+            'final'            => $this->boolValue($data[ '@attributes.final' ]),
+            'abstract'         => $this->boolValue($data[ '@attributes.abstract' ]),
             'namespace'        => $data[ '@attributes.namespace' ],
             'description'      => $this->createString($data[ 'docblock.description' ]),
             'long-description' => $this->createString($data[ 'docblock.long-description' ]),

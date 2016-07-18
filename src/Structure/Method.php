@@ -27,9 +27,9 @@ class Method extends AbstractStructure
 
         $items = [
             'name'       => $data[ 'name' ],
-            'final'      => (bool)$data[ '@attributes.final' ],
-            'abstract'   => (bool)$data[ '@attributes.abstract' ],
-            'static'     => (bool)$data[ '@attributes.static' ],
+            'final'      => $this->boolValue($data[ '@attributes.final' ]),
+            'abstract'   => $this->boolValue($data[ '@attributes.abstract' ]),
+            'static'     => $this->boolValue($data[ '@attributes.static' ]),
             'line'       => (int)$data[ '@attributes.line' ],
             'visibility' => $data[ '@attributes.visibility' ],
             'namespace'  => $data[ '@attributes.namespace' ],
@@ -38,9 +38,28 @@ class Method extends AbstractStructure
             'description'      => $this->createString($data[ 'docblock.description' ]),
             'long-description' => $this->createString($data[ 'docblock.long-description' ]),
 
+            'returns' => 'void',
+            'throws'  => [ ],
+
             'tags'      => [ ],
             'arguments' => [ ],
         ];
+
+        $tags = $data->get('docblock.tag');
+        if($tags !== null){
+            $returnTag = $tags->where('@attributes.name', 'return');
+            if($returnTag !== null) {
+                $items[ 'returns' ] = implode('|', $this->arrayValue($returnTag->get('type', [ 'void' ])));
+            }
+
+            $throwsTags = $tags->where('@attributes.name', 'throws');
+            if($throwsTags !== null){
+                $throwsTags->each(function($tag) use (&$items) {
+                    $items['throws'][] = $tag['type'];
+                });
+            }
+        }
+
 
         if ( $data[ 'name' ] = '' ) {
             $desc = $data->get('docblock.description', 'asdf ' . str_random(5));

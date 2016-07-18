@@ -27,7 +27,7 @@ class Property extends AbstractStructure
 
         $items = [
             'name'       => $data[ 'name' ],
-            'static'     => (bool)$data[ '@attributes.static' ],
+            'static'     => $this->boolValue($data[ '@attributes.static' ]),
             'line'       => (int)$data[ '@attributes.line' ],
             'visibility' => $data[ '@attributes.visibility' ],
             'namespace'  => $data[ '@attributes.namespace' ],

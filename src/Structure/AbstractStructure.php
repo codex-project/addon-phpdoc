@@ -95,6 +95,25 @@ abstract class AbstractStructure implements Arrayable, ArrayAccess, Serializable
         return $this->forget($keys);
     }
 
+    protected function boolValue($val)
+    {
+        if($val === 1 || $val === 'true' || $val === true){
+            return true;
+        }
+        return false;
+    }
+
+    protected function arrayValue($val)
+    {
+        if($val instanceof Arrayable){
+            $val = $val->toArray();
+        }
+        if(!is_array($val)){
+            return [$val];
+        }
+        return $val;
+    }
+
     protected function createString($str)
     {
         if ( is_array($str) ) {

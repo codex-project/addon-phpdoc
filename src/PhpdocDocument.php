@@ -30,7 +30,8 @@ class PhpdocDocument extends Document
         app()->bound('debugbar') && app('debugbar')->disable();
         parent::__construct($codex, $project, $cache, $path, $pathName);
         $this->mergeAttributes($project->config('phpdoc'));
-        $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex' ]);
+        $codex->theme->addJavascript('phpdoc-templates', 'vendor/codex-phpdoc/scripts/phpdoc-templates', [ 'codex' ]);
+        $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex', 'phpdoc-templates' ]);
         $codex->theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc');
         $codex->theme->addBodyClass('sidebar-closed content-compact addon-phpdoc');
         $codex->theme->addScript('phpdoc', <<<JS

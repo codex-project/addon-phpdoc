@@ -938,51 +938,76 @@ body.addon-phpdoc .phpdoc-content > header > h3 {
   font-size: 22px !important;
 }
 
-body.addon-phpdoc .phpdoc-content > .phpdoc-content-description {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-description {
   padding-left: 20px;
 }
 
-body.addon-phpdoc .phpdoc-content .table-phpdoc-tags th, body.addon-phpdoc .phpdoc-content .table-phpdoc-tags td {
+body.addon-phpdoc .phpdoc-content .table-tags th, body.addon-phpdoc .phpdoc-content .table-tags td {
   padding: 3px;
   font-size: 12px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable {
   margin-left: 20px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable > ul > li:first-child {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable > ul.nav-tabs li:first-child {
   margin-left: 10px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable > .tab-content {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable > ul.nav-tabs li > a {
+  text-decoration: none;
+  height: 35px;
+}
+
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable > ul.nav-tabs li.tab-filters-toggler > a {
+  padding: 10px 6px 8px;
+  border-left: none;
+}
+
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable > ul.nav-tabs li.tab-filters-toggler.active a {
+  color: #f4645f;
+  cursor: pointer;
+}
+
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable > ul.nav-tabs li.tab-filters-toggler.active a:hover {
+  color: black;
+}
+
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable > .tab-content {
   padding: 0;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable a {
-  text-decoration: none;
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable .tab-filters {
+  border-left: 1px solid #c5d0dc;
+  border-bottom: 1px solid #c5d0dc;
+  margin-bottom: -1px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-tabs.tabbable .tab-filters-pane {
+  padding: 10px;
+}
+
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs {
   margin-top: 0 !important;
   font-size: 14px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs li > a {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs li > a {
   padding: 4px 10px;
   text-decoration: none;
   color: darkgray;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs li > a i.fa {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs li > a i.fa {
   margin-right: 10px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs li.active > a {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs li.active > a {
   color: black;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs li.seperator > span {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs li.seperator > span {
   display: block;
   font-weight: bold;
   padding: 4px 10px;
@@ -993,7 +1018,7 @@ body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs li.seperat
   text-align: center;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs i.phpdoc-inherited-method-icon {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs i.phpdoc-inherited-method-icon {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -1007,15 +1032,15 @@ body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs i.phpdoc-i
   color: #ffc107;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .nav-tabs i.phpdoc-inherited-method-icon:before {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > ul.nav-tabs i.phpdoc-inherited-method-icon:before {
   content: "";
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs > .tab-content {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable > .tab-content {
   padding: 0;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs .tab-pane .tab-pane-header {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable .tab-pane-header {
   padding: 12px 15px;
   font-family: "Source Code Pro", monospace;
   font-size: 12px;
@@ -1023,11 +1048,11 @@ body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs .tab-pane .tab-pane-he
   margin: 0;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs .tab-pane .tab-pane-header small.visibility {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable .tab-pane-header small.visibility {
   margin-right: 15px;
 }
 
-body.addon-phpdoc .phpdoc-content > .tabbable.method-tabs .tab-pane .tab-pane-content {
+body.addon-phpdoc .phpdoc-content .phpdoc-content-method-tabs.tabbable .tab-pane-content {
   padding: 10px 20px 20px 20px;
 }
 

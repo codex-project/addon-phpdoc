@@ -34,12 +34,16 @@ class PhpdocDocument extends Document
         $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex', 'phpdoc-templates' ]);
         $codex->theme->addStylesheet('phpdoc', 'vendor/codex-phpdoc/styles/phpdoc');
         $codex->theme->addBodyClass('sidebar-closed content-compact addon-phpdoc');
+        $codex->theme->set('phpdoc', [
+            'project'       => $project->getName(),
+            'ref'           => $project->getRef(),
+            'default_class' => $project->config('phpdoc.default_class', null),
+            'title'         => $project->config('phpdoc.title', 'Api Documentation'),
+            'document_slug' => $project->config('phpdoc.document_slug', 'phpdoc'),
+            'debug'         => $project->config('phpdoc.default_class', false),
+        ]);
         $codex->theme->addScript('phpdoc', <<<JS
-codex.phpdoc.init('#codex-phpdoc', {
-    project: '{$project->getName()}',
-    ref: '{$project->getRef()}',
-    defaultClass: '{$project->config('phpdoc.default_class', null)}'
-});
+codex.phpdoc.init();
 JS
         );
     }
@@ -49,11 +53,12 @@ JS
 
         $this->hookPoint('document:render');
         $prismPlugins = array_replace($this->attr('processors.prismjs.plugins', [ ]), [
-            'line-numbers', 'autolinker'
+            'line-numbers',
+            'autolinker',
         ]);
         $this->setAttribute('processors.prismjs.plugins', $prismPlugins);
         $this->runProcessor('prismjs');
-        $content = '';
+        $content = '<phpdoc></phpdoc>';
         $this->hookPoint('document:rendered');
         return $content;
     }

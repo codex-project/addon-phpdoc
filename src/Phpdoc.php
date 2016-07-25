@@ -37,6 +37,8 @@ class Phpdoc extends Extendable
 
     public function addAssets()
     {
+
+        return;
         $theme = $this->getCodex()->theme;
         if ( $theme->stylesheets()->has('phpdoc', false) === true ) {
             return;

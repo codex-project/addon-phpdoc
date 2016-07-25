@@ -1,0 +1,29 @@
+import {
+    async,
+    inject,
+    ComponentFixture,
+    TestComponentBuilder
+} from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { SimplebindComponent } from './simplebind.component';
+
+@Component({
+    selector: 'cx-test',
+    template: '<div><cx-simplebind></cx-simplebind></div>',
+    directives: [SimplebindComponent]
+})
+class TestComponent {
+}
+
+describe('SimplebindComponent', () => {
+    it('should have print "Simple" on template', async(inject([TestComponentBuilder],
+    (tsb: TestComponentBuilder) => {
+        tsb.createAsync(TestComponent).then((fixture: ComponentFixture<TestComponent>) => {
+            fixture.detectChanges();
+            let compiled = fixture.debugElement.nativeElement;
+            expect(compiled).toBeDefined();
+            expect(compiled.querySelector('p'))
+                .toContainText('Simple');
+        });
+    })));
+});

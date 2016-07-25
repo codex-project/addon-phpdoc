@@ -49,8 +49,8 @@ class PhpdocServiceProvider extends ServiceProvider
 
         Codex::extend('phpdoc', Phpdoc::class);
         Project::extend('phpdoc', PhpdocProject::class);
-        Projects::extend('getPhpdocProjects', function (Codex $codex, Projects $projects) {
-            return $projects->query()->filter(function (Project $project) {
+        Projects::extend('getPhpdocProjects', function () {
+            return $this->query()->filter(function (Project $project) {
                 return $project->config('phpdoc.enabled', false) === true;
             });
         });

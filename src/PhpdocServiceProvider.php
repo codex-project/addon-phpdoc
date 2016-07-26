@@ -1,6 +1,7 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
+use Codex\Addon\Git\Syncer;
 use Codex\Codex;
 use Codex\Contracts\Documents\Documents;
 use Codex\Exception\CodexException;
@@ -53,6 +54,10 @@ class PhpdocServiceProvider extends ServiceProvider
             return $this->query()->filter(function (Project $project) {
                 return $project->config('phpdoc.enabled', false) === true;
             });
+        });
+
+        $this->codexHook('git:syncer:all:done', function(Syncer $syncer ){
+            //$syncer->getCodex()->addons->getScanner()->
         });
 
         return $app;

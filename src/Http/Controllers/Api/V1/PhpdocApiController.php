@@ -59,13 +59,15 @@ class PhpdocApiController extends ApiController
         $entity = request('entity');
         $fields = request('fields', '');
         $phpdoc = $this->getDoc();
+
         if ( $phpdoc instanceof Response ) {
             return $phpdoc;
         }
         if ( !$phpdoc->hasEntity($entity) ) {
             return $this->error("Entity [{$entity}] could not be found");
         }
-        return $this->response($phpdoc->getEntity($entity));
+        $e = $phpdoc->getEntity($entity);
+        return $this->response($e);
     }
 
 

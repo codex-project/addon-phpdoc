@@ -58,7 +58,8 @@ JS
         ]);
         $this->setAttribute('processors.prismjs.plugins', $prismPlugins);
         $this->runProcessor('prismjs');
-        $content = '<phpdoc></phpdoc>';
+        #$content = "<phpdoc project='{$this->project->getName()}' ref='{$this->project->getRef()}' full-name='{$this->p'></phpdoc>";
+        $content = "<phpdoc></phpdoc>";
         $this->hookPoint('document:rendered');
         return $content;
     }

@@ -82,6 +82,19 @@ var codex;
     (function (phpdoc) {
         var components;
         (function (components) {
+            function removeStartSlash(value) {
+                if (!codex.util.defined(value)) {
+                    return;
+                }
+                var matches = value.match(/^\\(.*)/);
+                if (matches !== null && matches.length === 2) {
+                    return matches[1];
+                }
+                return value;
+            }
+            components.removeStartSlash = removeStartSlash;
+            ;
+            Vue.filter('removeStartSlash', removeStartSlash);
             codex.defaultConfig.phpdoc = {
                 jstree: {
                     'plugins': ['types', 'search', 'wholerow'],
@@ -100,7 +113,7 @@ var codex;
                     }
                 }
             };
-            var tpl = "\n        <header>\n            <div class=\"phpdoc-settings-toggle\">\n                <a href=\"#\" v-on:click=\"toggleSettings($event)\"><i class=\"fa fa-cog\"></i><span class=\"caret\"></span></a>\n            </div>\n           <small>{{ subtitle }} </small>\n            <h1>{{ title }}</h1>\n        </header>\n\n        <div class=\"phpdoc\">\n            <p-tree :items=\"tree\" class=\"phpdoc-tree\"></p-tree>\n            <p-entity :file=\"file\" :entities=\"entities\" :settings=\"settings\" class=\"phpdoc-content\"></p-entity>\n        </div>\n\n    ";
+            var tpl = "\n        <header>\n            <!--<div class=\"phpdoc-settings-toggle\">\n                <a href=\"#\" v-on:click=\"toggleSettings($event)\"><i class=\"fa fa-cog\"></i><span class=\"caret\"></span></a>\n            </div>-->\n           <small>{{ subtitle }} </small>\n            <h1>{{ title }}</h1>\n        </header>\n\n        <div class=\"phpdoc\">\n            <p-tree :project.sync=\"project\" :ref.sync=\"ref\" :full-name.sync=\"fullName\" class=\"phpdoc-tree\"></p-tree>\n            <p-entity :project.sync=\"project\" :ref.sync=\"ref\" :full-name.sync=\"fullName\" :settings.sync=\"settings\" class=\"phpdoc-content\"></p-entity>\n        </div>\n\n    ";
             var App = (function (_super) {
                 __extends(App, _super);
                 function App() {
@@ -111,18 +124,8 @@ var codex;
                     this.file = {};
                     this.settings = {};
                 }
-                App.prototype.activate = function (done) {
-                    console.log('App (phpdoc) activate');
-                    this.$set('project', this.$root.$get('project'));
-                    this.$set('ref', this.$root.$get('ref'));
-                    this.$set('fullName', this.$root.$get('fullName'));
-                    this.fetch().then(function () {
-                        console.log('App activate fetched');
-                        done();
-                    }, function (err) { return console.log(err); }).otherwise(function (err) { return console.log(err); });
-                };
                 App.prototype.beforeCompile = function () {
-                    console.log('App (phpdoc) beforeCompile', this);
+                    console.log('App (phpdoc) beforeCompile', this, 'project', this.project, 'ref', this.ref);
                     if (typeof localStorage.getItem('phpdoc') === 'string') {
                         this.settings = JSON.parse(localStorage.getItem('phpdoc'));
                     }
@@ -130,54 +133,38 @@ var codex;
                         this.settings = _.clone(App.defaultSettings);
                     }
                 };
+                App.prototype.activate = function (done) {
+                    var _this = this;
+                    console.log('App (phpdoc) activate');
+                    phpdoc.api.getEntities(this.project, this.ref).then(function (res) {
+                        _this.entities = res.data;
+                        _this.$root.$set('entities', _this.entities);
+                        console.log('App activate fetched data', res.data);
+                        done();
+                    }, function (err) { return console.log(err); }).fail(function (err) { return console.log(err); });
+                };
                 App.prototype.ready = function () {
                     var _this = this;
-                    console.log('App (phpdoc) ready', this, 'with root', this.$root);
-                    this.$on('tree.select', function (event, obj) {
-                        var fullName = obj.node.data.fullName;
-                        var type = obj.node.type;
-                        console.log('App (phpdoc) tree.select', fullName, type);
-                        phpdoc.api.getEntity(_this.project, _this.ref, fullName, ['methods', 'properties', 'source']).then(function (res) {
-                            _this.file = res.data;
-                            _this.fullName = fullName;
-                        });
-                    });
-                    this.$on('settings.toggle', function () {
-                        _this.$set('settings.show', _this.$get('settings.show') === false);
-                    });
+                    console.log('App (phpdoc) ready', this, 'with root', this.$root, 'project', this.project, 'ref', this.ref);
                     this.$watch('settings', function () {
                         console.log('App (phpdoc) waytvh settings', _this.$get('settings'));
                         localStorage.setItem('phpdoc', JSON.stringify(_this.$get('settings')));
                     }, { deep: true });
-                };
-                App.prototype.fetch = function () {
-                    var _this = this;
-                    if (typeof this.fetched !== 'undefined') {
-                        return this.fetched;
-                    }
-                    var defer = codex.util.create();
-                    async.parallel([
-                        function (cb) { return phpdoc.api.getTree(_this.project, _this.ref).then(function (res) {
-                            _this.tree = res.data;
-                            cb();
-                        }); },
-                        function (cb) { return phpdoc.api.getEntities(_this.project, _this.ref).then(function (res) {
-                            _this.entities = res.data;
-                            cb();
-                        }); },
-                        function (cb) { return phpdoc.api.getEntity(_this.project, _this.ref, _this.fullName, ['methods', 'properties', 'source']).then(function (res) {
-                            _this.file = res.data;
-                            cb();
-                        }); },
-                    ], function () {
-                        defer.resolve();
+                    this.$on('entity.click', function (fullName) {
+                        console.log('App entity.click fullName', fullName);
+                        _this.fullName = fullName;
                     });
-                    return this.fetched = defer.promise;
-                };
-                App.prototype.toggleSettings = function ($event) {
-                    $event.preventDefault();
-                    this.$dispatch('settings.toggle');
-                    console.log('App (phpdoc) dispatched steetings.tlgle', $event, arguments, 'args');
+                    window.history.replaceState(null, this.fullName, window.location.pathname + "#!/" + this.fullName);
+                    window.addEventListener("popstate", function (event) {
+                        console.log('popstate', window.location);
+                        if (location.hash.indexOf('#!/') !== -1) {
+                            _this.fullName = location.hash.replace(/\#\!\//, '');
+                        }
+                    }, false);
+                    this.$watch('fullName', function (fullName) {
+                        codex['theme'].layout.hideTooltips();
+                        window.history.pushState(null, fullName, window.location.pathname + "#!/" + fullName);
+                    });
                 };
                 App.template = tpl;
                 App.defaultSettings = {
@@ -216,11 +203,20 @@ var codex;
                     codex.prop
                 ], App.prototype, "subtitle", void 0);
                 __decorate([
-                    codex.lifecycleHook('activate')
-                ], App.prototype, "activate", null);
+                    codex.prop
+                ], App.prototype, "project", void 0);
+                __decorate([
+                    codex.prop
+                ], App.prototype, "ref", void 0);
+                __decorate([
+                    codex.prop
+                ], App.prototype, "fullName", void 0);
                 __decorate([
                     codex.lifecycleHook('beforeCompile')
                 ], App.prototype, "beforeCompile", null);
+                __decorate([
+                    codex.lifecycleHook('activate')
+                ], App.prototype, "activate", null);
                 __decorate([
                     codex.lifecycleHook('ready')
                 ], App.prototype, "ready", null);
@@ -240,7 +236,7 @@ var codex;
         var components;
         (function (components) {
             function makeTpl() {
-                return "\n<div class=\"phpdoc-content\">\n    <header>\n        <i class=\"phpdoc-type-{{ file.type }}\"></i>\n        <h3 class=\"fs22\">\n            <span class=\"phpdoc-type-{{ file.type }}\">{{ entity.full_name | removeStartSlash}}</span>\n            <small v-if=\"hasExtend\" class=\"pl-xs fs-13\">extends</small>\n            <p-type v-if=\"hasExtend\" :type=\"entity.extends\" class=\"fs-13\"></p-type>\n        </h3>\n    </header>\n\n    <!-- DESC-->\n    <div class=\"phpdoc-content-description\">\n        <p v-if=\"hasDescription\" class=\"fs-13\">{{ entity.description }}</p>\n        <table v-if=\"entity.tags.length > 0\" class=\"table table-hover table-bordered table-tags\">\n            <tbody>\n            <tr v-for=\"tag in entity.tags\">\n                <th width=\"150\">{{ tag.name }}</th>\n                <td>{{ tag.description }}</td>\n            </tr>\n            </tbody>\n        </table>\n\n\n    </div>\n\n    <!-- TABS: METHODS, PROPERTIES, SOURCE-->\n    <div class=\"tabbable phpdoc-content-tabs\" id=\"phpdoc-tabs\">\n        <ul role=\"tablist\" class=\"nav nav-tabs\">\n            <li role=\"presentation\" :class=\"{ 'active' : isActive('methods') }\"><a href=\"#\" @click.prevent=\"setActive('methods')\" aria-controls=\"phpdoc-methods\" role=\"tab\" >Methods</a></li>\n            <li role=\"presentation\" :class=\"['tab-filters-toggler', { 'active' : isActive('methods') }]\"><a href=\"#\" @click.prevent=\"toggleFiltersPane('methods')\" role=\"tab\" ><i class=\"fa fa-cog\"></i></a></li>\n\n            <li role=\"presentation\" :class=\"{ 'active' : isActive('properties') }\"><a href=\"#\" @click.prevent=\"setActive('properties')\" aria-controls=\"phpdoc-properties\" role=\"tab\" >Properties</a></li>\n            <li role=\"presentation\" :class=\"['tab-filters-toggler', { 'active' : isActive('properties') }]\"><a href=\"#\" @click.prevent=\"toggleFiltersPane('properties')\" role=\"tab\" ><i class=\"fa fa-cog\"></i></a></li>\n\n\n            <li role=\"presentation\" :class=\"{ 'active' : isActive('source') }\"><a href=\"#\" @click.prevent=\"setActive('source')\" aria-controls=\"phpdoc-source\" role=\"tab\" >Source</a></li>\n        </ul>\n        <div class=\"tab-content\">\n\n            <!--SETTINGS (COG)-->\n            <div class=\"tab-filters\" v-if=\"activeFiltersPane !== false\">\n                <p-filters v-if=\"isActiveFiltersPane('methods')\" class=\"tab-filters-pane\" type=\"methods\" :settings=\"settings.filters.methods\"></p-filters>\n                <p-filters v-if=\"isActiveFiltersPane('properties')\" class=\"tab-filters-pane\" type=\"properties\" :settings=\"settings.filters.properties\"></p-filters>\n            </div>\n\n            <!--METHODS-->\n            <div role=\"tabpanel\" :class=\"['tab-pane', { 'active' : isActive('methods') }]\">\n                <div class=\"tabbable tabs-left phpdoc-content-method-tabs\">\n                    <ul role=\"tablist\" class=\"nav nav-tabs\">\n\n                        <li v-for=\"method in getFiltered('methods')\" role=\"presentation\">\n                            <a @click.prevent=\"setMethod(method)\" role=\"tab\" href=\"#\">\n                                <i class=\"pr-xs phpdoc-visibility-{{ method.visibility }}\"></i>\n                                {{ method.name }}\n                                <i v-if=\"method.inherited\" class=\"phpdoc-inherited-method-icon\" rel=\"tooltip\" title=\"Inherited from: <br> {{ method.class_name }}\"></i>\n                            </a>\n                        </li>\n\n                    </ul>\n                    <div class=\"tab-content\">\n                        <div role=\"tabpanel\" class=\"tab-pane active\">\n\n                        <!--<div v-for=\"method in entity.methods\" id=\"method-{{ method.name }}\" role=\"tabpanel\" :class=\"['tab-pane', $index === 0 ? 'active' : '']\">-->\n                            <!--\n                            <div class=\"tab-pane-header\">\n                                <p-method-signature :entities=\"entities\" :entity=\"file.entity\" :name=\"method.name\"></p-method-signature>\n                            </div>\n                            <div class=\"tab-pane-content\">\n\n                                <h4 v-if=\"method.description.length > 0\">Description</h4>\n                                <div v-if=\"method.description.length > 0\" class=\"block\">\n                                    <p>{{ method.description }}</p>\n                                    <p v-if=\"method['long-description'].length > 0\">{{ method['long-description'] }}</p>\n                                </div>\n\n                                <h4 v-if=\"method.arguments.length > 0\">Arguments</h4>\n                                <div class=\"block\" v-if=\"method.arguments.length > 0\">\n                                    <div v-for=\"argument in method.arguments\" >\n                                        <div class=\"argument\">\n                                        <span v-for=\"type in argument.types\">\n                                            <span v-if=\"$index > 0\">|</span>\n                                            <p-type :type=\"type\" :fqn=\"false\"></p-type>\n                                        </span>\n                                            <span class=\"color-cyan-900\">&nbsp;{{ argument.name }}</span>\n                                            <span v-if=\"argument.default.length > 0\"> = {{ argument.default }}</span>\n                                        </div>\n                                        <div v-if=\"argument.description.length > 0\" class=\"block\">\n                                            {{ argument.description }}\n                                            <div v-if=\"argument['long-description'].length > 0\">\n                                                {{ argument['long-description'] }}\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n\n                                <h4>Returns</h4>\n                                <div class=\"block\">\n                                    <p-type :type=\"method.returns\" :fqn=\"true\"></p-type>\n                                </div>\n                            </div>\n\n                        </div>\n                        -->\n\n                        <p-method :method=\"method\"></p-method>\n\n                    </div>\n                </div>\n            </div>\n            </div>\n\n            <!--PROPERTIES-->\n            <div role=\"tabpanel\" :class=\"['tab-pane', { 'active' : isActive('properties') }]\">\n\n                <table class=\"table table-hover table-striped table-bordered table-phpdoc-properties\">\n                    <thead>\n                    <tr>\n                        <th width=\"200px\"><strong>Property</strong></th>\n                        <th width=\"130px\" class=\"text-center\"><strong>Type</strong></th>\n                        <th><strong>Description</strong></th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                        <tr v-for=\"property in getFiltered('properties')\">\n                            <td :class=\"['text-right', 'color-teal-500', 'pr-xs', 'pl-xs', 'phpdoc-visibility-' + property.visibility]\">\n                                <span v-if=\"property.static\" class=\"label label-xs label-info pull-right m-xs\">static</span>\n                                <i class=\"pr-xs phpdoc-visibility-{{ method.visibility }}\"></i>\n                                {{ property.name }}\n                            </td>\n                            <td>\n                                <p class=\"m-n\">\n                                    <p-type :type=\"property.type\" :fqn=\"false\"></p-type>\n                                </p>\n                            </td>\n                            <td>\n                                <small>{{ property.description }}</small>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n\n            </div>\n\n            <!--SOURCE-->\n            <div role=\"tabpanel\" :class=\"['tab-pane', { 'active' : isActive('source') }]\">\n                <pre class=\"language-php line-numbers\"><code class=\"language-php\">{{ file.source }}</code></pre>\n            </div>\n        </div>\n    </div>\n\n</div>\n    ";
+                return "\n<div class=\"phpdoc-content\" >\n    <header>\n        <i class=\"phpdoc-type-{{ file.type }}\"></i>\n        <h3 class=\"fs22\">\n            <span class=\"phpdoc-type-{{ file.type }}\">{{ entity.full_name | removeStartSlash}}</span>\n            <small v-if=\"hasExtend\" class=\"pl-xs fs-13\">extends</small>\n            <p-type v-if=\"hasExtend\" :type=\"entity.extends\" class=\"fs-13\"></p-type>\n        </h3>\n    </header>\n\n    <!-- DESC-->\n    <div class=\"phpdoc-content-description\">\n        <p v-if=\"hasDescription\" class=\"fs-13\">{{ entity.description }}</p>\n        <p-tags :object=\"entity\" :exclude=\"['example', 'inherited_from']\"></p-tags>\n    </div>\n\n    <!-- TABS: METHODS, PROPERTIES, SOURCE-->\n    <div class=\"tabbable phpdoc-content-tabs\" id=\"phpdoc-tabs\">\n        <ul role=\"tablist\" class=\"nav nav-tabs\">\n            <li role=\"presentation\" :class=\"{ 'active' : isActive('methods') }\"><a href=\"#\" @click.prevent=\"setActive('methods')\" aria-controls=\"phpdoc-methods\" role=\"tab\" >Methods</a></li>\n            <li role=\"presentation\" :class=\"['tab-filters-toggler', { 'active' : isActive('methods') }]\"><a href=\"#\" @click.prevent=\"toggleFiltersPane('methods')\" role=\"tab\" ><i class=\"fa fa-cog\"></i></a></li>\n\n            <li role=\"presentation\" :class=\"{ 'active' : isActive('properties') }\"><a href=\"#\" @click.prevent=\"setActive('properties')\" aria-controls=\"phpdoc-properties\" role=\"tab\" >Properties</a></li>\n            <li role=\"presentation\" :class=\"['tab-filters-toggler', { 'active' : isActive('properties') }]\"><a href=\"#\" @click.prevent=\"toggleFiltersPane('properties')\" role=\"tab\" ><i class=\"fa fa-cog\"></i></a></li>\n\n\n            <li role=\"presentation\" :class=\"{ 'active' : isActive('source') }\"><a href=\"#\" @click.prevent=\"setActive('source')\" aria-controls=\"phpdoc-source\" role=\"tab\" >Source</a></li>\n        </ul>\n        <div class=\"tab-content\">\n\n            <!--SETTINGS (COG)-->\n            <div class=\"tab-filters\" v-if=\"activeFiltersPane !== false\">\n                <p-filters v-if=\"isActiveFiltersPane('methods')\" class=\"tab-filters-pane\" type=\"methods\" :settings=\"settings.filters.methods\"></p-filters>\n                <p-filters v-if=\"isActiveFiltersPane('properties')\" class=\"tab-filters-pane\" type=\"properties\" :settings=\"settings.filters.properties\"></p-filters>\n            </div>\n\n            <!--METHODS-->\n            <div role=\"tabpanel\" :class=\"['tab-pane', { 'active' : isActive('methods') }]\">\n                <div class=\"tabbable tabs-left phpdoc-content-method-tabs\">\n                    <ul role=\"tablist\" class=\"nav nav-tabs\">\n\n                        <li v-for=\"method in getFiltered('methods')\" role=\"presentation\">\n                            <a @click.prevent=\"setMethod(method)\" role=\"tab\" href=\"#\">\n                                <i class=\"pr-xs phpdoc-visibility-{{ method.visibility }}\"></i>\n                                {{ method.name }}\n                                <i v-if=\"method.inherited\" class=\"phpdoc-inherited-method-icon\" rel=\"tooltip\" title=\"Inherited from: <br> {{ method.class_name }}\"></i>\n                            </a>\n                        </li>\n\n                    </ul>\n                    <div class=\"tab-content\">\n                        <div role=\"tabpanel\" class=\"tab-pane active\">\n\n                        <!--<div v-for=\"method in entity.methods\" id=\"method-{{ method.name }}\" role=\"tabpanel\" :class=\"['tab-pane', $index === 0 ? 'active' : '']\">-->\n                            <!--\n                            <div class=\"tab-pane-header\">\n                                <p-method-signature :entities=\"entities\" :entity=\"file.entity\" :name=\"method.name\"></p-method-signature>\n                            </div>\n                            <div class=\"tab-pane-content\">\n\n                                <h4 v-if=\"method.description.length > 0\">Description</h4>\n                                <div v-if=\"method.description.length > 0\" class=\"block\">\n                                    <p>{{ method.description }}</p>\n                                    <p v-if=\"method['long-description'].length > 0\">{{ method['long-description'] }}</p>\n                                </div>\n\n                                <h4 v-if=\"method.arguments.length > 0\">Arguments</h4>\n                                <div class=\"block\" v-if=\"method.arguments.length > 0\">\n                                    <div v-for=\"argument in method.arguments\" >\n                                        <div class=\"argument\">\n                                        <span v-for=\"type in argument.types\">\n                                            <span v-if=\"$index > 0\">|</span>\n                                            <p-type :type=\"type\" :fqn=\"false\"></p-type>\n                                        </span>\n                                            <span class=\"color-cyan-900\">&nbsp;{{ argument.name }}</span>\n                                            <span v-if=\"argument.default.length > 0\"> = {{ argument.default }}</span>\n                                        </div>\n                                        <div v-if=\"argument.description.length > 0\" class=\"block\">\n                                            {{ argument.description }}\n                                            <div v-if=\"argument['long-description'].length > 0\">\n                                                {{ argument['long-description'] }}\n                                            </div>\n                                        </div>\n                                    </div>\n                                </div>\n\n\n                                <h4>Returns</h4>\n                                <div class=\"block\">\n                                    <p-type :type=\"method.returns\" :fqn=\"true\"></p-type>\n                                </div>\n                            </div>\n\n                        </div>\n                        -->\n\n                        <p-method :method=\"method\"></p-method>\n\n                    </div>\n                </div>\n            </div>\n            </div>\n\n            <!--PROPERTIES-->\n            <div role=\"tabpanel\" :class=\"['tab-pane', { 'active' : isActive('properties') }]\">\n\n                <table class=\"table table-hover table-striped table-bordered table-phpdoc-properties\">\n                    <thead>\n                    <tr>\n                        <th width=\"200px\"><strong>Property</strong></th>\n                        <th width=\"130px\" class=\"text-center\"><strong>Type</strong></th>\n                        <th><strong>Description</strong></th>\n                    </tr>\n                    </thead>\n                    <tbody>\n                        <tr v-for=\"property in getFiltered('properties')\">\n                            <td :class=\"['text-right', 'color-teal-500', 'pr-xs', 'pl-xs', 'phpdoc-visibility-' + property.visibility]\">\n                                <span v-if=\"property.static\" class=\"label label-xs label-info pull-right m-xs\">static</span>\n                                <i class=\"pr-xs phpdoc-visibility-{{ method.visibility }}\"></i>\n                                {{ property.name }}\n                            </td>\n                            <td>\n                                <p class=\"m-n\">\n                                    <p-type :type=\"property.type\" :fqn=\"false\"></p-type>\n                                </p>\n                            </td>\n                            <td>\n                                <small>{{ property.description }}</small>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n\n            </div>\n\n            <!--SOURCE-->\n            <div role=\"tabpanel\" :class=\"['tab-pane', { 'active' : isActive('source') }]\">\n                <pre class=\"language-php line-numbers\"><code class=\"language-php\">{{ file.source }}</code></pre>\n            </div>\n        </div>\n    </div>\n\n</div>\n    ";
             }
             var Entity = (function (_super) {
                 __extends(Entity, _super);
@@ -251,9 +247,12 @@ var codex;
                     this.activeFiltersPane = false;
                     this.count = { methods: 0, properties: 0 };
                 }
+                Entity.prototype.activate = function (done) {
+                    console.log('Entity activate', 'project', this.project, 'ref', this.ref);
+                    this.refreshEntity().then(function () { return done(); });
+                };
                 Entity.prototype.ready = function () {
                     var _this = this;
-                    this.setMethod(this.entity.methods[0]);
                     console.log('Entity ready', this);
                     this.$on('filters.close', function () {
                         _this.closeFiltersPane();
@@ -262,12 +261,21 @@ var codex;
                         console.log('methodCount changed', newVal, 'current method: ', _this.method.name);
                     });
                     this.$watch('file', function () {
+                        this.setMethod(this.entity.methods[0]);
                         if (codex.util.defined(window['Prism'])) {
                             window['Prism'].highlightAll();
                             $('.line-numbers-rows span').wrap($('<a>').attr({
                                 href: '#'
                             }));
                         }
+                    });
+                    this.refreshEntity();
+                    this.$watch('fullName', function (newVal) { return _this.refreshEntity(); });
+                };
+                Entity.prototype.refreshEntity = function () {
+                    var _this = this;
+                    return phpdoc.api.getEntity(this.project, this.ref, this.fullName).then(function (data) {
+                        _this.file = data.data;
                     });
                 };
                 Entity.prototype.getFiltered = function (type) {
@@ -343,14 +351,20 @@ var codex;
                 });
                 Entity.template = makeTpl();
                 __decorate([
-                    codex.prop({ type: Object })
-                ], Entity.prototype, "entities", void 0);
+                    codex.prop
+                ], Entity.prototype, "project", void 0);
                 __decorate([
-                    codex.prop({ type: Object })
-                ], Entity.prototype, "file", void 0);
+                    codex.prop
+                ], Entity.prototype, "ref", void 0);
                 __decorate([
-                    codex.prop({ type: Object })
+                    codex.prop
+                ], Entity.prototype, "fullName", void 0);
+                __decorate([
+                    codex.prop
                 ], Entity.prototype, "settings", void 0);
+                __decorate([
+                    codex.lifecycleHook('activate')
+                ], Entity.prototype, "activate", null);
                 __decorate([
                     codex.lifecycleHook('ready')
                 ], Entity.prototype, "ready", null);
@@ -458,7 +472,7 @@ var codex;
     (function (phpdoc) {
         var components;
         (function (components) {
-            var tpl = "\n<div class=\"phpdoc-method\">\n    <div class=\"tab-pane-header\">\n        <p-method-signature :method=\"method\"></p-method-signature>\n    </div>\n    <div class=\"tab-pane-content\">\n\n        <h4 v-if=\"method.description.length > 0\">Description</h4>\n        <div v-if=\"method.description.length > 0\" class=\"block\">\n            <p>{{ method.description }}</p>\n            <p v-if=\"method['long-description'].length > 0\">{{ method['long-description'] }}</p>\n        </div>\n\n        <h4 v-if=\"method.arguments.length > 0\">Arguments</h4>\n        <div class=\"block\" v-if=\"method.arguments.length > 0\">\n            <div v-for=\"argument in method.arguments\">\n                <div class=\"argument\">\n                                        <span v-for=\"type in argument.types\">\n                                            <span v-if=\"$index > 0\">|</span>\n                                            <p-type :type=\"type\" :fqn=\"false\"></p-type>\n                                        </span>\n                    <span class=\"color-cyan-900\">&nbsp;{{ argument.name }}</span>\n                    <span v-if=\"argument.default.length > 0\"> = {{ argument.default }}</span>\n                </div>\n                <div v-if=\"argument.description.length > 0\" class=\"block\">\n                    {{ argument.description }}\n                    <div v-if=\"argument['long-description'].length > 0\">\n                        {{ argument['long-description'] }}\n                    </div>\n                </div>\n            </div>\n        </div>\n\n\n        <h4>Returns</h4>\n        <div class=\"block\">\n            <p-type :type=\"method.returns\" :fqn=\"true\"></p-type>\n        </div>\n    </div>\n</div>\n    ";
+            var tpl = "\n<div class=\"phpdoc-method\">\n    <div class=\"tab-pane-header\">\n        <p-method-signature :method=\"method\"></p-method-signature>\n    </div>\n    <div class=\"tab-pane-content\">\n\n        <h4 v-if=\"method.description.length > 0\">Description</h4>\n        <div v-if=\"method.description.length > 0\" class=\"block\">\n            <p>{{ method.description }}</p>\n            <p v-if=\"method['long-description'].length > 0\">{{ method['long-description'] }}</p>\n        </div>\n\n        <h4 v-if=\"method.arguments.length > 0\">Arguments</h4>\n        <div class=\"block\" v-if=\"method.arguments.length > 0\">\n            <div v-for=\"argument in method.arguments\">\n                <div class=\"argument\">\n                                        <span v-for=\"type in argument.types\">\n                                            <span v-if=\"$index > 0\">|</span>\n                                            <p-type :type=\"type\" :fqn=\"false\"></p-type>\n                                        </span>\n                    <span class=\"color-cyan-900\">&nbsp;{{ argument.name }}</span>\n                    <span v-if=\"argument.default.length > 0\"> = {{ argument.default }}</span>\n                </div>\n                <div v-if=\"argument.description.length > 0\" class=\"block\" >\n                    {{{ argument.description }}}\n                    <div v-if=\"argument['long-description'].length > 0\">\n                        {{{ argument['long-description'] }}}\n                    </div>\n                </div>\n            </div>\n        </div>\n\n\n        <h4>Tags</h4>\n        <div class=\"block\">\n            <p-tags :object=\"method\" :exclude=\"['param', 'example', 'return']\"></p-tags>\n        </div>\n\n\n        <h4>Returns</h4>\n        <div class=\"block\">\n            <p-type :type=\"method.returns\" :fqn=\"true\"></p-type>\n        </div>\n\n\n\n    </div>\n</div>\n    ";
             var Method = (function (_super) {
                 __extends(Method, _super);
                 function Method() {
@@ -531,21 +545,80 @@ var codex;
     (function (phpdoc) {
         var components;
         (function (components) {
+            var tpl = "\n        <table v-if=\"object.tags.length > 0\" class=\"table table-hover table-bordered table-tags\">\n            <tbody>\n            <tr v-for=\"tag in tags\">\n                <th width=\"150\" valign=\"middle\">{{ tag.name }}</th>\n                <td>{{{ tag.description }}}</td>\n            </tr>\n            </tbody>\n        </table>\n    ";
+            var Tags = (function (_super) {
+                __extends(Tags, _super);
+                function Tags() {
+                    _super.apply(this, arguments);
+                    this.exclude = [];
+                }
+                Object.defineProperty(Tags.prototype, "tags", {
+                    get: function () {
+                        var _this = this;
+                        var tags = _.filter(this.object.tags, function (tag) {
+                            return _this.exclude.indexOf(tag.name);
+                        });
+                        tags = _.filter(tags, function (tag) {
+                            return _this.hasTagHandler(tag) === false;
+                        });
+                        return tags;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Tags.prototype.hasTagHandler = function (tag) {
+                    var tagHandler = _.find(phpdoc.tagHandlers, { 'name': tag.name });
+                    console.log('found taghandler for tag', tag.name, codex.util.defined(tagHandler), tagHandler);
+                    return codex.util.defined(tagHandler);
+                };
+                Tags.template = tpl;
+                __decorate([
+                    codex.prop
+                ], Tags.prototype, "object", void 0);
+                __decorate([
+                    codex.prop({ type: Array, default: [] })
+                ], Tags.prototype, "exclude", void 0);
+                Tags = __decorate([
+                    codex.component('p-tags')
+                ], Tags);
+                return Tags;
+            }(codex.Component));
+            components.Tags = Tags;
+        })(components = phpdoc.components || (phpdoc.components = {}));
+    })(phpdoc = codex.phpdoc || (codex.phpdoc = {}));
+})(codex || (codex = {}));
+var codex;
+(function (codex) {
+    var phpdoc;
+    (function (phpdoc) {
+        var components;
+        (function (components) {
             var Tree = (function (_super) {
                 __extends(Tree, _super);
                 function Tree() {
                     _super.apply(this, arguments);
                     this.ignoreTreeSelect = false;
                 }
+                Tree.prototype.activate = function (done) {
+                    var _this = this;
+                    console.log('Tree activate', this, done);
+                    console.log('Tree activate project', this.project, 'ref', this.ref);
+                    phpdoc.api.getTree(this.project, this.ref).then(function (data) {
+                        _this.items = data.data;
+                        done();
+                    });
+                };
                 Tree.prototype.beforeCompile = function () {
-                    console.log('created phpdoc-tree', this);
+                    var _this = this;
+                    this.$watch('fullName', function (fullName) { return _this.openTreeTo(fullName); });
                 };
                 Tree.prototype.ready = function () {
                     var _this = this;
                     this.$tree = $(this.$els.tree);
                     this.makeTree(this.$get('items'));
-                    this.$watch('items', function (newVal, oldVal) {
-                        _this.makeTree(newVal);
+                    phpdoc.api.getTree(this.project, this.ref).then(function (data) {
+                        _this.items = data.data;
+                        _this.makeTree(_this.items);
                     });
                 };
                 Tree.prototype.makeTree = function (items) {
@@ -558,6 +631,7 @@ var codex;
                     this.tree = this.$tree.jstree();
                     this.$tree.on('select_node.jstree', this, function (event, data) {
                         _this.$dispatch('tree.select', event, data);
+                        _this.fullName = data.node.data.fullName;
                     });
                 };
                 Tree.prototype.traverseTree = function (items, $tree, level) {
@@ -616,8 +690,17 @@ var codex;
                 };
                 Tree.template = "\n        <div v-el:tree class=\"phpdoc-tree\"></div>\n        ";
                 __decorate([
-                    codex.prop({ ref: Object })
-                ], Tree.prototype, "items", void 0);
+                    codex.prop
+                ], Tree.prototype, "project", void 0);
+                __decorate([
+                    codex.prop
+                ], Tree.prototype, "ref", void 0);
+                __decorate([
+                    codex.prop
+                ], Tree.prototype, "fullName", void 0);
+                __decorate([
+                    codex.lifecycleHook('activate')
+                ], Tree.prototype, "activate", null);
                 __decorate([
                     codex.lifecycleHook('beforeCompile')
                 ], Tree.prototype, "beforeCompile", null);
@@ -639,17 +722,7 @@ var codex;
     (function (phpdoc) {
         var components;
         (function (components) {
-            var tpl = "\n    <span>\n<span v-if=\"! isEntity\" class=\"simple-type simple-type-string\">{{ formattedType }}</span>\n<a v-if=\"isEntity\" class=\"type-link local\" href=\"#\" rel=\"tooltip\" :title=\"type | removeStartSlash\" :data-phpdoc-popover=\"type\">{{ formattedType }}</a>\n</span>\n\n";
-            var removeStartSlash = function (value) {
-                if (!codex.util.defined(value)) {
-                    return;
-                }
-                var matches = value.match(/^\\(.*)/);
-                if (matches !== null && matches.length === 2) {
-                    return matches[1];
-                }
-                return value;
-            };
+            var tpl = "\n    <span>\n<span v-if=\"! isEntity\" class=\"simple-type simple-type-string\">{{ formattedType }}</span>\n<a v-if=\"isEntity\" class=\"type-link local\" href=\"#\" rel=\"tooltip\" :title=\"type | removeStartSlash\" :data-phpdoc-popover=\"type\" v-on:click.prevent=\"onEntityClick\">{{ formattedType }}</a>\n</span>\n\n";
             var Type = (function (_super) {
                 __extends(Type, _super);
                 function Type() {
@@ -661,8 +734,8 @@ var codex;
                 }
                 Object.defineProperty(Type.prototype, "formattedType", {
                     get: function () {
-                        var type = removeStartSlash(this.$get('type'));
-                        if (this.$get('fqn') === false) {
+                        var type = components.removeStartSlash(this.$get('type'));
+                        if (this.fqn === false) {
                             type = _.last(type.split('\\'));
                         }
                         return type;
@@ -670,23 +743,24 @@ var codex;
                     enumerable: true,
                     configurable: true
                 });
+                Type.prototype.onEntityClick = function () {
+                    console.log('onEntityClick', this);
+                    this.isEntity === true && this.$dispatch('entity.click', this.type);
+                };
                 Type.prototype.ready = function () {
                     if (!codex.util.defined(this.type)) {
                         return;
                     }
                     this.isEntity = this.type[0] === '\\';
                     if (this.isEntity) {
-                        var found = _.chain(this.entities).find(['full_name', this.type]);
-                        this.hasEntity = found > 0;
+                        var found = _.find(this.$root.$get('entities'), { 'full_name': this.type });
+                        this.hasEntity = codex.util.defined(found['name']);
                     }
                 };
                 Type.template = tpl;
                 __decorate([
                     codex.prop({ type: String, required: true })
                 ], Type.prototype, "type", void 0);
-                __decorate([
-                    codex.prop({ type: Object })
-                ], Type.prototype, "entities", void 0);
                 __decorate([
                     codex.prop({ type: Boolean, default: true })
                 ], Type.prototype, "fqn", void 0);
@@ -1055,22 +1129,33 @@ var codex;
     var phpdoc;
     (function (phpdoc) {
         phpdoc.helper = new phpdoc.PhpdocHelper;
+        phpdoc.tagHandlers = [];
+        phpdoc.tagHandlers.push({
+            name: 'example',
+            handler: function () {
+                console.log('example handler');
+            }
+        });
         function init(options) {
+            var _this = this;
             if (options === void 0) { options = {}; }
             options = _.merge({
                 project: codex.config('phpdoc.project'),
                 ref: codex.config('phpdoc.ref'),
                 fullName: codex.config('phpdoc.default_class')
             }, options);
+            $('article.content').html('<phpdoc :project="project" :ref="ref" :full-name="fullName"></phpdoc>');
             console.log('init options', options);
             var VM = Vue.extend({
                 project: options.project,
                 ref: options.ref,
                 fullName: options.fullName,
                 data: function () {
-                    return _.merge({
+                    var data = _.merge({
                         title: 'Api Documentation'
                     }, options);
+                    console.log('root vm data', data, _this);
+                    return data;
                 }
             });
             var vm = new VM;

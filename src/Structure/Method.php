@@ -78,6 +78,15 @@ class Method extends AbstractStructure
         $items[ 'tags' ]      = $this->structures('docblock.tag', Tag::class, $data);
         $items[ 'arguments' ] = $this->structures('argument', Argument::class, $data);
 
+        foreach($items['arguments'] as $i => $argument){
+            /** @var $argument Argument */
+            $tag = $items['tags']->where('variable', $argument['name'])->first();
+            if($tag !== null){
+                $items['arguments'][$i]['description'] =  $tag['description'];
+
+            }
+        }
+
         return $items;
     }
 

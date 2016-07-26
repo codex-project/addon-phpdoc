@@ -1,3 +1,4 @@
+@if(is_array($argument['types']))
 @foreach($argument['types'] as $type)
     {{ $loop->first ? '' : '|' }}
     @include('codex-phpdoc::partials.type', ['type' => $type])
@@ -7,4 +8,5 @@
     @spaceless
     <span>={{ $argument['default'] }}</span>
     @endspaceless
+@endif
 @endif

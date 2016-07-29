@@ -8,6 +8,7 @@ namespace Codex\Addon\Phpdoc;
 
 use Codex\Documents\Document;
 use Codex\Projects\Project;
+use Codex\Projects\Ref;
 use Illuminate\Contracts\Cache\Repository;
 
 /**
@@ -23,12 +24,12 @@ class PhpdocDocument extends Document
 
     protected $phpdoc;
 
-    public function __construct($codex, Project $project, Repository $cache, $path, $pathName)
+    public function __construct($codex, Project $project, Ref $ref, Repository $cache, $path, $pathName)
     {
         $pathName = 'phpdoc';
         config()->set('debugbar.enabled', false);
         app()->bound('debugbar') && app('debugbar')->disable();
-        parent::__construct($codex, $project, $cache, $path, $pathName);
+        parent::__construct($codex, $project, $ref, $cache, $path, $pathName);
         $this->mergeAttributes($project->config('phpdoc'));
         $codex->theme->addJavascript('phpdoc-templates', 'vendor/codex-phpdoc/scripts/phpdoc-templates', [ 'codex' ]);
         $codex->theme->addJavascript('phpdoc', 'vendor/codex-phpdoc/scripts/phpdoc', [ 'codex', 'phpdoc-templates' ]);
@@ -36,7 +37,7 @@ class PhpdocDocument extends Document
         $codex->theme->addBodyClass('sidebar-closed content-compact addon-phpdoc');
         $codex->theme->set('phpdoc', [
             'project'       => $project->getName(),
-            'ref'           => $project->getRef(),
+            'ref'           => $ref->getName(),
             'default_class' => $project->config('phpdoc.default_class', null),
             'title'         => $project->config('phpdoc.title', 'Api Documentation'),
             'document_slug' => $project->config('phpdoc.document_slug', 'phpdoc'),

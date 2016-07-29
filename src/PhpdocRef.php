@@ -4,11 +4,12 @@ namespace Codex\Addon\Phpdoc;
 use Codex\Addon\Phpdoc\Structure\File;
 use Codex\Addon\Phpdoc\Tree\Node;
 use Codex\Projects\Project;
+use Codex\Projects\Ref;
 use Codex\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 use Sebwite\Filesystem\Filesystem;
 
-class PhpdocProject
+class PhpdocRef
 {
     /** @var  Project */
     protected $project;
@@ -25,6 +26,9 @@ class PhpdocProject
 
     protected $compiler;
 
+    /** @var \Codex\Projects\Project|\Codex\Projects\Ref */
+    protected $ref;
+
 
     /**
      * Factory constructor.
@@ -33,23 +37,25 @@ class PhpdocProject
      * @param \Sebwite\Filesystem\Filesystem                                           $fs
      * @param \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store $cache
      */
-    public function __construct(Project $parent, Filesystem $fs, Repository $cache)
+    public function __construct(Ref $parent, Filesystem $fs, Repository $cache)
     {
         $this->fs       = $fs;
         $this->cache    = $cache;
-        $this->project  = $parent;
+        $this->ref      = $parent;
+        $this->project  = $parent->getProject();
         $this->compiler = new Compiler($fs);
         $this->setCachePath(path_join(
             config('codex-phpdoc.cache_path'),
-            $parent->getName(),
-            $parent->getRef()
+            $this->project->getName(),
+            $parent->getName()
         ));
         $this->checkUpdate();
+        $this->parent = $parent;
     }
 
     public function getCacheKey()
     {
-        return "codex.phpdoc.project.{$this->project->getName()}.{$this->project->getRef()}";
+        return "codex.phpdoc.project.{$this->project}.{$this->ref}";
     }
 
     public function clearCache()
@@ -70,13 +76,13 @@ class PhpdocProject
     public function getLastModified()
     {
         return (int)$this->project->getFiles()->lastModified(
-            $this->project->refPath($this->project->config('phpdoc.xml_path'))
+            $this->ref->path($this->project->config('phpdoc.xml_path'))
         );
     }
 
     public function getStructureXml()
     {
-        return $this->project->getFiles()->get($this->project->refPath($this->project->config('phpdoc.xml_path')));
+        return $this->project->getFiles()->get($this->ref->path($this->project->config('phpdoc.xml_path')));
     }
 
     /**
@@ -99,12 +105,12 @@ class PhpdocProject
      */
     public function getEntity($full_name)
     {
-        if ( ! array_key_exists($full_name, $this->entities) ) {
+        if ( !array_key_exists($full_name, $this->entities) ) {
             $filePath = $this->getCacheFilePath(Util::toFileName($full_name, '.dat'));
-            if($this->fs->exists($filePath) === false){
+            if ( $this->fs->exists($filePath) === false ) {
                 return null;
             }
-            $file                         = $this->fs->get($filePath);
+            $file = $this->fs->get($filePath);
             /** @var File $file */
             $file = $this->entities[ $full_name ] = unserialize($file);
             $file->getEntity();
@@ -137,7 +143,7 @@ class PhpdocProject
 
     public function url($full_name = null)
     {
-        $url = $this->project->url($this->project->config('phpdoc.document_slug', 'phpdoc'), $this->project->getRef());
+        $url = $this->project->url($this->project->config('phpdoc.document_slug', 'phpdoc'), $this->ref->getName());
         if ( $full_name ) {
             $url .= "#!/{$full_name}";
         }
@@ -161,12 +167,12 @@ class PhpdocProject
             while ( count($segments) ) {
                 $segment = array_shift($segments);
                 $last    = count($segments) === 0;
-                if ( ! $last ) {
+                if ( !$last ) {
                     is_array($tree2) && krsort($tree2);
                     $tree2 =& $tree2[ $segment ];
                 } else {
 
-                    if ( ! is_array($tree2) ) {
+                    if ( !is_array($tree2) ) {
                         $tree2 = [ ];
                     }
 

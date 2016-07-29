@@ -7,6 +7,7 @@ use Codex\Contracts\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
 use Codex\Projects\Projects;
+use Codex\Projects\Ref;
 use Codex\Traits\CodexProviderTrait;
 use Sebwite\Support\ServiceProvider;
 
@@ -28,7 +29,7 @@ class PhpdocServiceProvider extends ServiceProvider
     ];
 
     protected $bindings = [
-        'codex.phpdoc.project'  => PhpdocProject::class,
+        'codex.phpdoc.project'  => PhpdocRef::class,
         'codex.phpdoc.document' => PhpdocDocument::class,
     ];
 
@@ -49,7 +50,7 @@ class PhpdocServiceProvider extends ServiceProvider
         $this->registerCustomDocument();
 
         Codex::extend('phpdoc', Phpdoc::class);
-        Project::extend('phpdoc', PhpdocProject::class);
+        Ref::extend('phpdoc', PhpdocRef::class);
         Projects::extend('getPhpdocProjects', function () {
             return $this->query()->filter(function (Project $project) {
                 return $project->config('phpdoc.enabled', false) === true;

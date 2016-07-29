@@ -4,6 +4,7 @@ namespace Codex\Addon\Phpdoc;
 use Codex\Addon\Phpdoc\Structure\Entity ;
 use Codex\Addon\Phpdoc\Structure\Method;
 use Codex\Projects\Project;
+use Codex\Projects\Ref;
 use Codex\Support\Collection;
 use Sebwite\Support\Str;
 
@@ -12,8 +13,11 @@ class Popover
     /** @var \Codex\Projects\Project */
     protected $project;
 
-    /** @var \Codex\Addon\Phpdoc\PhpdocProject */
+    /** @var \Codex\Addon\Phpdoc\PhpdocRef */
     protected $phpdoc;
+
+    /** @var \Codex\Projects\Ref  */
+    protected $ref;
 
     protected $elements;
 
@@ -22,17 +26,18 @@ class Popover
      *
      * @param \Codex\Projects\Project $project
      */
-    public function __construct(Project $project)
+    public function __construct(Ref $ref)
     {
-        $this->project  = $project;
-        $this->phpdoc   = $project->phpdoc;
-        $this->elements = new Collection($project->phpdoc->getEntities()->toArray());
+        $this->ref = $ref;
+        $this->project  = $ref->getProject();
+        $this->phpdoc   = $ref->phpdoc;
+        $this->elements = new Collection($this->phpdoc->getEntities()->toArray());
     }
 
 
-    public static function make(Project $project)
+    public static function make(Ref $ref)
     {
-        return app(static::class, compact('project'));
+        return app(static::class, compact('ref'));
     }
 
     public function generate($class, $method = null)

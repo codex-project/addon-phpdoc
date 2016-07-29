@@ -67,7 +67,7 @@ class PhpdocPlugin
      */
     public $extend = [
         Codex::class   => [ 'phpdoc' => Phpdoc::class ],
-        Project::class => [ 'phpdoc' => PhpdocProject::class ],
+        Project::class => [ 'phpdoc' => PhpdocRef::class ],
     ];
 
     public $routeExclusions = [

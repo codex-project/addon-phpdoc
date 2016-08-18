@@ -9,7 +9,7 @@ use Codex\Projects\Project;
 use Codex\Projects\Projects;
 use Codex\Projects\Ref;
 use Codex\Traits\CodexProviderTrait;
-use Sebwite\Support\ServiceProvider;
+use Laradic\ServiceProvider\ServiceProvider;
 
 class PhpdocServiceProvider extends ServiceProvider
 {

@@ -13,7 +13,7 @@ namespace Codex\Addon\Phpdoc\Structure;
 use Codex\Addon\Phpdoc\Util;
 use Codex\Projects\Project;
 use Codex\Support\Collection;
-use Sebwite\Filesystem\Filesystem;
+use Laradic\Filesystem\Filesystem;
 
 class StructureFactory
 {

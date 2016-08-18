@@ -12,7 +12,7 @@ namespace Codex\Addon\Phpdoc;
 
 use Codex\Addon\Phpdoc\Structure\StructureFactory;
 use Codex\Support\Collection;
-use Sebwite\Filesystem\Filesystem;
+use Laradic\Filesystem\Filesystem;
 use SimpleXMLElement;
 
 class Compiler
@@ -23,7 +23,7 @@ class Compiler
     /**
      * StructureFactory constructor.
      *
-     * @param \Sebwite\Filesystem\Filesystem $fs
+     * @param \Laradic\Filesystem\Filesystem $fs
      */
     public function __construct(Filesystem $fs)
     {

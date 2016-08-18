@@ -6,7 +6,7 @@ use Codex\Addon\Phpdoc\Structure\Method;
 use Codex\Projects\Project;
 use Codex\Projects\Ref;
 use Codex\Support\Collection;
-use Sebwite\Support\Str;
+use Laradic\Support\Str;
 
 class Popover
 {

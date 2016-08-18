@@ -11,7 +11,7 @@
 namespace Codex\Addon\Phpdoc\Structure;
 
 use Codex\Support\Collection;
-use Sebwite\Support\Str;
+use Laradic\Support\Str;
 
 class Property extends AbstractStructure
 {

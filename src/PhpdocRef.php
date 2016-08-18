@@ -7,7 +7,7 @@ use Codex\Projects\Project;
 use Codex\Projects\Ref;
 use Codex\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
-use Sebwite\Filesystem\Filesystem;
+use Laradic\Filesystem\Filesystem;
 
 class PhpdocRef
 {
@@ -18,7 +18,7 @@ class PhpdocRef
 
     protected $entities = [ ];
 
-    /** @var \Sebwite\Filesystem\Filesystem */
+    /** @var \Laradic\Filesystem\Filesystem */
     protected $fs;
 
     /** @var \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store */
@@ -34,7 +34,7 @@ class PhpdocRef
      * Factory constructor.
      *
      * @param \Codex\Projects\Project                                                  $parent
-     * @param \Sebwite\Filesystem\Filesystem                                           $fs
+     * @param \Laradic\Filesystem\Filesystem                                           $fs
      * @param \Illuminate\Contracts\Cache\Repository|\Illuminate\Contracts\Cache\Store $cache
      */
     public function __construct(Ref $parent, Filesystem $fs, Repository $cache)

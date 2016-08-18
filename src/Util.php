@@ -1,7 +1,7 @@
 <?php
 namespace Codex\Addon\Phpdoc;
 
-use Sebwite\Support\Str;
+use Laradic\Support\Str;
 
 final class Util
 {

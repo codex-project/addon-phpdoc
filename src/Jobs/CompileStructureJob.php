@@ -13,7 +13,7 @@ namespace Codex\Addon\Phpdoc\Jobs;
 use Codex\Support\Job;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Sebwite\Filesystem\Filesystem;
+use Laradic\Filesystem\Filesystem;
 
 class CompileStructureJob extends Job implements ShouldQueue
 {
@@ -39,7 +39,7 @@ class CompileStructureJob extends Job implements ShouldQueue
     public function handle(Filesystem $fs)
     {
         $xml = $fs->get($this->xmlFilePath);
-        
+
     }
 
 }

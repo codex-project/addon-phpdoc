@@ -13,7 +13,7 @@ namespace Codex\Addon\Phpdoc\Structure;
 use ArrayAccess;
 use Codex\Support\Collection;
 use Illuminate\Contracts\Support\Arrayable;
-use Sebwite\Support\Arr;
+use Laradic\Support\Arr;
 use Serializable;
 
 abstract class AbstractStructure implements Arrayable, ArrayAccess, Serializable

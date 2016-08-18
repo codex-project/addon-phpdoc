@@ -8,7 +8,7 @@ use Codex\Exception\CodexException;
 use Codex\Projects\Project;
 use Codex\Projects\Projects;
 use Codex\Projects\Ref;
-use Codex\Traits\CodexProviderTrait;
+use Codex\Support\Traits\CodexProviderTrait;
 use Laradic\ServiceProvider\ServiceProvider;
 
 class PhpdocServiceProvider extends ServiceProvider

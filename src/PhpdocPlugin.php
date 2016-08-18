@@ -16,7 +16,6 @@ use Codex\Codex;
 use Codex\Contracts\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
-use Codex\Traits\CodexPluginTrait;
 use Orchestra\Contracts\Foundation\Application;
 
 /**

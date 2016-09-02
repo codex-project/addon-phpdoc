@@ -16,6 +16,7 @@ use Codex\Codex;
 use Codex\Contracts\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
+use Codex\Support\Traits\CodexPluginTrait;
 use Orchestra\Contracts\Foundation\Application;
 
 /**
@@ -28,7 +29,7 @@ use Orchestra\Contracts\Foundation\Application;
  */
 class PhpdocPlugin
 {
-   # use CodexPluginTrait;
+    use CodexPluginTrait;
 
     /**
      * The Laravel Application instance
@@ -37,7 +38,7 @@ class PhpdocPlugin
     public $app;
 
     /**
-     * This will be merged into the default_project_config
+     * This will be merged into the default_project_config.phpdoc
      * @var array
      */
     public $project = [ ];
@@ -46,10 +47,10 @@ class PhpdocPlugin
     //public $project = 'codex-phpdoc.default_project_config';
 
     /**
-     * This will be merged into the default_document_attributes
+     * This will be merged into the default_document_attributes.phpdoc
      * @var array
      */
-    public $attributes = [ ];
+    public $document = [ ];
 
     /**
      * Define or overide views

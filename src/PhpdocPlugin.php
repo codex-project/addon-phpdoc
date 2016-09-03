@@ -10,14 +10,12 @@
  */
 namespace Codex\Addon\Phpdoc;
 
-use Codex\Addons\Annotations\Hook;
 use Codex\Addons\Annotations\Plugin;
+use Codex\Addons\BasePlugin;
 use Codex\Codex;
 use Codex\Contracts\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
-use Codex\Support\Traits\CodexPluginTrait;
-use Orchestra\Contracts\Foundation\Application;
 
 /**
  * This is the class Plugin.
@@ -27,81 +25,84 @@ use Orchestra\Contracts\Foundation\Application;
  * @copyright      Copyright (c) 2015, CLI. All rights reserved
  * @Plugin("phpdoc")
  */
-class PhpdocPlugin
+class PhpdocPlugin extends BasePlugin
 {
-    use CodexPluginTrait;
+    ## BasePlugin attributes
 
-    /**
-     * The Laravel Application instance
-     * @var Application
-     */
-    public $app;
+    public $project = 'codex-phpdoc.default_project_config';
 
-    /**
-     * This will be merged into the default_project_config.phpdoc
-     * @var array
-     */
-    public $project = [ ];
+    public $document = [];
 
-    // or
-    //public $project = 'codex-phpdoc.default_project_config';
-
-    /**
-     * This will be merged into the default_document_attributes.phpdoc
-     * @var array
-     */
-    public $document = [ ];
-
-    /**
-     * Define or overide views
-     * @var array
-     */
     public $views = [
         'phpdoc.document' => 'codex-phpdoc::document',
         'phpdoc.entity'   => 'codex-phpdoc::entity',
     ];
 
-    /**
-     * Shortcut to extend Extendable classes
-     * @var array
-     */
     public $extend = [
         Codex::class   => [ 'phpdoc' => Phpdoc::class ],
         Project::class => [ 'phpdoc' => PhpdocRef::class ],
     ];
 
-    public $routeExclusions = [
-        'project-name-to-ignore',
+    ## ServiceProvider attributes
+
+    protected $configFiles = [ 'codex-phpdoc' ];
+
+    protected $viewDirs = [ 'views' => 'codex-phpdoc' ];
+
+    protected $assetDirs = [ 'assets' => 'codex-phpdoc' ];
+
+    protected $commands = [
+        Console\ClearCacheCommand::class,
+        Console\CreateCacheCommand::class,
     ];
+
+    protected $bindings = [
+        'codex.phpdoc.project'  => PhpdocRef::class,
+        'codex.phpdoc.document' => PhpdocDocument::class,
+    ];
+
+    protected $shared = [ 'codex.phpdoc' => Phpdoc::class, ];
+
+
 
     public function register()
     {
+        $app = parent::register();
+
+        if ( $app[ 'config' ]->get('codex.http.enabled', false) ) {
+            $this->registerRoutes();
+        }
+
+        // register link handler
+        $app[ 'config' ]->set('codex.links.phpdoc', PhpdocLink::class . '@handle');
+
+        // register custom document, this will handle showing the phpdoc
+        $this->registerCustomDocument();
+
+        return $app;
     }
 
-
-    public function boot()
-    {
-    }
-
-
-    /**
-     * registerCustomDocument method
-     * @Hook("documents:constructed")
-     *
-     * @param \Codex\Documents\Documents|\Codex\Contracts\Documents\Documents $documents
-     */
-    public function registerCustomDocument(Documents $documents)
+    public function registerCustomDocument()
     {
 
-        $project = $documents->getProject();
-        $documents->addCustomDocument($project->config('phpdoc.document_slug', 'phpdoc'), function (Documents $documents) use ($project) {
-            $path = $project->refPath($project->config('phpdoc.path'));
-            $pfs  = $project->getFiles();
-            if ( !$pfs->exists($path) ) {
-                throw CodexException::documentNotFound('phpdoc');
-            }
-            return [ 'path' => $path, 'binding' => 'codex.phpdoc.document' ];
+        $this->hook('documents:constructed', function (Documents $documents) {
+            /** @var \Codex\Contracts\Documents\Documents|\Codex\Documents\Documents $documents */
+            $project = $documents->getProject();
+            $documents->addCustomDocument($project->config('phpdoc.document_slug', 'phpdoc'), function (Documents $documents) use ($project) {
+                $path = $project->refPath($project->config('phpdoc.path'));
+                $pfs  = $project->getFiles();
+                if ( !$pfs->exists($path) ) {
+                    throw CodexException::documentNotFound('phpdoc');
+                }
+                return [ 'path' => $path, 'binding' => 'codex.phpdoc.document' ];
+            });
         });
+    }
+
+    protected function registerRoutes()
+    {
+        $this->app->register(Http\HttpServiceProvider::class);
+        $this->excludeRoute(config('codex-phpdoc.route_prefix'));
     }
 
 

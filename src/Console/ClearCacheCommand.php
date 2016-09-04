@@ -20,7 +20,10 @@ class ClearCacheCommand extends Command
     public function handle()
     {
         foreach ( codex()->projects->getPhpdocProjects() as $project ) {
-            $project->phpdoc->clearCache();
+            foreach($project->refs->all() as $ref){
+                $ref->phpdoc->clearCache();
+            }
+
             $this->comment("Cleared cache for [{$project->getName()}]");
         }
         $this->info('All done sire!');

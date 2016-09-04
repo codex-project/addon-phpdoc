@@ -49,7 +49,7 @@ class PhpdocRef
             $this->project->getName(),
             $parent->getName()
         ));
-        $this->checkUpdate();
+        #$this->checkUpdate();
         $this->parent = $parent;
     }
 
@@ -65,6 +65,9 @@ class PhpdocRef
 
     public function checkUpdate($forceUpdate = false)
     {
+        if(false === $this->hasXmlFile()){
+            return;
+        }
         $cachedLastModified = (int)$this->cache->get($this->getCacheKey(), 0);
         if ( $forceUpdate === true || $cachedLastModified !== $this->getLastModified() ) {
 
@@ -76,13 +79,23 @@ class PhpdocRef
     public function getLastModified()
     {
         return (int)$this->project->getFiles()->lastModified(
-            $this->ref->path($this->project->config('phpdoc.xml_path'))
+            $this->getXmlFilePath()
         );
+    }
+
+    public function getXmlFilePath()
+    {
+        return $this->ref->path($this->project->config('phpdoc.xml_path'));
+    }
+
+    public function hasXmlFile()
+    {
+        return $this->project->getFiles()->exists($this->getXmlFilePath());
     }
 
     public function getStructureXml()
     {
-        return $this->project->getFiles()->get($this->ref->path($this->project->config('phpdoc.xml_path')));
+        return $this->project->getFiles()->get($this->getXmlFilePath());
     }
 
     /**

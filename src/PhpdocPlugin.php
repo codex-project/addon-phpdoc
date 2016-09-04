@@ -16,6 +16,8 @@ use Codex\Codex;
 use Codex\Contracts\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
+use Codex\Projects\Projects;
+use Codex\Projects\Ref;
 
 /**
  * This is the class Plugin.
@@ -70,7 +72,7 @@ class PhpdocPlugin extends BasePlugin
         $app = parent::register();
 
         if ( $app[ 'config' ]->get('codex.http.enabled', false) ) {
-            $this->registerRoutes();
+            $this->registerHttp();
         }
 
         // register link handler
@@ -78,6 +80,15 @@ class PhpdocPlugin extends BasePlugin
 
         // register custom document, this will handle showing the phpdoc
         $this->registerCustomDocument();
+
+        Codex::extend('phpdoc', Phpdoc::class);
+        Ref::extend('phpdoc', PhpdocRef::class);
+        Projects::extend('getPhpdocProjects', function () {
+            return $this->query()->filter(function (Project $project) {
+                return $project->config('phpdoc.enabled', false) === true;
+            });
+        });
+
 
         return $app;
     }
@@ -99,7 +110,7 @@ class PhpdocPlugin extends BasePlugin
         });
     }
 
-    protected function registerRoutes()
+    protected function registerHttp()
     {
         $this->app->register(Http\HttpServiceProvider::class);
         $this->excludeRoute(config('codex-phpdoc.route_prefix'));

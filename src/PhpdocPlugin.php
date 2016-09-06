@@ -41,8 +41,8 @@ class PhpdocPlugin extends BasePlugin
     ];
 
     public $extend = [
-        Codex::class   => [ 'phpdoc' => Phpdoc::class ],
-        Project::class => [ 'phpdoc' => PhpdocRef::class ],
+        'codex'     => [ 'phpdoc' => Phpdoc::class ],
+        'codex.ref' => [ 'phpdoc' => PhpdocRef::class ],
     ];
 
     ## ServiceProvider attributes
@@ -66,7 +66,6 @@ class PhpdocPlugin extends BasePlugin
     protected $shared = [ 'codex.phpdoc' => Phpdoc::class, ];
 
 
-
     public function register()
     {
         $app = parent::register();
@@ -81,9 +80,7 @@ class PhpdocPlugin extends BasePlugin
         // register custom document, this will handle showing the phpdoc
         $this->registerCustomDocument();
 
-        Codex::extend('phpdoc', Phpdoc::class);
-        Ref::extend('phpdoc', PhpdocRef::class);
-        Projects::extend('getPhpdocProjects', function () {
+        Codex::registerExtension('codex.projects', 'getPhpdocProjects', function () {
             return $this->query()->filter(function (Project $project) {
                 return $project->config('phpdoc.enabled', false) === true;
             });

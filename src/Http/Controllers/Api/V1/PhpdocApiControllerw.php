@@ -26,7 +26,7 @@ class PhpdocApiControllerw extends ApiController
 
     protected function getDoc($projectSlug, $ref = null)
     {
-        $project = $this->resolveProject($projectSlug, $ref);
+        $project = $this->resolveRef($projectSlug, $ref);
         $project->phpdoc->checkUpdate(true);
         return $project->phpdoc;
     }

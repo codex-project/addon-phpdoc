@@ -13,7 +13,7 @@ namespace Codex\Addon\Phpdoc;
 use Codex\Addons\Annotations\Plugin;
 use Codex\Addons\BasePlugin;
 use Codex\Codex;
-use Codex\Contracts\Documents\Documents;
+use Codex\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
 use Codex\Projects\Projects;
@@ -97,9 +97,8 @@ class PhpdocPlugin extends BasePlugin
             /** @var \Codex\Contracts\Documents\Documents|\Codex\Documents\Documents $documents */
             $project = $documents->getProject();
             $documents->addCustomDocument($project->config('phpdoc.document_slug', 'phpdoc'), function (Documents $documents) use ($project) {
-                $path = $project->refPath($project->config('phpdoc.path'));
-                $pfs  = $project->getFiles();
-                if ( !$pfs->exists($path) ) {
+                $path = $documents->getRef()->path($project->config('phpdoc.path'));
+                if ( !$documents->getFiles()->exists($path) ) {
                     throw CodexException::documentNotFound('phpdoc');
                 }
                 return [ 'path' => $path, 'binding' => 'codex.phpdoc.document' ];

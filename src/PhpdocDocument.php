@@ -71,7 +71,7 @@ JS
      */
     public function getBreadcrumb()
     {
-        return $this->getProject()->getSidebarMenu()->getBreadcrumbToHref($this->url());
+        return $this->getCodex()->menus->get('sidebar')->getBreadcrumbToHref($this->url());
     }
 
     public function getLastModified()

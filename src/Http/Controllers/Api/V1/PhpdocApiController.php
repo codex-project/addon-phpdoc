@@ -32,12 +32,12 @@ class PhpdocApiController extends ApiController
 
     protected function getDoc($projectSlug = null, $ref = null)
     {
-        $project = $this->resolveProject($projectSlug ?: request('project'), $ref ?: request('ref', null));
-        if ( $project instanceof Response ) {
-            return $project;
+        $ref = $this->resolveRef($projectSlug ?: request('project'), $ref ?: request('ref', null));
+        if ( $ref instanceof Response ) {
+            return $ref;
         }
-        $project->phpdoc->checkUpdate();
-        return $project->phpdoc;
+        $ref->phpdoc->checkUpdate();
+        return $ref->phpdoc;
     }
 
     public function getEntities()

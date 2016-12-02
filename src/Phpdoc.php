@@ -59,7 +59,7 @@ JS
      */
     public function getProjects()
     {
-        return $this->codex->projects->query()->filter(function (Project $project) {
+        return $this->codex->projects->getItems()->filter(function (Project $project) {
             return $project->config('phpdoc.enabled', false) === true;
         });
     }

@@ -1,14 +1,35 @@
-@extends('codex::layouts.default')
-
-@section('title')
-    {{ $document->attr('title') }}
-    -
-    {{ $project->config('display_name') }}
-    ::
-    @parent
-@stop
+@extends(codex()->view('layout'))
 
 
-@section('content')
-    {!! $content !!}
+@section('body')
+
+    <!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<div id="app" class="page-phpdoc" v-cloak>
+    <c-theme :class="classes">
+        <c-header ref="header" :show-toggle="true" :logoLink="{ name: 'welcome' }">
+            <div slot="menu">
+                @stack('nav')
+            </div>
+        </c-header>
+
+        <div class="c-page" ref="page" :style="{ 'min-height': minHeights.page + 'px' }">
+            <c-sidebar ref="sidebar" :min-height="minHeights.inner" active="{{ $document->url() }}">
+                {!! $ref->getSidebarMenu()->render($document->getProject(), $document->getRef()) !!}
+            </c-sidebar>
+
+            <c-content ref="content" :min-height="minHeights.inner" autoloader-languages-path="{{ asset('vendor/codex') }}/vendor/prismjs/components/">
+                {!! $document->render()  !!}
+            </c-content>
+        </div>
+
+        <c-scroll-to-top></c-scroll-to-top>
+
+        <c-footer ref="footer">
+            <p>footer</p>
+        </c-footer>
+    </c-theme>
+</div>
+
 @stop

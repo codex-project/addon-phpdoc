@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author Robin Radic
+ * @author    Robin Radic
  * @copyright Copyright 2016 (c) Codex Project
- * @license http://codex-project.ninja/license The MIT License
+ * @license   http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc\Structure;
 
@@ -24,6 +24,10 @@ class Tag extends AbstractStructure
      */
     protected function transform($data)
     {
-        return $data->get('@attributes', [])->toArray();
+        $items = $data->get('@attributes', [])->toArray();
+        if ( isset($items[ 'line' ]) ) {
+            $items[ 'line' ] = (int)$items[ 'line' ];
+        }
+        return $items;
     }
 }

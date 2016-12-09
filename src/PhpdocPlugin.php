@@ -13,6 +13,7 @@ namespace Codex\Addon\Phpdoc;
 use Codex\Addons\Annotations\Plugin;
 use Codex\Addons\BasePlugin;
 use Codex\Codex;
+use Codex\Documents\Document;
 use Codex\Documents\Documents;
 use Codex\Exception\CodexException;
 use Codex\Projects\Project;
@@ -65,6 +66,33 @@ class PhpdocPlugin extends BasePlugin
 
     protected $shared = [ 'codex.phpdoc' => Phpdoc::class, ];
 
+    public function boot()
+    {
+        parent::boot();
+
+        $this->hook('controller:document', function ($controller, Document $document) {
+            if($document->getPathName() !== $document->getProject()->config('phpdoc.document_slug')){
+                return;
+            }
+            $this->codex()->theme
+                ->addStylesheet('phpdoc', asset('/vendor/codex/styles/addon-phpdoc.css'), ['theme'])
+                ->addJavascript('vue-resource', asset('/vendor/codex/vendor/vue-resource/vue-resource.js'), ['vue'])
+                ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), ['jquery'])
+                ->addJavascript('phpdoc', asset('/vendor/codex/js/codex.phpdoc.js'), [ 'jstree', 'vue-resource', 'document' ])
+                ->addScript('init', <<<EOT
+Vue.codex.phpdoc.apiUrl = 'http://codex-project.dev/api/v1/';
+var app = new codex.App({
+    el: '#app',
+    mounted(){
+        this.closeSidebar();
+    }
+})
+EOT
+                );
+
+
+        });
+    }
 
     public function register()
     {
@@ -81,7 +109,8 @@ class PhpdocPlugin extends BasePlugin
         $this->registerCustomDocument();
 
         Codex::registerExtension('codex.projects', 'getPhpdocProjects', function () {
-            return $this->query()->filter(function (Project $project) {
+            /** @var Projects $this */
+            return $this->getItems()->filter(function (Project $project) {
                 return $project->config('phpdoc.enabled', false) === true;
             });
         });

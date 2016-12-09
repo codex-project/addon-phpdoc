@@ -1,0 +1,7 @@
+{
+    "name": "core",
+    "private": true,
+    "dependencies": {
+        "codex-theme-phpdoc": "^0.0.1"
+    }
+}

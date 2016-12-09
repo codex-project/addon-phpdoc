@@ -1,1 +1,0 @@
-{"version":3,"sources":["app/simplebind/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,wBAAwB,CAAC,EAAA;AACvC,iBAAc,qBAAqB,CAAC,EAAA","file":"app/simplebind/index.js","sourcesContent":["export * from './simplebind.component';\nexport * from './simplebind.routes';\n"],"sourceRoot":"/source/"}

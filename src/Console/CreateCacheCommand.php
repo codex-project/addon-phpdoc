@@ -20,8 +20,11 @@ class CreateCacheCommand extends Command
     public function handle()
     {
         foreach(codex()->projects->getPhpdocProjects() as $project){
-            $project->phpdoc->clearCache();
-            $project->phpdoc->checkUpdate(true);
+            foreach($project->refs->all() as $ref){
+                $ref->phpdoc->clearCache();
+                $ref->phpdoc->checkUpdate(true);
+            }
+
             $this->comment("Cache created for [{$project->getName()}]");
         }
         $this->info('All done sire!');

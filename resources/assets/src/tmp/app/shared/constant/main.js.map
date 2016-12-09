@@ -1,1 +1,0 @@
-{"version":3,"sources":["app/shared/constant/main.ts"],"names":[],"mappings":";AAAa,YAAI,GAAG;IAChB,GAAG,EAAE;QACD,KAAK,EAAE,mBAAmB;KAC7B;CACJ,CAAC","file":"app/shared/constant/main.js","sourcesContent":["export const MAIN = {\n    APP: {\n        BRAND: 'Angular 2 Starter'\n    }\n};\n"],"sourceRoot":"/source/"}

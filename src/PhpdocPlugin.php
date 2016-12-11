@@ -69,13 +69,12 @@ class PhpdocPlugin extends BasePlugin
     public function boot()
     {
         parent::boot();
-
         $this->hook('controller:document', function ($controller, Document $document) {
             if($document->getPathName() !== $document->getProject()->config('phpdoc.document_slug')){
                 return;
             }
             $this->codex()->theme
-                ->addStylesheet('phpdoc', asset('/vendor/codex/styles/addon-phpdoc.css'), ['theme'])
+                ->addStylesheet('phpdoc', asset('/vendor/codex/styles/codex.phpdoc.css'), ['theme'])
                 ->addJavascript('vue-resource', asset('/vendor/codex/vendor/vue-resource/vue-resource.js'), ['vue'])
                 ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), ['jquery'])
                 ->addJavascript('phpdoc', asset('/vendor/codex/js/codex.phpdoc.js'), [ 'jstree', 'vue-resource', 'document' ])

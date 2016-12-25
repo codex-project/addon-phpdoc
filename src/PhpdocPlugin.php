@@ -26,7 +26,9 @@ use Codex\Projects\Ref;
  * @package        Codex\Addon
  * @author         CLI
  * @copyright      Copyright (c) 2015, CLI. All rights reserved
- * @Plugin("phpdoc")
+ * @Plugin("phpdoc",
+ *     description="Integrates PHPDoc into Codex"
+ * )
  */
 class PhpdocPlugin extends BasePlugin
 {
@@ -74,10 +76,15 @@ class PhpdocPlugin extends BasePlugin
                 return;
             }
             $this->codex()->theme
-                ->addStylesheet('phpdoc', asset('/vendor/codex/styles/codex.phpdoc.css'), ['theme'])
                 ->addJavascript('vue-resource', asset('/vendor/codex/vendor/vue-resource/vue-resource.js'), ['vue'])
                 ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), ['jquery'])
-                ->addJavascript('phpdoc', asset('/vendor/codex/js/codex.phpdoc.js'), [ 'jstree', 'vue-resource', 'document' ])
+
+                ->addStylesheet('codex.phpdoc', asset('/vendor/codex/styles/codex.phpdoc.document.css'), ['codex'])
+                ->addStylesheet('codex.page.phpdoc', asset('/vendor/codex/styles/codex.page.phpdoc.css'), ['codex'])
+
+                ->addJavascript('codex.phpdoc', asset('/vendor/codex/js/codex.phpdoc.js'), [ 'jstree', 'vue-resource', 'codex.page.document', 'codex' ])
+                ->addJavascript('codex.page.phpdoc', asset('/vendor/codex/js/codex.page.phpdoc.js'), [ 'jstree', 'vue-resource', 'codex.page.document', 'codex.phpdoc' ])
+
                 ->addScript('init', <<<EOT
 Vue.codex.phpdoc.apiUrl = 'http://codex-project.dev/api/v1/';
 var app = new codex.App({

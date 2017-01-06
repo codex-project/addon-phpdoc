@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc;
 
@@ -125,6 +125,25 @@ EOT
         return $app;
     }
 
+    protected function registerSerializer()
+    {
+//
+//        AnnotationRegistry::registerLoader('class_exists');
+        $builder = \JMS\Serializer\SerializerBuilder::create();
+        $builder->configureHandlers(function(\JMS\Serializer\Handler\HandlerRegistry $registry){
+            $registry->registerSubscribingHandler(new Serializer\Handler());
+            $registry->registerSubscribingHandler(new \JMS\Serializer\Handler\ArrayCollectionHandler());
+        });
+        $serializer = $builder->build();
+//        $this->app->singleton('codex.phpdoc')
+
+        /** @var \Codex\Addon\Phpdoc\Serializer\Project $project */
+        $project = $serializer->deserialize(file_get(resource_path('docs/codex/master/structure2.xml')), \Codex\Addon\Phpdoc\Serializer\Project::class, 'xml');
+        $file = $project->files['Codex\Codex.php'];
+        $fileTag = $file->docblock->tags[0];
+//
+//        VarDumper::dump($file);
+    }
     public function registerCustomDocument()
     {
 

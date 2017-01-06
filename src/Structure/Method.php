@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc\Structure;
 
@@ -38,18 +38,24 @@ class Method extends AbstractStructure
             'description'      => $this->createString($data[ 'docblock.description' ]),
             'long-description' => $this->createString($data[ 'docblock.long-description' ]),
 
-            'returns' => 'void',
+            'returns' => [],
             'throws'  => [ ],
 
             'tags'      => [ ],
             'arguments' => [ ],
         ];
 
+
+
         $tags = $data->get('docblock.tag');
         if($tags !== null){
+            // if only 1 tag
+            if($data->has('docblock.tag.@attributes')){
+                $tags = Collection::make([$data->get('docblock.tag')]);
+            }
             $returnTag = $tags->where('@attributes.name', 'return');
             if($returnTag !== null) {
-                $items[ 'returns' ] = implode('|', $this->arrayValue($returnTag->get('type', [ 'void' ])));
+                $items[ 'returns' ] = $this->arrayValue($returnTag->get('*.@attributes.type', []));
             }
 
             $throwsTags = $tags->where('@attributes.name', 'throws');
@@ -106,12 +112,12 @@ class Method extends AbstractStructure
     /** @return Collection */
     public function getTags()
     {
-        return $this[ 'tags' ];
+        return $this[ 'tag' ];
     }
 
     /** @return bool */
     public function hasTags()
     {
-        return count($this->get('tags', [ ])) > 0;
+        return count($this->get('tag', [ ])) > 0;
     }
 }

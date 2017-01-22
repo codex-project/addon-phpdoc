@@ -71,20 +71,35 @@ class PhpdocPlugin extends BasePlugin
     public function boot()
     {
         parent::boot();
+
+        // add scripts and styles to be used globally.
+        $this->codex()->theme
+            ->addStylesheet('codex.phpdoc', asset('/vendor/codex/styles/codex.phpdoc.document.css'), [ 'codex' ])
+            ->addJavascript('codex.phpdoc', asset('/vendor/codex/js/codex.phpdoc.js'), [ 'codex.page.document', 'codex' ])
+            ->addJavascript('codex.page.phpdoc', asset('/vendor/codex/js/codex.page.phpdoc.js'), [ 'codex.phpdoc' ]);
+
+
+        // 1. Ensure both the Codex plugin and CodexPhpdoc plugin are loaded for documents. This enables all phpdoc components for use in documents.
+        // 2. Then make it so that the original init script (and its depends) run AFTER loading the plugins, by adding it as a dependency
+        $this->hook('controller:document', function ($controller) {
+            $this->codex()->theme
+                ->addScript('codex.phpdoc.plugin', <<<EOT
+Vue.use(CodexPlugin)
+Vue.use(CodexPhpdocPlugin)
+EOT
+                )
+                ->scripts(false)->addTo('init.depends', 'codex.phpdoc.plugin');
+        });
+
+        // If the current document is the PHPDoc document viewer, add the required assets and add the proper init script
         $this->hook('controller:document', function ($controller, Document $document) {
-            if($document->getPathName() !== $document->getProject()->config('phpdoc.document_slug')){
+            if ( $document->getPathName() !== $document->getProject()->config('phpdoc.document_slug') ) {
                 return;
             }
             $this->codex()->theme
-                ->addJavascript('vue-resource', asset('/vendor/codex/vendor/vue-resource/vue-resource.js'), ['vue'])
-                ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), ['jquery'])
-
-                ->addStylesheet('codex.phpdoc', asset('/vendor/codex/styles/codex.phpdoc.document.css'), ['codex'])
-                ->addStylesheet('codex.page.phpdoc', asset('/vendor/codex/styles/codex.page.phpdoc.css'), ['codex'])
-
-                ->addJavascript('codex.phpdoc', asset('/vendor/codex/js/codex.phpdoc.js'), [ 'jstree', 'vue-resource', 'codex.page.document', 'codex' ])
-                ->addJavascript('codex.page.phpdoc', asset('/vendor/codex/js/codex.page.phpdoc.js'), [ 'jstree', 'vue-resource', 'codex.page.document', 'codex.phpdoc' ])
-
+//                ->addJavascript('vue-resource', asset('/vendor/codex/vendor/vue-resource/vue-resource.js'), ['vue'])
+                ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), [ 'jquery' ])
+                ->addStylesheet('codex.page.phpdoc', asset('/vendor/codex/styles/codex.page.phpdoc.css'), [ 'codex' ])
                 ->addScript('init', <<<EOT
 Vue.codex.phpdoc.apiUrl = 'http://codex-project.dev/api/v1/';
 var app = new codex.App({
@@ -95,9 +110,9 @@ var app = new codex.App({
 })
 EOT
                 );
-
-
         });
+
+
     }
 
     public function register()
@@ -130,7 +145,7 @@ EOT
 //
 //        AnnotationRegistry::registerLoader('class_exists');
         $builder = \JMS\Serializer\SerializerBuilder::create();
-        $builder->configureHandlers(function(\JMS\Serializer\Handler\HandlerRegistry $registry){
+        $builder->configureHandlers(function (\JMS\Serializer\Handler\HandlerRegistry $registry) {
             $registry->registerSubscribingHandler(new Serializer\Handler());
             $registry->registerSubscribingHandler(new \JMS\Serializer\Handler\ArrayCollectionHandler());
         });
@@ -139,11 +154,12 @@ EOT
 
         /** @var \Codex\Addon\Phpdoc\Serializer\Project $project */
         $project = $serializer->deserialize(file_get(resource_path('docs/codex/master/structure2.xml')), \Codex\Addon\Phpdoc\Serializer\Project::class, 'xml');
-        $file = $project->files['Codex\Codex.php'];
-        $fileTag = $file->docblock->tags[0];
+        $file    = $project->files[ 'Codex\Codex.php' ];
+        $fileTag = $file->docblock->tags[ 0 ];
 //
 //        VarDumper::dump($file);
     }
+
     public function registerCustomDocument()
     {
 

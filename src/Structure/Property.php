@@ -4,15 +4,37 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc\Structure;
 
 use Codex\Support\Collection;
 use Laradic\Support\Str;
 
+/**
+ * This is the class Property.
+ *
+ * @package        Codex\Addon
+ * @author         CLI
+ * @copyright      Copyright (c) 2015, CLI. All rights reserved
+ *
+ *
+ * @property string     $name
+ * @property string     $full_name
+ * @property string     $class_name
+ * @property string     $description
+ * @property string     $longDescription
+ * @property string     $namespace
+ * @property string     $visibility
+ * @property string     $package
+ * @property boolean    $static
+ * @property boolean    $inherited
+ * @property int        $line
+ * @property string[]   $types
+ * @property Tag[]      $tags
+ */
 class Property extends AbstractStructure
 {
     /**

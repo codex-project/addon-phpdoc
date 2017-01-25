@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc;
 
@@ -16,12 +16,9 @@ use Codex\Projects\Ref;
 use Illuminate\Contracts\Cache\Repository;
 
 /**
- * This is the PhpdocDocument.
+ * This is the class PhpdocDocument.
  *
- * @package        Codex\Hooks
- * @author         Caffeinated Dev Team
- * @copyright      Copyright (c) 2015, Caffeinated
- * @license        https://tldrlegal.com/license/mit-license MIT License
+ * @author Robin Radic
  */
 class PhpdocDocument extends Document
 {
@@ -30,8 +27,7 @@ class PhpdocDocument extends Document
 
     public function __construct($codex, Project $project, Ref $ref, Repository $cache, $path, $pathName)
     {
-        $pathName = 'phpdoc';
-        parent::__construct($codex, $project, $ref, $cache, $path, $pathName);
+        parent::__construct($codex, $project, $ref, $cache, $path, 'phpdoc');
         $this->mergeAttributes($project->config('phpdoc'));
     }
 
@@ -45,8 +41,9 @@ class PhpdocDocument extends Document
         ]);
         $this->setAttribute('processors.prismjs.plugins', $prismPlugins);
         $this->runProcessor('prismjs');
-        #$content = "<phpdoc project='{$this->project->getName()}' ref='{$this->project->getRef()}' full-name='{$this->p'></phpdoc>";
-        $content = '<c-phpdoc project-name="codex" project-ref="master" full-name="Codex\Codex"></c-phpdoc>';
+        $this->getCodex()->theme->set('phpdoc.entities', $this->getRef()->phpdoc->getEntities()->toArray());
+        $this->getCodex()->theme->set('phpdoc.tree', $this->getRef()->phpdoc->tree());
+        $content = $this->getPhpdocContent($this->attr('default_class'));
         $this->hookPoint('document:rendered');
         return $content;
     }
@@ -65,5 +62,9 @@ class PhpdocDocument extends Document
         return parent::getLastModified();
     }
 
+    public function getPhpdocContent($query)
+    {
+        return "<pd-app query='{$query}'></pd-app>";
+    }
 
 }

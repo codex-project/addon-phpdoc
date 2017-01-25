@@ -60,23 +60,26 @@ class PhpdocLink
         $params    = count($action->getParameters());
         if ( $action->param(0) === 'popover' ) {
             $componentName = $params === 3 ? 'method' : 'entity';
-            $fullName      = str_ensure_left($action->param(1), '\\');
+            $query      = str_ensure_left($action->param(1), '\\');
 
             if ( $params === 3 ) {
-                $fullName .= '::' . $action->param(2);
+                $query .= '::' . $action->param(2) . '()';
             }
 
             $fd      = FluentDOM(<<<EOT
 <c-popover placement="bottom" popover-class="phpdoc-popover" trigger="hover">
+    {$el->saveXml()}
     <span slot="content">
-        <pd-{$componentName} full-name="{$fullName}"></pd-{$componentName}>
+        <pd-{$componentName} query="{$query}"></pd-{$componentName}>
     </span>
 </c-popover>
 EOT
             );
+
             $popover = $fd->find('//c-popover');
-            $el->appendToParentNode($popover);
-            $popover->prependTo('//span', $el);
+            $el->before($popover);
+            //$popover->prependTo('//span', $el);
+            $el->remove();
 
 //            $popover = Popover::make($action->getRef())->generate($action->param(1), $action->param(2));
             $el->setAttribute('class', $el->getAttribute('class') . ' phpdoc-popover-link');

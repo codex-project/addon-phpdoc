@@ -55,8 +55,8 @@ class Property extends AbstractStructure
             'namespace'  => $data[ '@attributes.namespace' ],
             'package'    => $data[ '@attributes.package' ],
 
-            'description'      => $this->createString($data[ 'docblock.description' ]),
-            'long-description' => $this->createString($data[ 'docblock.long-description' ]),
+            'description'      => $this->createDescription($data[ 'docblock.description' ]),
+            'long-description' => $this->createDescription($data[ 'docblock.long-description' ]),
         ];
 
         $items[ 'full_name' ]  = $data->get('full_name', $this->belongsTo[ 'full_name' ] . '::' . Str::removeLeft($data[ 'name' ], '$'));

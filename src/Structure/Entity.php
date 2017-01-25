@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc\Structure;
 
@@ -37,14 +37,16 @@ class Entity extends AbstractStructure
 
     protected function transform($data)
     {
+
         $items = [
             'final'            => $this->boolValue($data[ '@attributes.final' ]),
             'abstract'         => $this->boolValue($data[ '@attributes.abstract' ]),
             'namespace'        => $data[ '@attributes.namespace' ],
-            'description'      => $this->createString($data[ 'docblock.description' ]),
-            'long-description' => $this->createString($data[ 'docblock.long-description' ]),
+            'description'      => $this->createDescription($data[ 'docblock.description' ]),
+            'long-description' => $this->createDescription($data[ 'docblock.long-description' ]),
         ];
         $this->copy([ 'extends', 'implements', 'name', 'full_name' ], $data, $items);
+
 
 
         // hash, file_Description, file_tags, extends, line,
@@ -122,12 +124,12 @@ class Entity extends AbstractStructure
         foreach ( $this->getTags() as $item ) {
             $item->setBelongsTo($this);
         }
-        return;
-        foreach ( [ $this->getMethods(), $this->getProperties(), $this->getConstants(), $this->getTags() ] as $collection ) {
-            /** @var Collection|AbstractStructure[] $collection */
-            foreach ( $collection as $item ) {
-                $item->setBelongsTo($this);
-            }
-        }
+//        return;
+//        foreach ( [ $this->getMethods(), $this->getProperties(), $this->getConstants(), $this->getTags() ] as $collection ) {
+//            /** @var Collection|AbstractStructure[] $collection */
+//            foreach ( $collection as $item ) {
+//                $item->setBelongsTo($this);
+//            }
+//        }
     }
 }

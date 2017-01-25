@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 namespace Codex\Addon\Phpdoc\Structure;
 
@@ -52,8 +52,8 @@ class File extends AbstractStructure
         $items = array_merge($items, [
             'path'                  => $data[ '@attributes.path' ],
             'hash'                  => $data[ '@attributes.hash' ],
-            'file_description'      => $this->createString($data[ 'docblock.description' ]),
-            'file_long-description' => $this->createString($data[ 'docblock.long-description' ]),
+            'file_description'      => $this->createDescription($data[ 'docblock.description' ]),
+            'file_long-description' => $this->createDescription($data[ 'docblock.long-description' ]),
 
         ]);
 

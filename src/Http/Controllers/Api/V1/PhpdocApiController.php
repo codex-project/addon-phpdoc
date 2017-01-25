@@ -60,6 +60,7 @@ class PhpdocApiController extends ApiController
     {
         $entity = request('entity');
         $full   = request('full', false) === 'true';
+        $markdown   = request('markdown', false) === 'true';
 
         $phpdoc = $this->getDoc();
 
@@ -92,6 +93,9 @@ class PhpdocApiController extends ApiController
             });
             $e->set('source', '');
             $e->set('parse_markers', [ 'error' => [] ]);
+        }
+        if($markdown){
+
         }
 
         return $this->response($e);

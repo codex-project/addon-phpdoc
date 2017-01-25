@@ -60,8 +60,8 @@ class Method extends AbstractStructure
             'namespace'  => $data[ '@attributes.namespace' ],
             'package'    => $data[ '@attributes.package' ],
 
-            'description'      => $this->createString($data[ 'docblock.description' ]),
-            'long-description' => $this->createString($data[ 'docblock.long-description' ]),
+            'description'      => $this->createDescription($data[ 'docblock.description' ]),
+            'long-description' => $this->createDescription($data[ 'docblock.long-description' ]),
 
             'returns' => [],
             'throws'  => [],

@@ -44,7 +44,7 @@ class PhpdocPlugin extends BasePlugin
     ];
 
     public $extend = [
-        'codex'     => [ 'phpdoc' => Phpdoc::class ],
+//        'codex'     => [ 'phpdoc' => Phpdoc::class ],
         'codex.ref' => [ 'phpdoc' => PhpdocRef::class ],
     ];
 
@@ -66,7 +66,7 @@ class PhpdocPlugin extends BasePlugin
         'codex.phpdoc.document' => PhpdocDocument::class,
     ];
 
-    protected $shared = [ 'codex.phpdoc' => Phpdoc::class, ];
+//    protected $shared = [ 'codex.phpdoc' => Phpdoc::class, ];
 
     public function boot()
     {
@@ -101,7 +101,6 @@ EOT
                 ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), [ 'jquery' ])
                 ->addStylesheet('codex.page.phpdoc', asset('/vendor/codex/styles/codex.page.phpdoc.css'), [ 'codex' ])
                 ->addScript('init', <<<EOT
-Vue.codex.phpdoc.apiUrl = 'http://codex-project.dev/api/v1/';
 var app = new codex.App({
     el: '#app',
     mounted(){

@@ -64,7 +64,7 @@ class PhpdocDocument extends Document
 
     public function getPhpdocContent($query)
     {
-        return "<pd-app query='{$query}'></pd-app>";
+        return "<pd-app :height=\"phpdocHeight\" :query=\"query\"></pd-app>";
     }
 
 }

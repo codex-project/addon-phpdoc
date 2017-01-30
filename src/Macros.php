@@ -27,7 +27,7 @@ class Macros
 
     public function listMethod($isCloser = false, $query)
     {
-        return "<pd-method-lists query=\"{$query}\"></pd-method-lists>";
+        return "<pd-method-list query=\"{$query}\"></pd-method-list>";
     }
 
     public function listProperty($isCloser = false, $query)

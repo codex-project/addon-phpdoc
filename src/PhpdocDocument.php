@@ -35,7 +35,7 @@ class PhpdocDocument extends Document
     {
 
         $this->hookPoint('document:render');
-        $prismPlugins = array_replace($this->attr('processors.prismjs.plugins', [ ]), [
+        $prismPlugins = array_replace($this->attr('processors.prismjs.plugins', []), [
             'line-numbers',
             'autolinker',
         ]);
@@ -43,7 +43,8 @@ class PhpdocDocument extends Document
         $this->runProcessor('prismjs');
         $this->getCodex()->theme->set('phpdoc.entities', $this->getRef()->phpdoc->getEntities()->toArray());
         $this->getCodex()->theme->set('phpdoc.tree', $this->getRef()->phpdoc->tree());
-        $content = $this->getPhpdocContent($this->attr('default_class'));
+        $this->getCodex()->theme->set('phpdoc.defaultClass', $this->attr('default_class'));
+        $content = $this->getPhpdocContent();
         $this->hookPoint('document:rendered');
         return $content;
     }
@@ -62,9 +63,9 @@ class PhpdocDocument extends Document
         return parent::getLastModified();
     }
 
-    public function getPhpdocContent($query)
+    public function getPhpdocContent()
     {
-        return "<pd-app :height=\"phpdocHeight\" :query=\"query\"></pd-app>";
+        return "<pd-app :height=\"phpdocHeight\" :query=\"query\"  ref=\"phpdocApp\"></pd-app>";
     }
 
 }

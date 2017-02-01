@@ -16,9 +16,6 @@ use FluentDOM\Element;
 
 class PhpdocLink
 {
-    /** @var \Codex\Addon\Phpdoc\Phpdoc */
-    protected $phpdoc;
-
     /** @var \Codex\Processors\Links\Action */
     protected $action;
 
@@ -27,16 +24,14 @@ class PhpdocLink
      *
      * @param \Codex\Addon\Phpdoc\Phpdoc $phpdoc
      */
-    public function __construct(\Codex\Addon\Phpdoc\Phpdoc $phpdoc)
+    public function __construct()
     {
-        $this->phpdoc = $phpdoc;
     }
 
 
     // link action: 'phpdoc' => 'Codex\Addon\Phpdoc\PhpdocLink@handle'
     public function handle(Action $action)
     {
-        $this->phpdoc->addAssets();
         $this->action = $action;
         $ref       = $action->getRef();
         $el        = $action->getElement();

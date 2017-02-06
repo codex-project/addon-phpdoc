@@ -131,7 +131,7 @@ EOT
                     $params .= ' no-tooltip';
                 }
             }
-            return "<pd-type type='{$this->query}' target='{$target}' {$params}></pd-type>";
+            return "<pd-type type='{$this->query}' target='{$target}' href='{$action->getElement()->getAttribute('href')}' {$params}></pd-type>";
         }
         return $elHtml;
     }

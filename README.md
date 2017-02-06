@@ -22,6 +22,14 @@ Documentation
 Check out the [official documentation](http://codex-project.ninja).
 
 
+Preview
+-------
+**In a document:**
+![Screenshot 1](screenshot2.png)
+
+**In API Documenation**
+![Screenshot](screenshot.png)
+
 License
 -------
 Copyright (c) 2015 Robin Radic, [MIT License](LICENSE.md)

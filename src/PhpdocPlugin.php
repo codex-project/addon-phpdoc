@@ -54,7 +54,6 @@ class PhpdocPlugin extends BasePlugin
 
     protected $viewDirs = [ 'views' => 'codex-phpdoc' ];
 
-    protected $assetDirs = [ 'assets' => 'codex-phpdoc' ];
 
     protected $commands = [
         Console\ClearCacheCommand::class,
@@ -81,37 +80,26 @@ class PhpdocPlugin extends BasePlugin
 
         // 1. Ensure both the Codex plugin and CodexPhpdoc plugin are loaded for documents. This enables all phpdoc components for use in documents.
         // 2. Then make it so that the original init script (and its depends) run AFTER loading the plugins, by adding it as a dependency
-        $this->hook('controller:document', function ($controller) {
+        $this->hook('controller:document', function ($controller, Document $document) {
+            if ( false === $document->getProject()->config('phpdoc.enabled', false) ) {
+                return;
+            }
             $this->codex()->theme
-                ->addScript('codex.phpdoc.plugin', <<<EOT
-Vue.use(CodexPlugin)
-Vue.use(CodexPhpdocPlugin)
-EOT
-                )
-                ->scripts(false)->addTo('init.depends', 'codex.phpdoc.plugin');
+                ->set('phpdoc.url', $document->getProject()->url($document->getProject()->config('phpdoc.document_slug'), $document->getRef()->getName()));
         });
 
         // If the current document is the PHPDoc document viewer, add the required assets and add the proper init script
         $this->hook('controller:document', function ($controller, Document $document) {
-            if ( $document->getPathName() !== $document->getProject()->config('phpdoc.document_slug') ) {
+            if (
+                $document->getPathName() !== $document->getProject()->config('phpdoc.document_slug')
+                || false === $document->getProject()->config('phpdoc.enabled', false)
+            ) {
                 return;
             }
             $this->codex()->theme
-//                ->addJavascript('vue-resource', asset('/vendor/codex/vendor/vue-resource/vue-resource.js'), ['vue'])
                 ->addJavascript('jstree', asset('/vendor/codex/vendor/jstree/jstree.js'), [ 'jquery' ])
-                ->addStylesheet('codex.page.phpdoc', asset('/vendor/codex/styles/codex.page.phpdoc.css'), [ 'codex' ])
-                ->addScript('init', <<<EOT
-var app = new codex.App({
-    el: '#app',
-    mounted(){
-        this.closeSidebar();
-    }
-})
-EOT
-                );
+                ->addStylesheet('codex.page.phpdoc', asset('/vendor/codex/styles/codex.page.phpdoc.css'), [ 'codex' ]);
         });
-
-
     }
 
     public function register()
@@ -123,7 +111,7 @@ EOT
         }
 
         // register link handler
-        $app[ 'config' ]->set('codex.links.phpdoc', PhpdocLink::class . '@handle');
+        $app[ 'config' ]->set('codex.processors.links.links.phpdoc', Links::class . '@handle');
 
         // register custom document, this will handle showing the phpdoc
         $this->registerCustomDocument();
@@ -178,7 +166,6 @@ EOT
     protected function registerHttp()
     {
         $this->app->register(Http\HttpServiceProvider::class);
-        $this->excludeRoute(config('codex-phpdoc.route_prefix'));
     }
 
 

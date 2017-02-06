@@ -1,12 +1,8 @@
 <!---
-title: PHPDoc Addon
+title: PHPDoc
+subtitle: Codex Addon
 -->
-
-# PHPDoc Addon
-One of Codex it's defining features is PHPDoc integration.
-The `codex/addon-phpdoc` adds **links**, **macros** and even a complete API browser.
-It comes down to be able to do this kind of stuff in your documentation (using popovers, hover the class names).
-
+## Provides
 
 #### Links
 Create links using `[text](#codex:phpdoc['MyNamespace\\MyClass'])`. This will link to the API Documentation.
@@ -41,38 +37,4 @@ You can use modifiers for various extra behaviours like `[text](#codex:phpdoc['M
 ```
 <!--*codex:phpdoc:method('Codex\\Codex::get()')*-->
 
-
-
-
-
-#### Macros
-```markdown
-<!--*codex:phpdoc:method:signature('Codex\\Codex::url()')*-->
-```
-<!--*codex:phpdoc:method:signature('Codex\\Codex::url()')*-->
-
-
-```markdown
-<!--*codex:phpdoc:method('Codex\\Codex::get()')*-->
-```
-<!--*codex:phpdoc:method('Codex\\Codex::get()')*-->
-
-
-```markdown
-<!--*codex:phpdoc:list:method('Codex\\Codex')*-->
-```
-<!--*codex:phpdoc:list:method('Codex\\Codex')*-->
-
-
-```markdown
-<!--*codex:phpdoc:list:property('Codex\\Codex')*-->
-```
-<!--*codex:phpdoc:list:property('Codex\\Codex')*-->
-
-
-
-```markdown
-<!--*codex:phpdoc:entity('Codex\\Codex', 'with-properties')*-->
-```
-<!--*codex:phpdoc:entity('Codex\\Codex', 'with-properties')*-->
 

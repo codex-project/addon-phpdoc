@@ -8,7 +8,7 @@
  * @copyright Copyright 2017 (c) Codex Project
  * @license http://codex-project.ninja/license The MIT License
  */
-namespace Codex\Addon\Phpdoc;
+namespace Codex\Addon\Phpdoc\Structure;
 
 class Node extends \Tree\Node\Node
 {

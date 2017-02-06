@@ -17,26 +17,33 @@ class Macros
     {
 //        return $isCloser ? '</div>' : '<div style="display:none">';
         return "<pd-method-signature query=\"{$query}\"></pd-method-signature>";
-
     }
 
-    public function method($isCloser = false, $query)
+    public function method($isCloser = false, $query, $hide = '')
     {
-        return "<pd-method query=\"{$query}\"></pd-method>";
+        $hide = $this->toJsonArray($hide);
+        return "<pd-method class=\"boxed\" query=\"{$query}\" :hide='{$hide}'></pd-method>";
     }
 
     public function listMethod($isCloser = false, $query)
     {
-        return "<pd-method-list query=\"{$query}\"></pd-method-list>";
+        return "<pd-method-list query=\"{$query}\" no-click></pd-method-list>";
     }
 
-    public function listProperty($isCloser = false, $query)
+    public function listProperty($isCloser = false, $query, $exclude = '', $only = '')
     {
-        return "<pd-property-list query=\"{$query}\"></pd-property-list>";
+        $exclude = $this->toJsonArray($exclude); // === '' ? '[]' : json_encode(array_map('trim', explode(',', $exclude)));
+        $only    = $this->toJsonArray($only); // === '' ? '[]' : json_encode(array_map('trim', explode(',', $only)));
+        return "<pd-property-list query=\"{$query}\" :exclude='{$exclude}' :only='{$only}'></pd-property-list>";
     }
 
-    public function entity($isCloser = false, $query)
+    public function entity($isCloser = false, $query, $modifiers = '')
     {
-        return "<pd-entity query=\"{$query}\"></pd-entity>";
+        return "<pd-entity query=\"{$query}\" {$modifiers}></pd-entity>";
+    }
+
+    protected function toJsonArray($string, $delimiter = ',', $empty = '[]')
+    {
+        return $string === '' ? $empty : json_encode(array_map('trim', explode($delimiter, $string)));
     }
 }

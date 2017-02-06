@@ -58,7 +58,7 @@ class PhpdocApiController extends ApiController
 
     public function getEntity()
     {
-        $entity = request('entity');
+        $entity = urldecode(request('entity'));
         $full   = request('full', false) === 'true';
         $markdown   = request('markdown', false) === 'true';
 
@@ -103,7 +103,7 @@ class PhpdocApiController extends ApiController
 
     public function getMethod()
     {
-        $entity = request('entity');
+        $entity = urldecode(request('entity'));
         $method = request('method');
         $phpdoc = $this->getDoc();
 
@@ -119,7 +119,7 @@ class PhpdocApiController extends ApiController
 
     public function getProperty()
     {
-        $entity   = request('entity');
+        $entity = urldecode(request('entity'));
         $property = request('property');
         $phpdoc   = $this->getDoc();
 

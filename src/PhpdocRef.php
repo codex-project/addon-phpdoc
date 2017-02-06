@@ -11,7 +11,7 @@
 namespace Codex\Addon\Phpdoc;
 
 use Codex\Addon\Phpdoc\Structure\File;
-use Codex\Addon\Phpdoc\Node;
+use Codex\Addon\Phpdoc\Structure\Node;
 use Codex\Projects\Project;
 use Codex\Projects\Ref;
 use Codex\Support\Collection;

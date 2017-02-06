@@ -4,9 +4,9 @@
  *
  * License and copyright information bundled with this package in the LICENSE file.
  *
- * @author    Robin Radic
- * @copyright Copyright 2016 (c) Codex Project
- * @license   http://codex-project.ninja/license The MIT License
+ * @author Robin Radic
+ * @copyright Copyright 2017 (c) Codex Project
+ * @license http://codex-project.ninja/license The MIT License
  */
 return [
 
@@ -20,8 +20,6 @@ return [
      |
      */
 
-    'route_prefix' => 'phpdoc',
-
     'cache' => [
         'extract_path' => storage_path('codex/phpdoc'),
         'store' => 'file'
@@ -31,10 +29,6 @@ return [
     'cache_path' => storage_path('codex/phpdoc'),
 
     'debug' => true, // true, false, null (null takes the app.debug value)
-
-    'links' => [
-        'phpdoc' => 'Codex\Addon\Phpdoc\PhpdocLink@handle'
-    ],
 
     /*
     |--------------------------------------------------------------------------

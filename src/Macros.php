@@ -10,9 +10,20 @@
  */
 namespace Codex\Addon\Phpdoc;
 
+use Codex\Addons\Annotations as CA;
+
 class Macros
 {
 
+    /**
+     * methodSignature method
+     *
+     * @CA\Macro(name="method:signature")
+     * @param bool $isCloser
+     * @param      $query
+     *
+     * @return string
+     */
     public function methodSignature($isCloser = false, $query)
     {
 //        return $isCloser ? '</div>' : '<div style="display:none">';

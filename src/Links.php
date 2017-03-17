@@ -10,10 +10,19 @@
  */
 namespace Codex\Addon\Phpdoc;
 
+use Codex\Addons\Annotations as CA;
 use Codex\Processors\Links\Action;
 use Codex\Support\Collection;
 use FluentDOM\Element;
 
+/**
+ * This is the class Links.
+ *
+ * @author Robin Radic
+ * @CA\Link("phpdoc",
+ *     params={"query"}
+ * )
+ */
 class Links
 {
     /** @var \Codex\Processors\Links\Action */
@@ -55,7 +64,7 @@ class Links
         }
     }
 
-    protected function getComponent()
+    protected function getPhpdocComponentHtml()
     {
         $action = $this->action;
         $name   = 'entity';
@@ -85,35 +94,7 @@ class Links
         return "<pd-{$name} query=\"{$query}\" {$params}></pd-{$name}>";
     }
 
-    protected function getQuery()
-    {
-        $query = str_ensure_left($this->action->param(0), '\\');
-        return strstr($query, '::') ? str_ensure_right($query, '()') : $query;
-    }
-
-    protected function popover()
-    {
-        $action    = $this->action;
-        $modifier  = $action->modifier('popover');
-        $component = $this->getComponent();
-        $trigger   = 'hover';
-        if ( $modifier->hasParameters() ) {
-            $trigger = $modifier->param(0);
-        }
-
-
-        $this->replaceElementWithComponent('c-popover', <<<EOT
-<c-popover placement="bottom" popover-class="popover-phpdoc" trigger="{$trigger}">
-    {$this->getElementHtml()}
-    <span slot="content">
-        {$component}
-    </span>
-</c-popover>
-EOT
-        );
-    }
-
-    protected function getElementHtml()
+    protected function getPhpdocTypeHtml()
     {
         $action = $this->action;
         $elHtml = $action->getElement()->saveHtml();
@@ -123,11 +104,11 @@ EOT
             $target = $action->modifier('target')->param(0);
         }
 
-        if($action->hasModifier('type')){
-            $type = $action->modifier('type');
+        if ( $action->hasModifier('type') ) {
+            $type   = $action->modifier('type');
             $params = '';
-            if($type->hasParameters()){
-                if($type->param(0) ===false){
+            if ( $type->hasParameters() ) {
+                if ( $type->param(0) === false ) {
                     $params .= ' no-tooltip';
                 }
             }
@@ -136,11 +117,59 @@ EOT
         return $elHtml;
     }
 
+
+    protected function replaceElementWithComponent($name, $html)
+    {
+        $el = $this->action->getElement();
+        $fd = FluentDOM($html, 'text/html');
+        $el->before($fd->find("//{$name}"));
+        $el->remove();
+    }
+
+    protected function getQuery()
+    {
+        $query = str_ensure_left($this->action->param(0), '\\');
+        return strstr($query, '::') ? str_ensure_right($query, '()') : $query;
+    }
+
+    protected function popover()
+    {
+        $action  = $this->action;
+        $trigger = uniqid('phpdoc', true);
+        $el      = $action->getElement();
+        $el->setAttribute('ref', $trigger);
+
+        $link      = $el->saveHtml();
+        $modifier  = $action->modifier('popover');
+        $component = $this->getPhpdocComponentHtml();
+        $openOn    = 'hover';
+        if ( $modifier->hasParameters() ) {
+            $openOn = $modifier->param(0);
+        }
+
+
+        $this->replaceElementWithComponent("span[@id='{$trigger}']", <<<EOT
+        <span id="{$trigger}>
+{$link}
+<ui-popover 
+    trigger='{$trigger}'
+    open-on="{$openOn}"
+    dropdown-position="bottom left">
+    {$this->getPhpdocTypeHtml()}
+    <span slot="content">
+        {$component}
+    </span>
+</ui-popover>
+</span>
+EOT
+        );
+    }
+
     protected function modal()
     {
         $el = $this->action->getElement();
         $el->setAttribute('href', 'javascript:;');
-        $component = $this->getComponent();
+        $component = $this->getPhpdocComponentHtml();
         $size      = ':large="true"';
         if ( $this->action->containsModifier('modal-full') ) {
             $size = ':full="true"';
@@ -153,7 +182,7 @@ cancel-text="Close"
 cancel-class="btn btn-primary"
 modal-class="modal-phpdoc" 
 {$size}>
-    {$this->getElementHtml()}
+    {$this->getPhpdocTypeHtml()}
     <span slot="content">
         {$component}
     </span>
@@ -171,13 +200,5 @@ EOT
         $this->replaceElementWithComponent('pd-type', $html);
     }
 
-
-    protected function replaceElementWithComponent($name, $html)
-    {
-        $el = $this->action->getElement();
-        $fd = FluentDOM($html, 'text/html');
-        $el->before($fd->find("//{$name}"));
-        $el->remove();
-    }
 
 }
